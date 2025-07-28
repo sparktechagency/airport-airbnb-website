@@ -1,9 +1,10 @@
+import MainHomePage from '@/components/ui/website/home/MainHomePage';
 import React from 'react';
 
 const page = () => {
   return (
     <div>
-      hello world
+      <MainHomePage />
     </div>
   );
 };
