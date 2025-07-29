@@ -10,31 +10,31 @@ const Footer = () => {
 
     const item = [
         {
-            label: "Home",
-            path: "/",
+            label: "About",
+            path: "/about",
         },
         {
             label: "Services",
             path: "/services",
         },
         {
-            label: "About",
-            path: "/about",
+            label: "Supports",
+            path: "/supports ",
         },
     ];
 
     const items = [
         {
-            label: "News",
-            path: "/news",
+            label: "Privacy Policy",
+            path: "/privacy",
         },
         {
             label: "Terms & Conditions",
             path: "/terms",
         },
         {
-            label: "Supports",
-            path: "/supports",
+            label: "Disclaimer",
+            path: "/disclaimer",
         },
     ];
 
@@ -119,7 +119,7 @@ const Footer = () => {
                     })}
                 </div>
 
-                <div className="col-span-12 sm:col-span-6  md:col-span-4 lg:col-span-4"> 
+                <div className="col-span-12 sm:col-span-6  md:col-span-4 lg:col-span-4">
                     <p className="font-semibold text-[16px] leading-[20px] text-[#F3F3F3] mb-2"> Get in touch ! </p>
                     <div className="w-full flex md:items-center flex-col md:flex-row lg:gap-4 gap-2 p-1">
                         <Input
@@ -168,8 +168,8 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="bg-[#003642] py-3">
-                <p className="text-center text-[#ffffff]">
+            <div className="bg-[#333333] py-3">
+                <p className="text-center text-[#ffffff] text-sm">
                     © Copyright UX/UI 2204 Team Md. Asadujjaman Mahfuz
                 </p>
             </div>

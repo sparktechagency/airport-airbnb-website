@@ -5,7 +5,7 @@ import { RiRefund2Line } from 'react-icons/ri';
 
 const WhyUse = () => {
     return (
-         <div className="bg-[#F3F3F3] py-16 lg:mt-16 mt-0">
+         <div className="bg-[#F3F3F3] py-20 ">
       <Heading style="font-normal text-[32px] leading-[48px] text-[#3E3E3E] text-center">
         Why use <span className="text-primary">Airport Airbnb</span>
       </Heading>
