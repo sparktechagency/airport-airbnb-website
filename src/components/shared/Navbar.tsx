@@ -61,8 +61,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full z-50 bg-white/90">
-      <div className="navbar flex h-[96px] container justify-between lg:items-center items-center relative lg:px-1">
+    <div className="absolute top-0 left-0 w-full z-50 bg-white/90 border-b border-gray-200">
+      <div className="navbar flex h-[96px] container justify-between lg:items-center items-center relative lg:px-1 ">
         {/* Logo */}
         <img
           src="/airbnb-logo.png"
@@ -82,7 +82,7 @@ const Navbar = () => {
               <Link
                 key={option.path}
                 href={option.path}
-                className={`nav-link flex flex-col items-center justify-center text-[16px] px-3 py-[14px] rounded-lg cursor-pointer ${isActive ? "text-primary font-bold" : "text-[#767676]"}`}
+                className={`nav-link flex flex-col items-center justify-center text-[16px] px-3 py-[14px] rounded-lg cursor-pointer ${isActive ? "text-primary font-semibold" : "text-[#767676]"}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {option.label}
@@ -109,9 +109,13 @@ const Navbar = () => {
         <div className="nav-icons hidden lg:flex items-center gap-x-4">
           {user ? (
             <div className="flex flex-row items-center gap-4">
-              <Badge count={2} color="#083a65">
-                <LuHeart size={26} color="#767676" />
-              </Badge>
+
+              <Link href="/saved-item"  className="cursor-pointer">
+                <Badge count={2} color="#083a65"  >
+                  <LuHeart size={26} color="#767676" />
+                </Badge>
+              </Link> 
+
               <Link
                 href="/account-information"
                 className="flex items-center gap-2 h-[55px] px-2 rounded-md cursor-pointer transition"
