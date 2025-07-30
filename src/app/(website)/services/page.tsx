@@ -1,9 +1,10 @@
+import Services from '@/components/ui/website/services/Services';
 import React from 'react';
 
 const servicesPage = () => {
     return (
         <div>
-            this is services pages 
+            <Services />
         </div>
     );
 };

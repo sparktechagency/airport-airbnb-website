@@ -26,7 +26,7 @@ const FilterOptions = () => {
                     </Form.Item>
 
                     <Form.Item label={<p className="text-sm font-medium text-[#333333]">Type</p>} name="location">
-                        <Select options={typeOptions} placeholder="Select type" className="w-full h-[36px] p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} />
+                        <Select options={typeOptions} placeholder="Select type" className="w-full h-[36px] p-2 border border-[#EEEEEE] rounded" style={{ height: 36 , border:"0px solid transparent" }} />
                     </Form.Item>
 
                     <Form.Item label={<p className="text-xm"></p>}>

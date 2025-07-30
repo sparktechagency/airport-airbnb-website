@@ -28,7 +28,7 @@ const SingleServiceCard = ({ property }: SingleServiceCardProps) => {
     return (
         <div className="w-[310px] bg-white rounded-xl shadow-md overflow-hidden">
             <div className="relative">
-                <Link href={`/details/${property.name.replace(/\s+/g, "-").toLowerCase()}`}>
+                <Link href={`/service-details/${property.key}`}>
                     <Image
                         alt="Property Image"
                         height={206}

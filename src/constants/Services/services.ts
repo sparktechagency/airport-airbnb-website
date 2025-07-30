@@ -6,7 +6,9 @@ export const services = [
     reviews: 310,
     distance: "0.8 km",
     price: "$72",
-    image: "https://images.unsplash.com/photo-1750639258774-9a714379a093?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D"
+    image: "https://images.unsplash.com/photo-1750639258774-9a714379a093?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D",
+    lat: 40.712776,
+    lng: -74.005974,
   },
   {
     key: 2,
@@ -15,7 +17,9 @@ export const services = [
     reviews: 198,
     distance: "3.5 km",
     price: "$210",
-    image: "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    lat: 40.728157,
+    lng: -73.998672,
   },
   {
     key: 3,
@@ -24,7 +28,9 @@ export const services = [
     reviews: 420,
     distance: "1.0 km",
     price: "$89",
-    image: "https://plus.unsplash.com/premium_photo-1727456097852-cb5e11d18e61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D"
+    image: "https://plus.unsplash.com/premium_photo-1727456097852-cb5e11d18e61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D",
+    lat: 40.715921,
+    lng: -74.008630,
   },
   {
     key: 4,
@@ -33,7 +39,9 @@ export const services = [
     reviews: 150,
     distance: "7.3 km",
     price: "$65",
-    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJvb218ZW58MHx8MHx8fDA%3D4"
+    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJvb218ZW58MHx8MHx8fDA%3D4",
+    lat: 40.758896,
+    lng: -73.985130,
   },
   {
     key: 5,
@@ -42,7 +50,9 @@ export const services = [
     reviews: 96,
     distance: "20.1 km",
     price: "$99",
-    image: "https://plus.unsplash.com/premium_photo-1678752717095-08cd0bd1d7e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHJvb218ZW58MHx8MHx8fDA%3D"
+    image: "https://plus.unsplash.com/premium_photo-1678752717095-08cd0bd1d7e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHJvb218ZW58MHx8MHx8fDA%3D",
+    lat: 40.678178,
+    lng: -73.944158,
   },
   {
     key: 6,
@@ -51,7 +61,9 @@ export const services = [
     reviews: 290,
     distance: "2.3 km",
     price: "$58",
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHJvb218ZW58MHx8MHx8fDA%3D"
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHJvb218ZW58MHx8MHx8fDA%3D",
+    lat: 40.723301,
+    lng: -74.002988,
   },
   {
     key: 7,
@@ -60,7 +72,9 @@ export const services = [
     reviews: 134,
     distance: "15.4 km",
     price: "$88",
-    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cm9vbXxlbnwwfHwwfHx8MA%3D%3D"
+    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cm9vbXxlbnwwfHwwfHx8MA%3D%3D",
+    lat: 40.745255,
+    lng: -73.903297,
   },
   {
     key: 8,
@@ -69,42 +83,52 @@ export const services = [
     reviews: 77,
     distance: "1.1 km",
     price: "$260",
-    image: "https://plus.unsplash.com/premium_photo-1676823547757-f00b51e17eff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D"
+    image: "https://plus.unsplash.com/premium_photo-1676823547757-f00b51e17eff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D",
+    lat: 40.706214,
+    lng: -74.011278,
   },
- {
-  key: 9,
-  name: "Chic Minimalist Room",
-  rating: 4.3,
-  reviews: 201,
-  distance: "0.5 km",
-  price: "$45",
-  image: "https://plus.unsplash.com/premium_photo-1748070893462-4445075983e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8"
-},
-{
-  key: 10,
-  name: "Lakeside Getaway",
-  rating: 4.6,
-  reviews: 167,
-  distance: "10.6 km",
-  price: "$74",
-  image: "https://plus.unsplash.com/premium_photo-1746563913077-c8e55390c34d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQyfHx8ZW58MHx8fHx8"
-},
-{
-  key: 11,
-  name: "Industrial Loft",
-  rating: 4.5,
-  reviews: 315,
-  distance: "1.9 km",
-  price: "$69",
-  image: "https://plus.unsplash.com/premium_photo-1661902292737-a6e525bfe183?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM1fHx8ZW58MHx8fHx8"
-},
-{
-  key: 12,
-  name: "Nature-Inspired Bungalow",
-  rating: 4.9,
-  reviews: 82,
-  distance: "12.0 km",
-  price: "$115",
-  image: "https://plus.unsplash.com/premium_photo-1674035036549-67b8ad6d0be3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8"
-}
+  {
+    key: 9,
+    name: "Chic Minimalist Room",
+    rating: 4.3,
+    reviews: 201,
+    distance: "0.5 km",
+    price: "$45",
+    image: "https://plus.unsplash.com/premium_photo-1748070893462-4445075983e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8",
+    lat: 40.717804,
+    lng: -74.000193,
+  },
+  {
+    key: 10,
+    name: "Lakeside Getaway",
+    rating: 4.6,
+    reviews: 167,
+    distance: "10.6 km",
+    price: "$74",
+    image: "https://plus.unsplash.com/premium_photo-1746563913077-c8e55390c34d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQyfHx8ZW58MHx8fHx8",
+    lat: 40.790447,
+    lng: -73.959954,
+  },
+  {
+    key: 11,
+    name: "Industrial Loft",
+    rating: 4.5,
+    reviews: 315,
+    distance: "1.9 km",
+    price: "$69",
+    image: "https://plus.unsplash.com/premium_photo-1661902292737-a6e525bfe183?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM1fHx8ZW58MHx8fHx8",
+    lat: 40.719577,
+    lng: -73.989982,
+  },
+  {
+    key: 12,
+    name: "Nature-Inspired Bungalow",
+    rating: 4.9,
+    reviews: 82,
+    distance: "12.0 km",
+    price: "$115",
+    image: "https://plus.unsplash.com/premium_photo-1674035036549-67b8ad6d0be3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8",
+    lat: 40.671659,
+    lng: -73.963358,
+  },
 ];

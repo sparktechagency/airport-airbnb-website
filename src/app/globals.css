@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.ant-input-filled{
-    background-color: white !important; 
-    border: 1px solid #d9d9d9  !important; 
+.ant-input-filled {
+    background-color: white !important;
+    border: 1px solid #d9d9d9 !important;
     border-radius: 15px !important;
-} 
+}
 

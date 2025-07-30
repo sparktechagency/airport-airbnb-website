@@ -1,11 +1,12 @@
 import React from 'react';
+import ServiceBanner from './ServiceBanner';
+import MainAvailableRooms from './AvailableRooms/MainAvailableRooms';
 
 const Services = () => {
     return (
         <div>
-            <div className=' h-[385px] w-full' style={{ backgroundImage: 'url(/services-bg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' , backgroundRepeat: 'no-repeat' }}> 
-
-            </div>
+            <ServiceBanner /> 
+            <MainAvailableRooms />
         </div>
     );
 };
