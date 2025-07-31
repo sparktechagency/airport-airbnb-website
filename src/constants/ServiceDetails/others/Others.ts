@@ -19,4 +19,40 @@ export const houseRulesData = [
         title: "Pets",
         description: "Pets are not allowed on the property unless prior arrangements have been made.",
     }
+] 
+
+
+export const facilities = [
+    {
+        icon : "PiShootingStar"  ,
+        name: "Newest"
+    }, 
+    {
+        icon:"IoWifi" ,
+        name:"WiFi"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"AC"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"Balcony"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"Security"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"Gardening"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"Newest"
+    },
+    {
+        icon:"TbAirConditioning",
+        name:"Security"
+    },
 ]

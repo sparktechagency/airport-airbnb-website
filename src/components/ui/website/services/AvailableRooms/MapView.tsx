@@ -23,16 +23,6 @@ const MapView = () => {
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     });
 
-    const [map, setMap] = useState(null);
-
-    const onLoad = (map: any) => {
-        setMap(map);
-    };
-
-    const onUnmount = () => {
-        setMap(null);
-    };
-
     useEffect(() => {
 
         navigator.geolocation.getCurrentPosition(
@@ -60,8 +50,6 @@ const MapView = () => {
             <GoogleMap
                 center={{ lat: viewport.latitude, lng: viewport.longitude }}
                 zoom={viewport.zoom}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
                 mapContainerStyle={{
                     width: "100%",
                     height: "100%",
