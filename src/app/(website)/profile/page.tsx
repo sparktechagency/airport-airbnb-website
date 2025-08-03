@@ -1,10 +1,13 @@
 import Profile from '@/components/ui/website/profile/Profile';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const profilePage = () => {
     return (
         <div>
-            <Profile/>
+            <Suspense>
+                <Profile />
+            </Suspense>
+
         </div>
     );
 };

@@ -1,9 +1,19 @@
+import ProfileHistoryCard from '@/components/shared/ProfileHistoryCard';
+import { historyData } from '@/constants/Profile/HistoryData';
 import React from 'react';
 
 const BookingHistory = () => {
     return (
         <div>
-            this is booking history page
+            <h2 className=' text-2xl font-medium pb-5' >Booking History</h2> 
+
+            <div className=' flex flex-col gap-5'> 
+                {
+                    historyData?.map((value, index) => (
+                        <ProfileHistoryCard key={index} property={value} />
+                    ))
+                }
+            </div>
         </div>
     );
 };
