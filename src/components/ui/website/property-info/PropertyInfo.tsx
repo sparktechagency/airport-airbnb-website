@@ -67,8 +67,8 @@ const PropertyInfo = () => {
                 </div>
 
                 <div>
-                    <h3>Add Room Photos</h3>
-                    <ul style={{ marginBottom: 16, paddingLeft: 20 }}>
+                    <h3 className=' '>Add Room Photos</h3>
+                    <ul className='text-lg font-normal  '>
                         <li>Upload high-quality, well-lit images</li>
                         <li>Include bedroom, bathroom, entrance, and common areas</li>
                         <li>Accepted formats: JPG, PNG</li>
