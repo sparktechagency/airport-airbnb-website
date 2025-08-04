@@ -4,7 +4,7 @@ import React from 'react';
 const ChangePassword = () => {
     const [form] = Form.useForm()
     return (
-        <div className="">
+        <div className="p-7">
 
             <Form
                 form={form}

@@ -117,7 +117,7 @@ const Navbar = () => {
               </Link> 
 
               <Link
-                href="/account-information"
+                href="/profile"
                 className="flex items-center gap-2 h-[55px] px-2 rounded-md cursor-pointer transition"
               >
                 <Image

@@ -14,7 +14,7 @@ const ProfileDetails = () => {
         // Add your form submission logic here
     };
     return (
-        <div >
+        <div className='p-7'>
             <h2 className=' text-2xl font-medium pb-5' >Personal Information</h2>
             <Form
                 form={form}

@@ -4,13 +4,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ProfileDetails from "./ProfileDetails";
 import ChangePassword from "./ChangePassword";
 import BookingHistory from "./BookingHistory";
-import ChatPage from "./ChatPage";
 import ListingHistory from "./ListingHistory";
 import Image from "next/image";
 import { IoIosLogOut } from "react-icons/io";
 import { LuCalendarClock, LuList, LuUserRound } from "react-icons/lu";
 import { RiRotateLockLine } from "react-icons/ri";
 import { TiMessages } from "react-icons/ti";
+import ChatPage from "./chat/ChatPage";
 
 
 const Profile = () => {
@@ -31,6 +31,11 @@ const Profile = () => {
     }
   }, [tabParam]);
 
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    router.push(`/profile?tab=${tabId}`, { scroll: false });
+  };
+
   const tabs = [
     { id: "1", label: "Profile Details", icon: <p> <LuUserRound size={22} /> </p>, component: <ProfileDetails /> },
     { id: "2", label: "Change Password", icon: <p> <RiRotateLockLine size={22} /> </p>, component: <ChangePassword /> },
@@ -43,9 +48,11 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-90px)]"> 
+
+
         {/* Sidebar Tabs */}
-        <div className="w-full lg:w-1/4 h-[calc(100vh-180px)] bg-[#fafbfc] rounded-xl p-5 shadow">
+        <div className="w-full lg:w-1/4  bg-[#fafbfc] rounded-xl p-5 shadow">
           <div className=" flex flex-col gap-1 items-center py-5">
             <div className="w-[94px] h-[94px] relative">
               <Image
@@ -62,8 +69,8 @@ const Profile = () => {
             {tabs.map((tab) => (
               <div
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`text-left px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-4 cursor-pointer ${activeTab === tab.id
+                onClick={() => handleTabChange(tab.id)}
+                className={`text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center gap-4 cursor-pointer ${activeTab === tab.id
                   ? "bg-primary text-white shadow"
                   : "bg-white text-[#6B6B6B] hover:bg-primary hover:text-white"
                   }`}
@@ -76,10 +83,12 @@ const Profile = () => {
           </div>
         </div>
 
+
         {/* Component Display */}
-        <div className="w-full lg:w-3/4 bg-white rounded-xl p-7 shadow overflow-y-auto">
+        <div className="w-full lg:w-3/4 bg-white rounded-xl  shadow overflow-y-auto">
           {tabs.find((tab) => tab.id === activeTab)?.component}
-        </div>
+        </div> 
+
       </div>
     </div>
   );

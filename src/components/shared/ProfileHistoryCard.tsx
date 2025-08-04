@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import FeedbackModal from "../modals/FeedbackModal";
+import { useSearchParams } from "next/navigation";
 
-interface propertyType {
-    image: string;
+type propertyType = {
     name: string;
     roomType: string;
     location: string;
     checkIn: string;
     checkOut: string;
     price: string;
-    propertyType: string;
+    image: string;
+    key: number;
 }
 
 interface propertyCardType {
     property: propertyType;
 }
 
-const ProfileHistoryCard = ({ property }: propertyCardType) => {
+const ProfileHistoryCard = ({ property }: propertyCardType) => {  
+    const searchParams = useSearchParams() 
+    const tab = searchParams.get("tab")
+    const [open , setOpen] = useState(false) 
+
+    console.log(tab); 
+    
     return (
         <div className="w-full  bg-white rounded-md shadow-md overflow-hidden flex p-1 ">
             <div className="w-[250px] h-full relative pe-3">
@@ -52,7 +60,8 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
                         </div>
 
                         <div className="flex justify-between items-end">
-                            <button className="bg-primary text-white px-2.5 h-[36px] text-[12px] rounded cursor-pointer border-none">
+                            <button className="bg-primary text-white px-2.5 h-[36px] text-[12px] rounded cursor-pointer border-none"
+                             onClick={()=>setOpen(true)}>
                                 Feedback
                             </button>
                         </div>
@@ -60,7 +69,8 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
 
                 </div>
 
-            </div>
+            </div> 
+          <FeedbackModal open={open} setOpen={setOpen} />
         </div>
     );
 };
