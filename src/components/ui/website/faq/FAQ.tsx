@@ -49,25 +49,24 @@ const Faq = () => {
         <div
             className=" pb-20 "
         >
-            <div> 
-                       <p className='text-[32px] font-normal  text-primary  container  text-center pb-8'>Popular Frequently Asked Questions</p>
+            <div>
+                <p className='text-[32px] font-normal  text-primary  container  text-center pb-8'>Popular Frequently Asked Questions</p>
 
                 <div className="container grid grid-cols-1 gap-6 ">
-                   
+
                     <>
                         {faqs && faqs.length > 0 ? (
                             faqs?.map((faq: { question: string, answer: string }, index: number) => (
                                 <div
                                     key={index}
-                                    className="overflow-hidden transition-max-height duration-300 ease-in-out rounded-lg bg-white cursor-pointer relative lg:h-[56px] h-[65px]"
+                                    className="overflow-hidden transition-max-height duration-300 ease-in-out rounded-lg bg-white cursor-pointer relative lg:h-[56px] h-[65px] shadow "
                                     onClick={() => toggleAccordion(index)}
                                     style={{
                                         minHeight:
                                             openIndex === index
                                                 ? `${contentRefs.current[index]?.scrollHeight}px`
                                                 : "50px",
-                                        boxShadow:
-                                            "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+
                                     }}
                                 >
                                     <div

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import FeedbackModal from "../modals/FeedbackModal";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type propertyType = {
     name: string;
@@ -18,15 +18,16 @@ interface propertyCardType {
     property: propertyType;
 }
 
-const ProfileHistoryCard = ({ property }: propertyCardType) => {  
-    const searchParams = useSearchParams() 
+const ProfileHistoryCard = ({ property }: propertyCardType) => {
+    const searchParams = useSearchParams()
     const tab = searchParams.get("tab")
-    const [open , setOpen] = useState(false) 
+    const [open, setOpen] = useState(false)
+    const router = useRouter()
 
-    console.log(tab); 
-    
+    console.log(tab);
+
     return (
-        <div className="w-full  bg-white rounded-md shadow-md overflow-hidden flex p-1 ">
+        <div className="w-full  bg-[#fafbfc] rounded-md shadow-md overflow-hidden flex p-1 ">
             <div className="w-[250px] h-full relative pe-3">
                 <Image
                     src={property.image}
@@ -59,18 +60,25 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
                             </p>
                         </div>
 
+
                         <div className="flex justify-between items-end">
-                            <button className="bg-primary text-white px-2.5 h-[36px] text-[12px] rounded cursor-pointer border-none"
-                             onClick={()=>setOpen(true)}>
-                                Feedback
-                            </button>
+                            {
+                                tab === "3" ?
+                                    <button className="bg-primary text-white px-2.5 h-[36px] text-[12px] rounded cursor-pointer border-none"
+                                        onClick={() => setOpen(true)}>
+                                        Feedback
+                                    </button>
+                                    :
+                                    <button className='bg-primary text-white px-3 py-2 text-xs rounded font-medium' onClick={() => router.push("/property-info")}>  Edit Property</button>
+                            }
+
                         </div>
                     </div>
 
                 </div>
 
-            </div> 
-          <FeedbackModal open={open} setOpen={setOpen} />
+            </div>
+            <FeedbackModal open={open} setOpen={setOpen} />
         </div>
     );
 };

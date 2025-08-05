@@ -139,7 +139,7 @@ const Navbar = () => {
           )}
           <button
             className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
-            onClick={() => router.push("/select-service")}
+            onClick={() => router.push("/be-a-host")}
           >
             Be a Host
           </button>

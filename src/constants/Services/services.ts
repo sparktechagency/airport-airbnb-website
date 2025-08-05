@@ -131,4 +131,14 @@ export const services = [
     lat: 40.671659,
     lng: -73.963358,
   },
-];
+]; 
+
+
+  export const roomTypeOption = [
+        {
+            label: "Single", value: "single"
+        },
+        {
+            label: "Double", value: "double"
+        },
+    ] 
