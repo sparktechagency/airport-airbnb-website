@@ -23,7 +23,7 @@ const Facilities = ({ selectedFacilities, setSelectedFacilities }: { selectedFac
               key={index}
               onClick={() => toggleFacility(value.label)}
               className={`flex flex-col items-center justify-center gap-y-1  ${isSelected ? 'border border-primary/80 bg-gray-100' : ' border border-[#BABABA]'
-                } w-auto min-w-[120px] rounded py-3 cursor-pointer transition-all`}
+                } w-auto min-w-[100px] rounded py-3 cursor-pointer transition-all`}
             >
               <div className="h-6 w-6">
                 <Image src={value.img} height={24} width={24} alt={value.label} />

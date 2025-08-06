@@ -87,7 +87,7 @@ const SelectLocation: React.FC<SelectLocationProps> = ({ updateFormData, formDat
   if (!isLoaded) return <div>Loading Google Maps...</div>;
 
   return (
-    <div className="w-1/2 ">
+    <div className="lg:w-1/2 w-full ">
       <Form
         layout="vertical"
         form={form}
@@ -120,7 +120,7 @@ const SelectLocation: React.FC<SelectLocationProps> = ({ updateFormData, formDat
         </Form.Item>
 
         <div
-          className="mt-20 h-[350px] "
+          className="lg:mt-20 mt-10 h-[350px] "
 style={{ borderRadius:"10px"}}
         >
           <GoogleMap

@@ -15,7 +15,7 @@ const UploadUtilityBill = () => {
         }
     };
     return (
-        <div className='w-1/2'>
+        <div className='lg:w-1/2 w-full'>
             <div className="flex  py-3">
                 <input
                     onChange={onChange}

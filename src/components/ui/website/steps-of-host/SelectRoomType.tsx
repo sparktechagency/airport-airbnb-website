@@ -3,7 +3,7 @@ import { Form, Select } from "antd";
 
 const SelectRoomType = () => {
     return (
-       <div className='w-1/2'>
+       <div className='lg:w-1/2 w-full'>
             <Form layout='vertical' >
                 <Form.Item name={"roomType"} >
                       <Select options={roomTypeOption} placeholder="Select room type" className="w-full h-[45px] p-2 border border-[#EEEEEE] rounded" style={{ height: 45, border: "0px solid transparent" }} />

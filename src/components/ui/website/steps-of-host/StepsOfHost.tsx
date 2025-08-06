@@ -64,12 +64,12 @@ const StepsOfHost = () => {
         },
         {
             title: "Show guests what makes your place special",
-            content: <div className="w-1/2">  <Facilities selectedFacilities={selectedFacilities} setSelectedFacilities={setSelectedFacilities} /> </div>,
+            content: <div className="lg:w-1/2 w-full ">  <Facilities selectedFacilities={selectedFacilities} setSelectedFacilities={setSelectedFacilities} /> </div>,
             skippable: false,
         },
         {
             title: "Set Room Closure Date (optional)",
-            content: <div className="w-1/2 border border-gray-300 rounded">   <Calender unavailableDay={[]} /> </div>,
+            content: <div className="lg:w-1/2 w-full border border-gray-300 rounded">   <Calender unavailableDay={[]} /> </div>,
             skippable: false,
         },
         {
@@ -115,7 +115,7 @@ const StepsOfHost = () => {
                 {/* Steps content */}
                 <div className="steps-content  flex items-center justify-start "  >
                     <Form className='w-full' >
-                        <div className={`lg:text-[32px] text-[28px] text-[#222222] font-medium lg:tracking-wide py-3`}>{steps[current]?.title} </div>
+                        <div className={`lg:text-[32px] text-[20px] text-[#222222] font-medium lg:tracking-wide py-3`}>{steps[current]?.title} </div>
                         <div className='   min-h-[350px]'>  {steps[current]?.content} </div>
                     </Form>
                 </div>
