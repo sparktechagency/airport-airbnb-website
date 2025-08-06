@@ -24,17 +24,16 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
     const [open, setOpen] = useState(false)
     const router = useRouter()
 
-    console.log(tab);
 
     return (
-        <div className="w-full  bg-[#fafbfc] rounded-md shadow-md overflow-hidden flex p-1 ">
-            <div className="w-[250px] h-full relative pe-3">
+        <div className="w-full  bg-[#fafbfc] rounded-md shadow-md overflow-hidden flex lg:flex-row flex-col justify-items-center p-1 ">
+            <div className="lg:w-[250px] w-full h-full relative lg:pe-3">
                 <Image
                     src={property.image}
                     alt={property.name}
                     width={450}
                     height={250}
-                    className="object-cover rounded"
+                    className="object-cover rounded w-full"
                 />
             </div>
             <div className="flex-1 p-2.5 flex flex-col justify-between">
@@ -43,9 +42,9 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
                         <h2 className="text-[16px] font-semibold text-[#333] mb-1">
                             {property.name}
                         </h2>
-                        <h2> <span className="text-xl font-semibold text-primary ">
+                        <h2> <span className="lg:text-xl text-lg font-semibold text-primary ">
                             {property.price}
-                        </span> <span className=" text-[#767676] text-[16px] font-medium"> for 3 night </span></h2>
+                        </span> <span className=" text-[#767676] lg:text-[16px] text-sm font-medium"> for 3 night </span></h2>
                     </div>
                     <p className="text-[12px] text-[#767676] mb-1"> {property.roomType}</p>
                     <p className="text-[12px] text-[#767676] mb-1"> {property.location}</p>

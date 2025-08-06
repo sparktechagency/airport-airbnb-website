@@ -5,7 +5,8 @@
 .ant-input-filled {
   background-color: white !important;
   border: 1px solid #d9d9d9 !important;
-  border-radius: 15px !important;
+  border-radius: 15px !important; 
+
 }
 
 .swiper-button-prev {
@@ -55,4 +56,8 @@
 
 .swiper {
   padding: 0 2px;
-}
+} 
+
+.filter.ant-form-item { 
+  margin-bottom: 8px !important;
+ }

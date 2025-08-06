@@ -24,14 +24,14 @@ const UploadImage = ({ fileList, setFileList }: { fileList: UploadFile[], setFil
     const uploadButton = (
         <div className='  border-dashed border-[#d9d9d9] flex items-center justify-center gap-1 '>
             <span>   <PlusOutlined />  </span>
-            <span className=' text-gray-600 font-medium '>Add more</span>
+            <span className=' text-gray-600 font-medium lg:text-[16px] text-sm '>Add more</span>
         </div>
     );
 
     return (
         <div>
       
-            <ul className='text-[16px] font-normal list-disc text-[#767676] container space-y-2 pb-5  '>
+            <ul className='lg:text-[16px] text-sm font-normal list-disc text-[#767676] container space-y-2 pb-5  '>
                 <li>Upload high-quality, well-lit images</li>
                 <li>Include bedroom, bathroom, entrance, and common areas</li>
                 <li>Accepted formats: JPG, PNG</li>

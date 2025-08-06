@@ -5,7 +5,7 @@ import React from 'react';
 const BookingHistory = () => {
     return (
         <div  className='p-7'>
-            <h2 className=' text-2xl font-medium pb-5' >Booking History</h2> 
+            <h2 className='lg:text-2xl text-xl font-medium pb-5' >Booking History</h2> 
 
             <div className=' flex flex-col gap-5'> 
                 {

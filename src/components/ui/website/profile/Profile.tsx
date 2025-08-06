@@ -48,7 +48,7 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-90px)]"> 
+      <div className="flex flex-col lg:flex-row gap-8 lg:h-[calc(100vh-90px)]"> 
 
 
         {/* Sidebar Tabs */}
@@ -85,7 +85,7 @@ const Profile = () => {
 
 
         {/* Component Display */}
-        <div className="w-full lg:w-3/4 bg-white rounded-xl  shadow overflow-y-auto">
+        <div className="w-full lg:w-3/4 bg-white rounded-xl h-auto shadow overflow-y-auto">
           {tabs.find((tab) => tab.id === activeTab)?.component}
         </div> 
 

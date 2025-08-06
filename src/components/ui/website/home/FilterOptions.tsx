@@ -11,26 +11,26 @@ const FilterOptions = () => {
     ];
     return (
         <div className=" container w-full flex lg:items-center lg:justify-center items-end justify-end bg-white rounded-lg shadow-md py-4 lg:px-20 px-4 z-50">
-            <Form layout="vertical" className="w-full  ">
+            <Form layout="vertical" className="w-full ">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center lg:gap-4 gap-2">
-                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Price</p>} name="price">
-                        <Input type="number" placeholder="0.00" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} prefix={<TbCurrencyDollar color="#B0B0B0" size={12} />} />
+                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Price</p>} name="price" className="filter">
+                        <Input type="number" placeholder="0.00" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 40 }} prefix={<TbCurrencyDollar color="#B0B0B0" size={12} />} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Date</p>} name="date">
-                        <DatePicker className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} />
+                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Date</p>} name="date" className="filter">
+                        <DatePicker className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 40 }} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Location</p>} name="location">
-                        <Input type="text" placeholder="Select location" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} prefix={<PiMapPin color="#B0B0B0" size={12} />} />
+                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Location</p>} name="location" className="filter">
+                        <Input type="text" placeholder="Select location" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 40 }} prefix={<PiMapPin color="#B0B0B0" size={12} />} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Type</p>} name="type">
-                        <Select options={typeOptions} placeholder="Select type" className="w-full h-[36px] p-2 border border-[#EEEEEE] rounded" style={{ height: 36 , border:"0px solid transparent" }} />
+                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Type</p>} name="type" className="filter">
+                        <Select options={typeOptions} placeholder="Select type" className="w-full h-[40px] p-2 border border-[#EEEEEE] rounded" style={{ height: 40 , border:"0px solid transparent" }} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-xm"></p>} className="lg:col-span-1 col-span-2">
-                        <button type="submit" className="w-full bg-primary text-white p-2 rounded  h-[36px] ">
+                    <Form.Item label={<p className="text-xm lg:block hidden "></p>} className="lg:col-span-1 col-span-2 ">
+                        <button type="submit" className="w-full bg-primary text-white p-2 rounded  h-[40px] ">
                             search
                         </button>
                     </Form.Item>

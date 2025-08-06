@@ -10,7 +10,7 @@ const router = useRouter()
         <div className='p-7'> 
 
             <div className=' flex items-center justify-between pb-5 '>
-                <h2 className=' text-2xl font-medium ' >Listing History</h2>
+                <h2 className='lg:text-2xl text-xl font-medium ' >Listing History</h2>
                 <button className='border border-primary text-primary px-3 py-2 text-sm rounded font-medium' onClick={()=>router.push("/property-info")}> + Add Property</button>
             </div>
 

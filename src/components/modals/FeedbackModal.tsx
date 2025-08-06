@@ -12,7 +12,7 @@ const FeedbackModal = ({ open, setOpen }: { open: boolean; setOpen: (open: boole
 
   return (
     <Modal
-      title={<p className="text-center text-2xl font-medium text-[#676F62] pt-4">Give your Rating</p>}
+      title={<p className="text-center lg:text-2xl text-xl font-medium text-[#676F62] pt-4">Give your Rating</p>}
       open={open}
       onCancel={() => setOpen(false)}
       footer={[
@@ -26,7 +26,7 @@ const FeedbackModal = ({ open, setOpen }: { open: boolean; setOpen: (open: boole
       <Rate  value={rating} onChange={setRating} style={{ fontSize: 36 }} />
       </div>
       <div className="mt-4">
-        <label className="text-[16px] font-medium text-[#636363]  pb-0.5">Comments</label>
+        <label className="lg:text-[16px] text-sm  font-medium text-[#636363] lg:pb-0.5 pb-2">Comments</label>
         <Input.TextArea
           value={comment}
           onChange={(e) => setComment(e.target.value)}

@@ -15,7 +15,7 @@ const ProfileDetails = () => {
     };
     return (
         <div className='p-7'>
-            <h2 className=' text-2xl font-medium pb-5' >Personal Information</h2>
+            <h2 className=' lg:text-2xl text-xl font-medium pb-5' >Personal Information</h2>
             <Form
                 form={form}
                 name="personal_info"
@@ -30,7 +30,7 @@ const ProfileDetails = () => {
                     <Input type="text" placeholder="Enter email" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 45 }} />
                 </Form.Item>
 
-                <div style={{ display: 'flex', gap: '16px' }}>
+                <div className=' flex lg:flex-row flex-col lg:gap-4' >
                     <div style={{ flex: '1' }}>
                         <Form.Item label={<p className="text-sm font-normal text-[#333333]">Contact No</p>} name="contactNo">
                             <Input type="text" placeholder="Enter Contact No" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 45 }} />
