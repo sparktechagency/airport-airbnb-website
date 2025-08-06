@@ -3,21 +3,25 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Drawer } from 'antd';
 import Link from "next/link";
 import Image from "next/image";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 
 const NavbarMobile = ({
     drawerVisible,
     navOptions,
     setDrawerVisible,
-    pathname,
+    pathname, 
+    router
 }: {
     drawerVisible: boolean;
     navOptions: { label: string | JSX.Element | undefined; path?: string }[];
     setDrawerVisible: (open: boolean) => void;
-    pathname: string;
+    pathname: string; 
+    router: AppRouterInstance
 }) => {
     //   const userContextValue = useContext(userContext);
-    //   const user = userContextValue?.user; 
+    //   const user = userContextValue?.user;  
+    
 
     const user = {
         name: "John Doe",
@@ -56,7 +60,7 @@ const NavbarMobile = ({
                             <Link
                                 key={index}
                                 href={option.path ?? "/"}
-                                onClick={() => setDrawerVisible(false)}
+                                onClick={() => {setDrawerVisible(false); router.push("/be-a-host")}}
                             >
                                 <div
                                     className={`py-4  text-[16px] font-normal cursor-pointer border-b border-[#4E4E4E]  ${isActive ? "text-[#FFFFFF]" : "text-[#FFFFFF]/60"
@@ -73,13 +77,13 @@ const NavbarMobile = ({
                     <div className="w-full">
                         <button
                             className="text-[16px] py-3 w-full mb-4 rounded-full font-medium text-[#070707] bg-white"
-                            onClick={() => setDrawerVisible(false)}
+                            onClick={() =>{setDrawerVisible(false); router.push("/be-a-host")}}
                         >
                              Be a Host
                         </button>
                         {user ? (
                             <Link
-                                href="/account-information"
+                                href="/profile"
                                 className="flex items-center justify-center gap-2 h-[48px] px-2 cursor-pointer transition border border-white rounded-full"
                             >
                                 <Image

@@ -18,12 +18,12 @@ const ServiceDetailsMain = () => {
     return (
         <div className="container pb-14 pt-3"> 
         <DetailsTitle />
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-7">
-                <div className=" col-span-8 ">
+            <div className="grid grid-cols-12  gap-7">
+                <div className=" lg:col-span-8 col-span-12 ">
                     <Sliders images={images} />
                 </div>
 
-                <div className="col-span-4">
+                <div className="lg:col-span-4 col-span-12">
                     <BookNow />
                 </div>
             </div> 

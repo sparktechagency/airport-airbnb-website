@@ -10,9 +10,9 @@ const FilterOptions = () => {
         { value: 'double', label: 'Double' },
     ];
     return (
-        <div className=" container flex items-center justify-center bg-white rounded-lg shadow-md py-4 px-20 z-50">
+        <div className=" container w-full flex lg:items-center lg:justify-center items-end justify-end bg-white rounded-lg shadow-md py-4 lg:px-20 px-4 z-50">
             <Form layout="vertical" className="w-full  ">
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 items-center gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center lg:gap-4 gap-2">
                     <Form.Item label={<p className="text-sm font-medium text-[#333333]">Price</p>} name="price">
                         <Input type="number" placeholder="0.00" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} prefix={<TbCurrencyDollar color="#B0B0B0" size={12} />} />
                     </Form.Item>
@@ -25,11 +25,11 @@ const FilterOptions = () => {
                         <Input type="text" placeholder="Select location" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 36 }} prefix={<PiMapPin color="#B0B0B0" size={12} />} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Type</p>} name="location">
+                    <Form.Item label={<p className="text-sm font-medium text-[#333333]">Type</p>} name="type">
                         <Select options={typeOptions} placeholder="Select type" className="w-full h-[36px] p-2 border border-[#EEEEEE] rounded" style={{ height: 36 , border:"0px solid transparent" }} />
                     </Form.Item>
 
-                    <Form.Item label={<p className="text-xm"></p>}>
+                    <Form.Item label={<p className="text-xm"></p>} className="lg:col-span-1 col-span-2">
                         <button type="submit" className="w-full bg-primary text-white p-2 rounded  h-[36px] ">
                             search
                         </button>

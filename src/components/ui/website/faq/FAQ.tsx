@@ -50,7 +50,7 @@ const Faq = () => {
             className=" pb-20 "
         >
             <div>
-                <p className='text-[32px] font-normal  text-primary  container  text-center pb-8'>Popular Frequently Asked Questions</p>
+                <p className='lg:text-[32px] text-2xl font-normal  text-primary  container  text-center pb-8'>Popular Frequently Asked Questions</p>
 
                 <div className="container grid grid-cols-1 gap-6 ">
 
@@ -78,7 +78,7 @@ const Faq = () => {
                                         className="accordion-content p-4"
                                     >
                                         <div className="flex items-center justify-between">
-                                            <p className="text-[16px] leading-6 font-medium text-[#3E3E3E]">
+                                            <p className="lg:text-[16px] text-sm leading-6 font-medium text-[#3E3E3E]">
                                                 {faq?.question}
                                             </p>
                                             <MdKeyboardArrowRight
@@ -87,7 +87,7 @@ const Faq = () => {
                                                     }`}
                                             />
                                         </div>
-                                        <div className="text-[16px] leading-6 font-normal text-primary my-5 pb-3">
+                                        <div className="lg:text-[16px] text-sm leading-6 font-normal text-primary my-5 pb-3">
                                             {faq?.answer}
                                         </div>
                                     </div>

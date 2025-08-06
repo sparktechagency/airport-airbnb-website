@@ -5,8 +5,8 @@ import React from 'react';
 const About = () => {
     return (
         <div>
-            <p className='text-[32px] font-normal  text-primary  container pt-14'> AIRPORT AIRBNB’s Story </p>
-            <div className=' grid grid-cols-1 md:grid-cols-2  gap-9 px-4 pt-8 pb-20 container'>
+            <p className='lg:text-[32px] text-2xl font-normal  text-primary  container pt-14'> AIRPORT AIRBNB’s Story </p>
+            <div className=' grid grid-cols-1 md:grid-cols-2  gap-9 px-4 lg:pt-8 pt-4 lg:pb-20 pb-14 container'>
                 <div>
 
                     <div className='text-sm font-normal text-[#5C5C5C] flex flex-col gap-4'>

@@ -19,7 +19,7 @@ const Footer = () => {
         },
         {
             label: "Supports",
-            path: "/supports ",
+            path: "/support",
         },
     ];
 
@@ -70,7 +70,7 @@ const Footer = () => {
                 backgroundSize: "cover",
             }}
         >
-            <div className="lg:container grid grid-cols-12 py-[30px] px-1 gap-8 md:gap-0">
+            <div className="container grid grid-cols-12 py-[30px] lg:px-1 px-3 gap-8 md:gap-0">
                 <Link href={"/"} className="col-span-12 mb-4">
                     <Image alt="Logo" src="/airbnb-logo.png" width={70} height={70} />
                 </Link>
@@ -87,8 +87,8 @@ const Footer = () => {
                         return (
                             <Link
                                 key={index}
-                                className={`h-[21px]
-                                        font-normal text-[16px] leading-6 
+                                className={`lg:h-[21px] h-4
+                                        font-normal lg:text-[16px] text-sm leading-6 
                                         text-[#F3F3F3]
                                         border-[#D9D9D9]
                                     `}
@@ -106,8 +106,8 @@ const Footer = () => {
                             <Link
                                 key={index}
                                 className={`
-                                        h-[21px]
-                                        font-normal text-[16px] leading-6 
+                                        lg:h-[21px] h-4 
+                                        font-normal lg:text-[16px] text-sm leading-6 
                                         text-[#F3F3F3]
                                         border-[#D9D9D9]
                                     `}
@@ -120,8 +120,8 @@ const Footer = () => {
                 </div>
 
                 <div className="col-span-12 sm:col-span-6  md:col-span-4 lg:col-span-4">
-                    <p className="font-semibold text-[16px] leading-[20px] text-[#F3F3F3] mb-2"> Get in touch ! </p>
-                    <div className="w-full flex md:items-center flex-col md:flex-row lg:gap-4 gap-2 p-1">
+                    <p className="font-semibold lg:text-[16px] text-sm leading-[20px] text-[#F3F3F3] mb-2"> Get in touch ! </p>
+                    <div className="w-full flex md:items-center flex-col md:flex-row lg:gap-4 gap-2 lg:p-1">
                         <Input
                             placeholder="Enter Your Email"
                             style={{
@@ -151,7 +151,7 @@ const Footer = () => {
                             Subscribe
                         </Button>
                     </div>
-                    <div className="flex items-center gap-6 mt-6">
+                    <div className="flex items-center justify-center lg:justify-start gap-6 mt-6">
                         <a href="https://www.facebook.com/" target="_blank">
                             <Image alt="social-link" src={"/facebook.png"} width={32} height={32} />
                         </a>
@@ -169,7 +169,7 @@ const Footer = () => {
             </div>
 
             <div className="bg-[#333333] py-3">
-                <p className="text-center text-[#ffffff] text-sm">
+                <p className="text-center text-[#ffffff] lg:text-sm text-xs">
                     © Copyright UX/UI 2204 Team Md. Asadujjaman Mahfuz
                 </p>
             </div>

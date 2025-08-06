@@ -68,7 +68,7 @@ const Sliders = ({ images }:{images: string[]}) => {
           {images?.map((item: string, index: number) => (
             <SwiperSlide key={index}>
               <div
-                className="lg:w-[150px] lg:h-[80px] w-32 h-20 relative cursor-pointer"
+                className="lg:w-[150px] lg:h-[80px] w-40 h-20 relative cursor-pointer"
                 onClick={() => setSelectedImage(item)}
               >
                 <Image
@@ -92,16 +92,6 @@ const Sliders = ({ images }:{images: string[]}) => {
         </button>
       </div>
 
-      {/* Inline Styles for Swiper */}
-      <style jsx global>{`
-        .swiper-button-prev:after,
-        .swiper-button-next:after {
-          content: none !important;
-        }
-        .swiper {
-          padding: 0 2px;
-        }
-      `}</style>
     </div>
   );
 };

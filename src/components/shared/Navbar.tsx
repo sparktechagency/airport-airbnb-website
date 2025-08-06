@@ -151,7 +151,8 @@ const Navbar = () => {
         drawerVisible={drawerVisible}
         navOptions={navOptions}
         setDrawerVisible={setDrawerVisible}
-        pathname={pathname}
+        pathname={pathname} 
+        router={router}
       />
     </div>
   );

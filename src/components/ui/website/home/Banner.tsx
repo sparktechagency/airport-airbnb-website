@@ -42,7 +42,7 @@ const Banner = () => {
 
             </div>
 
-            <div className="absolute -bottom-14  z-20   ">
+            <div className="absolute lg:-bottom-14 -bottom-16  z-20   ">
              
                     <FilterOptions />
              
