@@ -37,7 +37,9 @@ const Navbar = () => {
     { label: "Home", path: "/" },
     { label: "Services", path: "/services" },
     { label: "About", path: "/about" },
-    { label: "Support", path: "/support" },
+    { label: "Support", path: "/support" }, 
+    { label: "Airport Info", path: "/airport-info" }, 
+
   ];
 
   // Close menu on route change
