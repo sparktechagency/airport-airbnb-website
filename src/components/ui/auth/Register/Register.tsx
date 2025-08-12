@@ -40,7 +40,9 @@ const Register: React.FC = () => {
     console.log(values);
     localStorage.setItem("userType", "register");
     router.push(`/verify-otp?email=${values.email}`);
-  };
+  }; 
+
+  // sfs
 
   return (
     <div className="lg:w-[670px] w-full ">
