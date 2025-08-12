@@ -5,9 +5,10 @@ import { CiInboxIn } from "react-icons/ci";
 import Dragger from "antd/es/upload/Dragger";
 import TextInput from "@/components/shared/TextInput";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const VerifiedAccess = () => {
-
+        const router = useRouter()
     const props = {
         name: 'file',
         multiple: false,
@@ -33,11 +34,13 @@ const VerifiedAccess = () => {
             text: "Your verification as a Pilot is under review. Please wait while our team approves your account to unlock exclusive discounts and accommodations.",
             showConfirmButton: false,
             timer: 1500
-        });
+        }) 
+
+        router.push("/subscription-plan")
     }
 
     return (
-        <div className="p-8 w-full">
+        <div className="p-8 w-[670px]">
             <h1 className="text-[25px] font-semibold text-primary pb-10 text-center  "> Upload Your Airline ID</h1>
 
             <Form className="w-full  " layout="vertical" onFinish={onFinish}>

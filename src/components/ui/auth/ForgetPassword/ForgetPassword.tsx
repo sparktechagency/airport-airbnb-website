@@ -15,7 +15,7 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 w-[600px] ">
 
       <div className="text-center mb-4">
         <h1 className="text-[25px] font-semibold ">Forgot Password ?</h1>

@@ -12,11 +12,11 @@ const Login = () => {
 
   const onFinish = async (values: { email: string, password: string }) => {
     console.log(values);
-    router.push("/")
+    router.push("/subscription-plan")
   };
 
   return (
-    <div className="p-5"> 
+    <div className="p-5 w-[670px] "> 
 
       <div className=" mb-10 flex flex-col items-center justify-center ">
         <h1 className="text-[24px] font-semibold mb-2">Log in to your account</h1>

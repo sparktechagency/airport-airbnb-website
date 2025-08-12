@@ -29,7 +29,7 @@ const layout = ({children}: {children: React.ReactNode}) => {
     
      
         <div 
-            className={` ${poppins.className}  shadow-xl bg-[#FEFEFEE5]/90 p-8 rounded-lg w-[670px] relative z-10 `}
+            className={` ${poppins.className}  shadow-xl bg-[#FEFEFEE5]/90 p-8 rounded-lg w-auto relative z-10 `}
         >
            {children}
         </div>

@@ -30,7 +30,7 @@ const VerifyOtp = () => {
 
   };
   return (
-    <div className="p-8">
+    <div className="p-8 w-[600px] ">
 
       <div className=" mb-11 flex flex-col items-center justify-center ">
         <h1 className="text-[24px] font-semibold mb-6  ">Verification code</h1>
