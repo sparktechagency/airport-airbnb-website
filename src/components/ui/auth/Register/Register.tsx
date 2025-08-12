@@ -43,7 +43,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="w-[670px] ">
+    <div className="lg:w-[670px] w-full ">
       <div className=" mb-10 flex flex-col items-center justify-center ">
         <h1 className="text-[24px] font-semibold mb-2">Sign up</h1>
         <p className="text-sm font-normal "> Please Enter Your Personal Data</p>
@@ -63,7 +63,7 @@ const Register: React.FC = () => {
       >
         <Form onFinish={onFinish} layout="vertical">
 
-          <div className=" grid grid-cols-2 gap-x-5">
+          <div className=" grid lg:grid-cols-2 grid-cols-1 gap-x-5">
 
             <TextInput name="name" label="Full Name" />
             <TextInput name="email" label="Email" />

@@ -1,8 +1,7 @@
 "use client"
 
-import SocialLogin from "@/components/shared/SocialLogin";
 import TextInput from "@/components/shared/TextInput";
-import { Checkbox, ConfigProvider, Divider, Form, Input } from "antd";
+import { Checkbox, Form, Input } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -16,11 +15,11 @@ const Login = () => {
   };
 
   return (
-    <div className="p-5 w-[670px] "> 
+    <div className="p-5 lg:w-[670px] w-full "> 
 
-      <div className=" mb-10 flex flex-col items-center justify-center ">
-        <h1 className="text-[24px] font-semibold mb-2">Log in to your account</h1>
-        <p className="text-sm font-normal "> Please enter your email and password to continue</p>
+      <div className=" lg:mb-10 mb-5 flex flex-col items-center justify-center ">
+        <h1 className="text-[24px] font-semibold mb-2 text-center">Log in to your account</h1>
+        <p className="text-sm font-normal text-center "> Please enter your email and password to continue</p>
       </div> 
 
       <Form
@@ -73,18 +72,6 @@ const Login = () => {
           </button>
         </Form.Item>
       </Form> 
-
-      <ConfigProvider
-        theme={{
-          token: {
-            colorText: "#636363",
-          },
-        }}
-      >
-        <Divider className="font-normal text-gray-500">or</Divider>
-      </ConfigProvider>
-
-      <SocialLogin />
 
       <div className=" flex items-center justify-center gap-1 py-4">
         <p className="text-[#636363]">Don’t have any account?</p>

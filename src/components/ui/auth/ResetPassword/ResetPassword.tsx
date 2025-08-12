@@ -12,7 +12,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="lg:p-8 p-5 lg:w-[670px] w-full">
 
       <div className=" mb-6 flex flex-col items-center justify-center ">
         <h1 className="text-[25px] font-semibold text-primary pb-6 ">Set a new password</h1>

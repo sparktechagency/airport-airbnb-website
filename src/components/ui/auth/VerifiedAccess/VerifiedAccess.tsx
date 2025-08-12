@@ -40,7 +40,7 @@ const VerifiedAccess = () => {
     }
 
     return (
-        <div className="p-8 w-[670px]">
+        <div className="lg:p-8 p-3 lg:w-[670px] w-full">
             <h1 className="text-[25px] font-semibold text-primary pb-10 text-center  "> Upload Your Airline ID</h1>
 
             <Form className="w-full  " layout="vertical" onFinish={onFinish}>

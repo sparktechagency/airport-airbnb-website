@@ -5,9 +5,9 @@ const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin
 const layout = ({children}: {children: React.ReactNode}) => {
     return (
         <div
-        className="w-full flex items-center justify-center relative"
+        className="w-full flex items-center justify-center relative  min-h-screen "
         style={{
-            height: "100vh",
+            minHeight: "100vh",
         }}
     >
         
@@ -29,7 +29,7 @@ const layout = ({children}: {children: React.ReactNode}) => {
     
      
         <div 
-            className={` ${poppins.className}  shadow-xl bg-[#FEFEFEE5]/90 p-8 rounded-lg w-auto relative z-10 `}
+            className={` ${poppins.className}  shadow-xl bg-[#FEFEFEE5]/90 lg:p-8 p-5 rounded-lg w-auto relative z-10  overflow-auto`}
         >
            {children}
         </div>

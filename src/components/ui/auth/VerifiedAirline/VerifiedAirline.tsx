@@ -23,9 +23,9 @@ const VerifiedAirline = () => {
     const [activeType, setActiveType] = useState<number>(1); 
     const router = useRouter();
     return (
-        <div className="p-8">
+        <div className="lg:p-8 p-5">
             <div className=" flex flex-col items-center justify-center ">
-                <h1 className="text-[25px] font-semibold text-primary pb-6 ">Verified Airline Person Get Special Deals</h1>
+                <h1 className="lg:text-[25px] text-[22px] text-center font-semibold text-primary pb-6 ">Verified Airline Person Get Special Deals</h1>
                 <p className=" text-[16px] text-[#818181]  text-center w-2/3">Who Are You?</p>
             </div> 
 
