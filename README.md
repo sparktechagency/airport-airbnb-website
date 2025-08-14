@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FLIGHTDELAYSSTAY (Airport Airbnb Website)
 
-## Getting Started
+A clean, modern front-end for browsing and booking Airbnb-style accommodations near airports — perfect for travelers booking last-minute stays.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ​ Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**FLIGHTDELAYSSTAY** is a responsive, user-friendly web application showcasing nearby rooms for travelers who need quick, reliable lodging near airports. The site features:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- A curated list of nearby rooms including ratings, distance, and pricing.
+- Sections for service highlights such as "Verified Properties," "24/7 Consultation," and "Refund Policy."
+- Navigation menu and footer with About, Services, Support, and policy links.
+- Simple subscription section and social media/footer links.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+##  Demo
 
-To learn more about Next.js, take a look at the following resources:
+Visit the live version: [FLIGHTDELAYSSTAY Website](https://airport-airbnb-website.vercel.app/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##  Features
 
-## Deploy on Vercel
+- **Nearest Rooms**  
+  Display of available stays with key info:
+  - Title, rating, total reviews count
+  - Distance from airport
+  - Price per night
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Service Highlights**  
+  Clear sections for:
+  - Verified Properties
+  - 24/7 Consultation
+  - Refund Policy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Simple Navigation & Footer**  
+  Includes Home, Services, About, Support, Airport Info, Privacy Policy, Terms & Conditions, Disclaimer, and subscription form.
+
+- **Responsive Design Ready**  
+  Clean UI layout ideal for both desktop and mobile browsers.
