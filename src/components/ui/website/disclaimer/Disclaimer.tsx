@@ -1,18 +1,68 @@
-
+import React from 'react';
 
 const Disclaimer = () => {
-    return (
-        <div className='bg-[#fbfbfb]'>
-            <div className='container lg:py-14 py-8 min-h-[calc(100vh-100px)] '>
-                <p className='lg:text-[32px] text-2xl font-normal  text-primary lg:pb-8 pb-4'> Disclaimer </p>
+  return (
+    <div className='bg-[#fbfbfb]'>
+      <div className='container mx-auto lg:py-14 py-8 min-h-[calc(100vh-100px)]'>
+        <h1 className='lg:text-[32px] text-2xl font-normal  text-primary pb-4'>Website Disclaimer for FlightDelayStay.com</h1>
+        <p className='text-sm font-normal text-[#767676] pb-4'> <span className=" font-semibold"> Effective Date: </span>   [Insert Date]</p>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          Welcome to <span className=" font-semibold text-primary"> FlightDelayStay.com </span> . By using this website, you acknowledge and agree to the following terms and conditions:
+        </p>
 
-                <p className=' text-[16px] font-normal text-[#767676]  '>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, cumque vel? In nisi nulla unde veniam, quisquam odit quos mollitia possimus illo incidunt porro animi, accusantium fugiat earum perspiciatis laboriosam! Soluta corrupti ea eius quasi vitae, alias asperiores ratione tempora assumenda illo quis dolor voluptatibus at sed fuga praesentium suscipit incidunt rem iusto inventore. Corrupti eum minima quaerat, ipsam sint necessitatibus! Natus consequuntur quod qui nisi impedit repudiandae, aliquid ullam optio ipsum neque. Architecto voluptates, ipsum eveniet consectetur est id officia sapiente quas culpa nulla neque hic error magnam? Facilis, cumque possimus. Cumque vero totam voluptates voluptatum libero natus error consequuntur sequi reprehenderit dolorum. Iusto ipsam aut id corrupti cumque quasi provident at molestiae voluptatibus aperiam doloribus rerum dolore, illo numquam odio maiores odit quo minima quaerat hic quidem fugiat beatae eveniet. Ab neque impedit doloremque sed nisi quisquam unde culpa quis. Nihil, corrupti quas dignissimos tenetur, autem hic delectus aperiam fuga voluptate atque nulla dolores molestias totam quibusdam voluptatem illo! Ullam fugiat cumque, provident nobis at modi perspiciatis omnis quia! Quo suscipit sed nisi officia expedita, consequatur quis ex vero dignissimos odio, aperiam, unde perspiciatis optio assumenda! Saepe placeat officia laboriosam esse, autem ratione voluptas. Unde velit error consequuntur veritatis in cum ad eius voluptates quis quae adipisci ducimus laudantium eum laborum quam, ea et, aut iusto labore? Aliquam deleniti at asperiores distinctio nemo, necessitatibus quisquam deserunt eaque. Architecto explicabo amet impedit consectetur odit blanditiis sequi adipisci quisquam, ipsam, error dicta expedita totam dolor? Ducimus accusamus repudiandae ullam voluptatum similique, voluptas excepturi officiis officia, id aperiam veniam vel nostrum! Architecto ea unde quibusdam quos magnam ullam eum eligendi consectetur, rem a repellendus! Provident voluptatum sequi laborum, ad enim ipsa, necessitatibus voluptatem velit dignissimos adipisci eius expedita debitis dolor natus veniam ratione pariatur quas hic deserunt! Nam quisquam deserunt veritatis excepturi delectus! Vitae quis dicta magni possimus maiores ratione beatae dolore recusandae molestias odio repellat ea doloribus, in, reiciendis officiis aspernatur qui tempore nihil. Iusto praesentium expedita ab error odio maiores ducimus laboriosam aliquid repudiandae deserunt? Officiis quidem eligendi quas aspernatur, ducimus dignissimos asperiores repellat architecto! Itaque, perferendis expedita accusantium suscipit animi laboriosam molestiae natus odio fuga cumque, illum labore, velit quasi repudiandae delectus inventore rerum earum maiores eum vero ullam dolore excepturi? Reprehenderit, sapiente consequatur fugiat et nihil atque debitis, ab maiores asperiores quae dignissimos consequuntur voluptas autem ratione. Maxime quia iste, inventore odit ea non recusandae quibusdam, excepturi est accusantium minima pariatur perspiciatis autem animi hic itaque, quos quidem sit et facilis at. Consequuntur odio minima officia tempora fugiat tempore omnis ducimus sunt. Iure dolorem vitae, repellendus incidunt perferendis exercitationem ut nam magnam nobis! Nemo quas tempore aperiam voluptatem necessitatibus commodi laudantium doloremque facere doloribus, aliquam inventore non cum perspiciatis ipsum, quis reiciendis at, dignissimos ad unde quia quos. Vero aut molestiae blanditiis iusto quasi, minus libero, minima quaerat accusantium hic aliquam impedit soluta at esse cupiditate adipisci ratione tempora ad quae amet, fugiat quas aspernatur id?  
-                </p>
-            </div>
+        <h2 className='text-[16px] font-semibold text-[#767676] pt-4 pb-2'>1. Platform Purpose & Responsibility</h2>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          FlightDelayStay.com acts solely as an independent communication platform that connects individuals seeking temporary lodging (&quot;Visitors&quot;) with those offering accommodations (&quot;Hosts&quot;). We do not own, operate, or control any of the properties listed on this website, and we are not a party to any rental agreements or transactions entered into between Hosts and Visitors.
+        </p>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          As such, FlightDelayStay.com is not responsible or liable for any interactions, disputes, conduct, agreements, cancellations, injuries, damages, losses, or other issues that may arise before, during, or after a stay arranged through this platform.
+        </p>
 
-        </div>
-    );
+        <h2 className='text-[16px] font-semibold text-[#767676] pt-4 pb-2'>2. Verification System</h2>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          FlightDelayStay.com offers a Verified Badge System, which identifies Hosts and Visitors who have completed our internal verification process. While this system adds a layer of security, it does not guarantee safety, accuracy, or trustworthiness, and we advise all users to exercise their own judgment and discretion when engaging with others.
+        </p>
+
+        <h2 className='text-[16px] font-semibold text-[#767676] pt-4 pb-2'>3. Background Check Services</h2>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          As an added option, users may access external background check services through provided weblinks on this site. These services are offered by third-party providers, and if you choose to use them, you acknowledge that:
+        </p>
+        <ul className='list-disc pl-5 text-sm font-normal text-[#767676] pb-4'>
+          <li>You do so voluntarily;</li>
+          <li>You are responsible for all associated costs;</li>
+          <li>FlightDelayStay.com is not affiliated with, compensated by, or liable for the results or experiences related to such services.</li>
+        </ul>
+
+        <h2 className='text-[16px] font-semibold text-[#767676] pt-4 pb-2'>4. No Guarantees or Endorsements</h2>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          FlightDelayStay.com does not guarantee:
+        </p>
+        <ul className='list-disc pl-5 text-sm font-normal text-[#767676] pb-4'>
+          <li>The availability, quality, cleanliness, legality, or condition of listed properties;</li>
+          <li>The behavior, communication, or background of any user;</li>
+          <li>The accuracy of user-generated content or listings.</li>
+        </ul>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          We do not endorse any user or listing and recommend that all parties communicate clearly, vet each other carefully, and consider safety precautions when meeting or booking a stay.
+        </p>
+
+        <h2 className='text-[16px] font-semibold text-[#767676] pt-4 pb-2'>5. Use at Your Own Risk</h2>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          By continuing to use this website, you understand and accept that you do so entirely at your own risk. We disclaim all warranties, express or implied, to the maximum extent permitted by law.
+        </p>
+
+        <p className='text-sm font-semibold text-[#767676] pt-4 pb-2'>Questions or Concerns?</p>
+        <p className='text-sm font-normal text-[#767676] pb-4'>
+          If you have any questions about this disclaimer, please contact us at:
+        </p>
+        <ul className='list-none pl-0 text-sm font-normal text-[#767676] pb-4'>
+          <li><a href='mailto:customercare@flightdelayload.com' className='text-primary font-medium'>customercare@flightdelayload.com</a></li>
+          <li><a href='https://www.FlightDelayStay.com' className='text-primary font-medium'>FlightDelayStay.com Management</a></li>
+        </ul>
+      
+      </div>
+    </div>
+  );
 };
 
 export default Disclaimer;

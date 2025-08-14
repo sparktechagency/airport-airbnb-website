@@ -1,18 +1,101 @@
 import React from 'react';
 
 const PrivacyPolicy = () => {
-    return (
-         <div className='bg-[#fbfbfb]'>
-            <div className='container lg:py-14 py-8 min-h-[calc(100vh-100px)] '>
-                <p className='lg:text-[32px] text-2xl font-normal  text-primary lg:pb-8 pb-4'> Privacy Policy </p>
+  return (
+    <div className="bg-[#fbfbfb]">
+      <div className="container lg:py-14 py-8 min-h-[calc(100vh-100px)]">
+        <p className="lg:text-[32px] text-2xl font-normal text-primary lg:pb-8 pb-4">
+          Privacy Policy
+        </p>
 
-                <p className=' lg:text-[16px] text-sm font-normal text-[#767676]  '>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, cumque vel? In nisi nulla unde veniam, quisquam odit quos mollitia possimus illo incidunt porro animi, accusantium fugiat earum perspiciatis laboriosam! Soluta corrupti ea eius quasi vitae, alias asperiores ratione tempora assumenda illo quis dolor voluptatibus at sed fuga praesentium suscipit incidunt rem iusto inventore. Corrupti eum minima quaerat, ipsam sint necessitatibus! Natus consequuntur quod qui nisi impedit repudiandae, aliquid ullam optio ipsum neque. Architecto voluptates, ipsum eveniet consectetur est id officia sapiente quas culpa nulla neque hic error magnam? Facilis, cumque possimus. Cumque vero totam voluptates voluptatum libero natus error consequuntur sequi reprehenderit dolorum. Iusto ipsam aut id corrupti cumque quasi provident at molestiae voluptatibus aperiam doloribus rerum dolore, illo numquam odio maiores odit quo minima quaerat hic quidem fugiat beatae eveniet. Ab neque impedit doloremque sed nisi quisquam unde culpa quis. Nihil, corrupti quas dignissimos tenetur, autem hic delectus aperiam fuga voluptate atque nulla dolores molestias totam quibusdam voluptatem illo! Ullam fugiat cumque, provident nobis at modi perspiciatis omnis quia! Quo suscipit sed nisi officia expedita, consequatur quis ex vero dignissimos odio, aperiam, unde perspiciatis optio assumenda! Saepe placeat officia laboriosam esse, autem ratione voluptas. Unde velit error consequuntur veritatis in cum ad eius voluptates quis quae adipisci ducimus laudantium eum laborum quam, ea et, aut iusto labore? Aliquam deleniti at asperiores distinctio nemo, necessitatibus quisquam deserunt eaque. Architecto explicabo amet impedit consectetur odit blanditiis sequi adipisci quisquam, ipsam, error dicta expedita totam dolor? Ducimus accusamus repudiandae ullam voluptatum similique, voluptas excepturi officiis officia, id aperiam veniam vel nostrum! Architecto ea unde quibusdam quos magnam ullam eum eligendi consectetur, rem a repellendus! Provident voluptatum sequi laborum, ad enim ipsa, necessitatibus voluptatem velit dignissimos adipisci eius expedita debitis dolor natus veniam ratione pariatur quas hic deserunt! Nam quisquam deserunt veritatis excepturi delectus! Vitae quis dicta magni possimus maiores ratione beatae dolore recusandae molestias odio repellat ea doloribus, in, reiciendis officiis aspernatur qui tempore nihil. Iusto praesentium expedita ab error odio maiores ducimus laboriosam aliquid repudiandae deserunt? Officiis quidem eligendi quas aspernatur, ducimus dignissimos asperiores repellat architecto! Itaque, perferendis expedita accusantium suscipit animi laboriosam molestiae natus odio fuga cumque, illum labore, velit quasi repudiandae delectus inventore rerum earum maiores eum vero ullam dolore excepturi? Reprehenderit, sapiente consequatur fugiat et nihil atque debitis, ab maiores asperiores quae dignissimos consequuntur voluptas autem ratione. Maxime quia iste, inventore odit ea non recusandae quibusdam, excepturi est accusantium minima pariatur perspiciatis autem animi hic itaque, quos quidem sit et facilis at. Consequuntur odio minima officia tempora fugiat tempore omnis ducimus sunt. Iure dolorem vitae, repellendus incidunt perferendis exercitationem ut nam magnam nobis! Nemo quas tempore aperiam voluptatem necessitatibus commodi laudantium doloremque facere doloribus, aliquam inventore non cum perspiciatis ipsum, quis reiciendis at, dignissimos ad unde quia quos. Vero aut molestiae blanditiis iusto quasi, minus libero, minima quaerat accusantium hic aliquam impedit soluta at esse cupiditate adipisci ratione tempora ad quae amet, fugiat quas aspernatur id?  
-                </p>
-            </div>
+        <p className="lg:text-[16px] text-sm font-normal text-[#767676] pb-5 leading-7">
+          <span className="font-semibold">Privacy Policy</span> Effective Date: September 1, 2025.
+          FlightDelayStays.com Management respects your privacy and is committed to protecting your
+          personal information. This Privacy Policy explains how we collect, use, store, and protect your
+          information when you visit our website and use our services.
+        </p>
 
+        <div className="lg:text-[16px] text-sm font-normal text-[#767676] space-y-5">
+          <ol className="list-decimal list-inside space-y-4">
+            <li>
+              <span className="font-semibold mb-3">Information We Collect</span>
+              <ol className="list-[lower-alpha] list-inside ml-5 space-y-4">
+
+                <li className=' mt-2'>
+                  <span className="font-medium">Information You Provide:</span> Name, email address,
+                  phone number, mailing address, payment information, booking details, inquiries.
+                </li>
+
+                <li>
+                  <span className="font-medium">Automatically Collected:</span> IP address, browser
+                  type, device information, pages visited, cookies.
+                </li>
+
+                <li>
+                  <span className="font-medium">Third-Party Information:</span> Data from airlines,
+                  travel agencies, booking partners.
+                </li>
+
+              </ol>
+            </li>
+
+            <li>
+              <span className="font-semibold">How We Use Information:</span> To process bookings,
+              communicate with you, improve services, send offers (opt-in), ensure security, comply with
+              laws.
+            </li>
+
+
+            <li>
+              <span className="font-semibold">How We Share Information:</span> We do not sell data.
+              Shared with service providers, partners, legal authorities, successors in business transfers.
+            </li>
+
+            <li>
+              <span className="font-semibold">Data Retention:</span> Retained as long as necessary for
+              services, legal obligations, dispute resolution.
+            </li>
+
+            <li>
+              <span className="font-semibold">Security:</span> We use encryption, secure servers, and
+              access controls but cannot guarantee absolute security.
+            </li>
+
+            <li>
+              <span className="font-semibold">Cookies:</span> Used for site functionality, preferences,
+              analytics. You can control via browser settings.
+            </li>
+
+            <li>
+              <span className="font-semibold">Your Rights:</span> Access, correct, delete, opt-out,
+              restrict processing. Contact <span className="underline">[Insert Contact Email]</span>.
+            </li>
+
+            <li>
+              <span className="font-semibold">Third-Party Links:</span> We are not responsible for privacy
+              practices of other sites.
+            </li>
+
+            <li>
+              <span className="font-semibold">Children’s Privacy:</span> Not directed to under 18. No
+              knowing collection of children&#39;s data.
+            </li>
+
+            <li>
+              <span className="font-semibold">Policy Changes:</span> We may update and post changes
+              with new effective date.
+            </li>
+
+            <li>
+              <span className="font-semibold">Contact Us:</span> Email: info@flightdelaystays.com | Phone:
+              1-877-489-9689 ECT 7
+            </li>
+            
+          </ol>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default PrivacyPolicy;

@@ -3,14 +3,71 @@ import React from 'react';
 const Terms = () => {
     return (
         <div className='bg-[#fbfbfb]'>
-            <div className='container lg:py-14 py-8 min-h-[calc(100vh-100px)] '>
-                <p className='lg:text-[32px] text-2xl font-normal  text-primary lg:pb-8 pb-4'> Terms & Conditions </p>
-
-                <p className=' text-[16px] font-normal text-[#767676]  '>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, cumque vel? In nisi nulla unde veniam, quisquam odit quos mollitia possimus illo incidunt porro animi, accusantium fugiat earum perspiciatis laboriosam! Soluta corrupti ea eius quasi vitae, alias asperiores ratione tempora assumenda illo quis dolor voluptatibus at sed fuga praesentium suscipit incidunt rem iusto inventore. Corrupti eum minima quaerat, ipsam sint necessitatibus! Natus consequuntur quod qui nisi impedit repudiandae, aliquid ullam optio ipsum neque. Architecto voluptates, ipsum eveniet consectetur est id officia sapiente quas culpa nulla neque hic error magnam? Facilis, cumque possimus. Cumque vero totam voluptates voluptatum libero natus error consequuntur sequi reprehenderit dolorum. Iusto ipsam aut id corrupti cumque quasi provident at molestiae voluptatibus aperiam doloribus rerum dolore, illo numquam odio maiores odit quo minima quaerat hic quidem fugiat beatae eveniet. Ab neque impedit doloremque sed nisi quisquam unde culpa quis. Nihil, corrupti quas dignissimos tenetur, autem hic delectus aperiam fuga voluptate atque nulla dolores molestias totam quibusdam voluptatem illo! Ullam fugiat cumque, provident nobis at modi perspiciatis omnis quia! Quo suscipit sed nisi officia expedita, consequatur quis ex vero dignissimos odio, aperiam, unde perspiciatis optio assumenda! Saepe placeat officia laboriosam esse, autem ratione voluptas. Unde velit error consequuntur veritatis in cum ad eius voluptates quis quae adipisci ducimus laudantium eum laborum quam, ea et, aut iusto labore? Aliquam deleniti at asperiores distinctio nemo, necessitatibus quisquam deserunt eaque. Architecto explicabo amet impedit consectetur odit blanditiis sequi adipisci quisquam, ipsam, error dicta expedita totam dolor? Ducimus accusamus repudiandae ullam voluptatum similique, voluptas excepturi officiis officia, id aperiam veniam vel nostrum! Architecto ea unde quibusdam quos magnam ullam eum eligendi consectetur, rem a repellendus! Provident voluptatum sequi laborum, ad enim ipsa, necessitatibus voluptatem velit dignissimos adipisci eius expedita debitis dolor natus veniam ratione pariatur quas hic deserunt! Nam quisquam deserunt veritatis excepturi delectus! Vitae quis dicta magni possimus maiores ratione beatae dolore recusandae molestias odio repellat ea doloribus, in, reiciendis officiis aspernatur qui tempore nihil. Iusto praesentium expedita ab error odio maiores ducimus laboriosam aliquid repudiandae deserunt? Officiis quidem eligendi quas aspernatur, ducimus dignissimos asperiores repellat architecto! Itaque, perferendis expedita accusantium suscipit animi laboriosam molestiae natus odio fuga cumque, illum labore, velit quasi repudiandae delectus inventore rerum earum maiores eum vero ullam dolore excepturi? Reprehenderit, sapiente consequatur fugiat et nihil atque debitis, ab maiores asperiores quae dignissimos consequuntur voluptas autem ratione. Maxime quia iste, inventore odit ea non recusandae quibusdam, excepturi est accusantium minima pariatur perspiciatis autem animi hic itaque, quos quidem sit et facilis at. Consequuntur odio minima officia tempora fugiat tempore omnis ducimus sunt. Iure dolorem vitae, repellendus incidunt perferendis exercitationem ut nam magnam nobis! Nemo quas tempore aperiam voluptatem necessitatibus commodi laudantium doloremque facere doloribus, aliquam inventore non cum perspiciatis ipsum, quis reiciendis at, dignissimos ad unde quia quos. Vero aut molestiae blanditiis iusto quasi, minus libero, minima quaerat accusantium hic aliquam impedit soluta at esse cupiditate adipisci ratione tempora ad quae amet, fugiat quas aspernatur id?  
-                </p>
+            <div className='container lg:py-14 py-8 min-h-[calc(100vh-100px)]'>
+                <p className='lg:text-[32px] text-2xl font-normal text-primary lg:pb-8 pb-4'>Terms of Service</p>
+                <p className='text-[16px] font-normal text-[#767676]'> <span className='font-semibold'> Effective Date:</span> September 1, 2025</p>
+                <p className='text-[16px] font-normal text-[#767676]'>Welcome to FlightDelayStays.com. By accessing or using our website and services, you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree with these Terms, you may not use our site.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 1. Our Services </span></p>
+                <p className='text-[16px] font-normal text-[#767676]'>FlightDelayStays.com provides information, booking options, and resources to help travelers find accommodations in the event of flight delays or disruptions.</p>
+                <p className='text-[16px] font-normal text-[#767676]'>We act as an intermediary between travelers and accommodation providers. We do not own or operate the accommodations listed on our site.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 2. Eligibility </span> </p>
+                <p className='text-[16px] font-normal text-[#767676]'>By using our services, you confirm that you are at least 18 years old and legally capable of entering into binding contracts.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 3. Bookings & Payments </span> </p>
+                <ul className='list-disc pl-5 text-[16px] font-normal text-[#767676]'>
+                    <li>All bookings are subject to the terms, conditions, and cancellation policies of the accommodation provider.</li>
+                    <li>Prices, availability, and offers may change without notice.</li>
+                    <li>Payment processing is handled by secure third-party payment providers. We do not store your payment information.</li>
+                </ul>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 4. User Responsibilities </span>  </p>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-medium'> You agree to: </span> </p>
+                <ul className='list-disc pl-5 text-[16px] font-normal text-[#767676]'>
+                    <li>Provide accurate and up-to-date personal and booking information</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                    <li>Not use our services for any unlawful or fraudulent purpose</li>
+                    <li>Respect the rules and policies of any accommodation you book through our site</li>
+                </ul>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 5. Cancellations & Refunds </span> </p>
+                <ul className='list-disc pl-5 text-[16px] font-normal text-[#767676]'>
+                    <li>Cancellation and refund policies are determined by the accommodation provider.</li>
+                    <li>FlightDelayStays.com is not responsible for refunds or reimbursements unless expressly stated.</li>
+                </ul>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'>  6. Third-Party Services </span></p>
+                <p className='text-[16px] font-normal text-[#767676]'>We may link to third-party websites or services. We are not responsible for the content, policies, or practices of these third parties.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-normal text-[#767676]'>  <span className='font-semibold'> 7. Limitation of Liability </span> </p>
+                <p className='text-[16px]  text-[#767676] font-medium'>To the fullest extent permitted by law:</p>
+                <ul className='list-disc pl-5 text-[16px] font-normal text-[#767676]'>
+                    <li>FlightDelayStays.com shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of our services.</li>
+                    <li>We do not guarantee that accommodations will meet your expectations, as we rely on information provided by third-party partners.</li>
+                </ul>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-semibold text-[#767676]'>8. Intellectual Property</p>
+                <ul className='list-disc pl-5 text-[16px] font-normal text-[#767676]'>
+                    <li>All content on FlightDelayStays.com, including logos, text, images, and software, is our property or the property of our licensors.</li>
+                    <li>You may not copy, modify, distribute, or reproduce our content without prior written consent.</li>
+                </ul>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-semibold text-[#767676]'>9. Indemnification</p>
+                <p className='text-[16px] font-normal text-[#767676]'>You agree to indemnify and hold harmless FlightDelayStays.com, its officers, employees, and partners from any claims, damages, or expenses resulting from your use of the site or violation of these Terms.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-semibold text-[#767676]'>10. Changes to These Terms</p>
+                <p className='text-[16px] font-normal text-[#767676]'>We may update these Terms at any time. Changes will be effective upon posting on our website. Continued use of our services constitutes acceptance of the updated Terms.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-semibold text-[#767676]'>11. Governing Law</p>
+                <p className='text-[16px] font-normal text-[#767676]'>These Terms are governed by the laws of the State of Texas, without regard to conflict of law provisions.</p>
+                <div className='border-t border-gray-300 my-4'></div>
+                <p className='text-[16px] font-semibold text-[#767676]'>12. Contact Us</p>
+                <p className='text-[16px] font-normal text-[#767676]'>If you have questions about these Terms, contact us at:</p>
+                <p className='text-[16px] font-normal text-[#767676]'>FlightDelayStays.com</p>
+                <p className='text-[16px] font-normal text-[#767676]'>Email:  <span className='font-semibold'> info@flightdelaysstays.com </span>  </p>
+                <p className='text-[16px] font-normal text-[#767676]'>Phone:  <span className='font-semibold'> 1-877-489-9689 EXT 7 </span>  </p>
             </div>
-
         </div>
     );
 };
