@@ -70,15 +70,13 @@ const Footer = () => {
                 backgroundSize: "cover",
             }}
         >
-            <div className="container grid grid-cols-12 py-[30px] lg:px-1 px-3 gap-8 md:gap-0">
+            <div className="container grid grid-cols-12  lg:px-1 px-3 gap-8 md:gap-0 py-10">
                 <Link href={"/"} className="col-span-12 mb-4">
                     <Image alt="Logo" src="/airbnb-logo.png" width={70} height={70} />
                 </Link>
-                <div className="col-span-12 sm:col-span-6  md:col-span-4 lg:col-span-4 mx-auto sm:mx-0">
+                <div className="col-span-12 sm:col-span-6  md:col-span-4 lg:col-span-4 mx-auto sm:mx-0"> 
                     <p className="text-[#F3F3F3] text-sm font-normal pe-8">
-                        Fusce quis tellus nulla. Donec sodales mauris eget pellentesque
-                        hendrerit. Donec molestie non urna sit amet aliquet. Curabitur sit
-                        amet est nec nulla varius fermentum. explore us
+                     FlightDelayStays.com is a website dedicated to bringing people together while improving the current status of their situation. Always remember us when seeking a room near the airport.
                     </p>
                 </div>
 

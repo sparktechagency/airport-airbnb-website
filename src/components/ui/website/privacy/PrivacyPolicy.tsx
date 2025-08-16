@@ -68,7 +68,7 @@ const PrivacyPolicy = () => {
 
             <li>
               <span className="font-semibold">Your Rights:</span> Access, correct, delete, opt-out,
-              restrict processing. Contact <span className="underline">[Insert Contact Email]</span>.
+              restrict processing. Contact <a href='mailto:info@FlightDelayStays.com' className="underline text-primary">info@FlightDelayStays.com</a>.
             </li>
 
             <li>

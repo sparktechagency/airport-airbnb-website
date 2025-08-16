@@ -5,7 +5,7 @@ const Disclaimer = () => {
     <div className='bg-[#fbfbfb]'>
       <div className='container mx-auto lg:py-14 py-8 min-h-[calc(100vh-100px)]'>
         <h1 className='lg:text-[32px] text-2xl font-normal  text-primary pb-4'>Website Disclaimer for FlightDelayStay.com</h1>
-        <p className='text-sm font-normal text-[#767676] pb-4'> <span className=" font-semibold"> Effective Date: </span>   [Insert Date]</p>
+        <p className='text-sm font-normal text-[#767676] pb-4'> <span className=" font-semibold"> Effective Date: </span> September 1,2025</p>
         <p className='text-sm font-normal text-[#767676] pb-4'>
           Welcome to <span className=" font-semibold text-primary"> FlightDelayStay.com </span> . By using this website, you acknowledge and agree to the following terms and conditions:
         </p>

@@ -26,14 +26,10 @@ const WhyUse = () => {
               name="Verified Properties"
               style="font-medium lg:text-[24px] text-xl leading-[29px] text-[#5C5C5C] mb-4"
             />
-            <p className="text-[#7676761] lg:text-[14px] text-xs leading-[21px] font-normal">
-              quis id tincidunt viverra felis, elit. Praesent malesuada eget
-              nibh Nunc ullamcorper eget vehicula, enim. Quisque non
-              sollicitudin. viverra tortor. urna eget
-            </p>
-            <p className="underline text-primary  lg:text-[14px] text-xs leading-[21px] font-normal">
-              See More
-            </p>
+            <div className="text-[#7676761] lg:text-[14px] text-xs leading-[21px] font-normal">
+            FlightDelayStays.com takes time to verify all hosted properties searched and affiliated with our website. If you ever find a unverified or fraudulent property, please contact us via email at <a href='mailto:customercare@FlightDelayStays.com' className='text-primary underline '>info@flightdelaystays.com </a>  
+            </div>
+
           </div>
         </div>
 
@@ -50,17 +46,13 @@ const WhyUse = () => {
           {/* info container */}
           <div className="lg:mt-20 mt-14">
             <Heading
-              name="24/7 Consultation"
+              name="24/7 Customer Care"
               style="font-medium lg:text-[24px] text-xl leading-[29px] text-[#5C5C5C] mb-4"
             />
-            <p className="text-[#7676761] lg:text-[14px] text-xs  leading-[21px] font-normal">
-              quis id tincidunt viverra felis, elit. Praesent malesuada eget
-              nibh Nunc ullamcorper eget vehicula, enim. Quisque non
-              sollicitudin. viverra tortor. urna eget
-            </p>
-            <p className="underline text-primary  lg:text-[14px] text-xs leading-[21px] font-normal">
-              See More
-            </p>
+            <div className="text-[#7676761] lg:text-[14px] text-xs  leading-[21px] font-normal">
+            FlightDelayStays.com believes in Customer Service. If ever you have a problem as a Host or Customer, please contact us at <a href='mailto:customercare@FlightDelayStays.com' className='text-primary underline'>customercare@flightdelaystays.com </a>  and explain the situation for us to investigate the matter.
+            </div>
+
           </div>
         </div>
 
@@ -81,13 +73,9 @@ const WhyUse = () => {
               style="font-medium lg:text-[24px] text-xl leading-[29px] text-[#5C5C5C] mb-4"
             />
             <p className="text-[#7676761] lg:text-[14px] text-xslg:text-[14px] text-xs leading-[21px] font-normal">
-              quis id tincidunt viverra felis, elit. Praesent malesuada eget
-              nibh Nunc ullamcorper eget vehicula, enim. Quisque non
-              sollicitudin. viverra tortor. urna eget
+            Due to FlightDelayStays.com being a search directory of rooms between the customer and host, we cannot always guarantee a full refund. If you contact our Customer Care department at  <a href="mailto:customercare@FlightDelayStays.com" className='text-primary underline'> customercare@flightdelaystays.com</a>  and explain your situation, we will do a full investigation on the matter. Upon finishing our investigation we may refund you our administrative fee charged back to you and suspend the host from using our site any further depending on the results found. We will do whatever we feel is necessary to resolve the problem with a proper solution.
             </p>
-            <p className="underline text-primary  lg:text-[14px] text-xs leading-[21px] font-normal">
-              See More
-            </p>
+
           </div>
         </div>
       </div>
