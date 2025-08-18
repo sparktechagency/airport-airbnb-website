@@ -150,15 +150,18 @@ const Footer = () => {
                         </Button>
                     </div>
                     <div className="flex items-center justify-center lg:justify-start gap-6 mt-6">
-                        <a href="https://www.facebook.com/" target="_blank">
+                        <a href="https://www.facebook.com/groups/796073412777047" target="_blank">
                             <Image alt="social-link" src={"/facebook.png"} width={32} height={32} />
                         </a>
+                        <a href="https://www.tiktok.com/@flightdelaystays" target="_blank">
+                            <Image alt="social-link" src={"/tiktok.png"} width={30} height={30} />
+                        </a>
 
-                        <a href="https://www.instagram.com/" target="_blank">
+                        <a href="https://www.instagram.com/flightdelaystays" target="_blank">
                             <Image alt="social-link" src={"/insta.png"} width={32} height={32} />
                         </a>
 
-                        <a href="https://www.linkedin.com/" target="_blank">
+                        <a href="https://www.linkedin.com/company/flightdelaystays-com/about/?viewAsMember=true " target="_blank">
                             <Image alt="social-link" src={"/linkedIn.png"} width={32} height={32} />
                         </a>
 
