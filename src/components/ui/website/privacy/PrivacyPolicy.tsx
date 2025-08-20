@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
 
             <li>
               <span className="font-semibold">Contact Us:</span> Email: <a href='mailto:info@FlightDelayStays.com' className="underline text-primary">info@FlightDelayStays.com</a> | Phone:
-              1-877-489-9689 ECT 7
+              1-877-489-9689 EXT 7
             </li>
             
           </ol>

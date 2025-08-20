@@ -39,6 +39,7 @@ const Navbar = () => {
     { label: "About", path: "/about" },
     { label: "Support", path: "/support" }, 
     { label: "Airport Info", path: "/airport-info" }, 
+    { label: "Track My Flight", path: "https://www.flightaware.com/" }, 
 
   ];
 
