@@ -43,7 +43,7 @@ const Navbar = () => {
 
   ];
 
-  // Close menu on route change
+
   useEffect(() => {
     setIsMenuOpen(false);
     setDrawerVisible(false);
