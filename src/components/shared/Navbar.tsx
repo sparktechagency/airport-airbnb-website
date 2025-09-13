@@ -102,7 +102,7 @@ const Navbar = () => {
           <button
             className="z-50 pb-2"
             onClick={() => setDrawerVisible(true)}
-            aria-label="Toggle mobile menu xxxxxxxxxxxxx"
+            aria-label="Toggle mobile menu"
           >
             <HiOutlineMenuAlt2 size={30} className="text-gray-600 cursor-pointer" />
           </button>
