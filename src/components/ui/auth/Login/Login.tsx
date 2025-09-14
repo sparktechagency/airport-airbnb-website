@@ -1,26 +1,44 @@
 "use client"
 
 import TextInput from "@/components/shared/TextInput";
+import { myFetch } from "@/helpers/myFetch";
 import { Checkbox, Form, Input } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const router = useRouter()
 
   const onFinish = async (values: { email: string, password: string }) => {
-    console.log(values);
-    router.push("/subscription-plan")
+
+    try {
+      const res = await myFetch("/auth/login", {
+        method: "POST",
+        body: values,
+      });
+      if (res?.success) {
+        toast.success(res?.message || "Login successfully", { id: "login" }); 
+        router.push("/home")
+      } else {
+        toast.error(res?.message || "Something went wrong!", {
+          id: "login",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+   
   };
 
   return (
-    <div className="p-5 lg:w-[670px] w-full "> 
+    <div className="p-5 lg:w-[670px] w-full ">
 
       <div className=" lg:mb-10 mb-5 flex flex-col items-center justify-center ">
         <h1 className="text-[24px] font-semibold mb-2 text-center">Log in to your account</h1>
         <p className="text-sm font-normal text-center "> Please enter your email and password to continue</p>
-      </div> 
+      </div>
 
       <Form
         onFinish={onFinish}
@@ -71,13 +89,13 @@ const Login = () => {
             {/* {isLoading? < Spinner/> : "Sign in"} */} Sign in
           </button>
         </Form.Item>
-      </Form> 
+      </Form>
 
       <div className=" flex items-center justify-center gap-1 py-4">
         <p className="text-[#636363]">Don’t have any account?</p>
         <Link href="/register" className="text-[#1854F9] font-semibold" > Sign Up</Link>
-      </div> 
-      
+      </div>
+
     </div>
   );
 };

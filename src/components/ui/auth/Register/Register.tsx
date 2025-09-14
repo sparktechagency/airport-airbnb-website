@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import TextInput from "@/components/shared/TextInput";
-import { ConfigProvider, Form, Input, message } from "antd";
+import { myFetch } from "@/helpers/myFetch";
+import { ConfigProvider, Form, Input } from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { CiInboxIn } from "react-icons/ci";
+import toast from "react-hot-toast";
+import { updateAppData } from "@/helpers/storageHelper";
 
 interface ValuesType {
   name: string;
@@ -18,34 +21,58 @@ interface ValuesType {
 
 const Register: React.FC = () => {
   const router = useRouter();
+  const [documents, setDocuments] = useState<File[]>([]);
+  const handleFileUpload = (file: File) => {
+    if (documents.some((doc) => doc.name === file.name)) return false;
+    setDocuments((prev) => [...prev, file]);
 
-    const props = {
-        name: 'file',
-        multiple: false,
-        // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76', // Replace with your file upload endpoint
-        onChange(info: { file: any }) {
-            const { status } = info.file;
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed`);
-            }
-        },
-        onDrop(e: any) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-    };
- 
+    return false;
+  };
+
+  const uploadProps = () => ({
+    name: "file",
+    multiple: true,
+    showUploadList: true,
+    beforeUpload: (file: File) => handleFileUpload(file),
+  });
+
+
   const onFinish = async (values: ValuesType) => {
-    console.log(values);
-    localStorage.setItem("userType", "register");
-    router.push(`/verify-otp?email=${values.email}`);
-  }; 
+    const formData = new FormData();
+
+    if (documents) {
+      documents.forEach((file) => formData.append("image", file));
+    }
+
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value);
+    })
+
+    try {
+      const res = await myFetch("/user", {
+        method: "POST",
+        body: formData,
+      }); 
+
+      if (res?.success) {
+        toast.success("Account created successfully!", { id: "sign-up" });
+        localStorage.setItem("userType", "register"); 
+         updateAppData({ email: res?.data?.email });
+        router.push(`/verify-otp?email=${values.email}`);
+      } else {
+        toast.error(res?.message || "Something went wrong!", {
+          id: "sign-up",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // sfs
 
   return (
-    <div className="lg:w-[670px] w-full ">
+    <div className="lg:w-[670px] w-full overflow-y-auto ">
       <div className=" mb-10 flex flex-col items-center justify-center ">
         <h1 className="text-[24px] font-semibold mb-2">Sign up</h1>
         <p className="text-sm font-normal "> Please Enter Your Personal Data</p>
@@ -70,7 +97,7 @@ const Register: React.FC = () => {
             <TextInput name="name" label="Full Name" />
             <TextInput name="email" label="Email" />
             <Form.Item
-              name="dob"
+              name="dateOfBirth"
               label={<p className="text-[#4E4E4E] text-[16px]">Date of Birth</p>}
               rules={[
                 {
@@ -120,24 +147,17 @@ const Register: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item
-            name="airlineId"
-            label={<p className="text-[#4E4E4E] text-[16px]">Government-Issued Identification</p>}
-            rules={[
-              {
-                required: true,
-                message: "Please upload your Employee Card!",
-              },
-            ]}
-          >
-            <Dragger {...props} style={{ width: '100%', borderRadius: '10px', borderColor: '#E0E0E0', backgroundColor: '#FEFEFE' }}>
+          <div > 
+            <p className="text-[#4E4E4E] text-[16px] mb-2">Government-Issued Identification</p> 
+
+            <Dragger  {...uploadProps()} style={{ width: '100%', borderRadius: '10px', borderColor: '#E0E0E0', backgroundColor: '#FEFEFE' , marginBottom:"30px" }}>
               <p className="ant-upload-drag-icon  flex items-center justify-center ">
                 <CiInboxIn size={40} color="#767676" />
               </p>
               <p className="ant-upload-text !text-[#777575]">Drag file to upload</p>
 
             </Dragger>
-          </Form.Item>
+          </div>
 
           <Form.Item
             name="password"
@@ -171,7 +191,7 @@ const Register: React.FC = () => {
 
       <div className=" flex items-center justify-center gap-1 pb-3 pt-1">
         <p className="text-[#636363]">Have an account?</p>
-        <Link href="/login" className="text-[#1854F9] font-semibold" > Sign Up</Link>
+        <Link href="/login" className="text-[#1854F9] font-semibold" > Log In</Link>
       </div>
 
     </div>

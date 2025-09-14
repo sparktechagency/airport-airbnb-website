@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AntdRegistry } from "@ant-design/nextjs-registry"; 
 import "./globals.css"; 
 import { Poppins } from "next/font/google"; 
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({ weight: ['400', '500', '600', '700','800'], subsets: ['latin'] });
 
@@ -23,7 +24,8 @@ export default function RootLayout({
       >
         <AntdRegistry>
           {children}
-        </AntdRegistry>
+        </AntdRegistry> 
+         <Toaster />
       </body>
     </html>
   );

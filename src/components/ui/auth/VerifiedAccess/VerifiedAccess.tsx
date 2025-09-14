@@ -1,32 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { Form, message } from "antd";
+import { Form } from "antd";
 import { CiInboxIn } from "react-icons/ci";
-import Dragger from "antd/es/upload/Dragger";
 import TextInput from "@/components/shared/TextInput";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { updateAppData } from "@/helpers/storageHelper";
 
 const VerifiedAccess = () => {
-        const router = useRouter()
-    const props = {
-        name: 'file',
-        multiple: false,
-        // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76', // Replace with your file upload endpoint
-        onChange(info: { file: any }) {
-            const { status } = info.file;
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed`);
-            }
-        },
-        onDrop(e: any) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
+    const router = useRouter()
+    const [fileUrl, setFileUrl] = useState<string | null>("");
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result as string;
+                setFileUrl(base64String);
+            };
+
+            reader.readAsDataURL(file);
+        }
     };
 
-    const onFinish = () => {
+    const onFinish = (values: { employeeId: string }) => {
+        updateAppData({ employeeId: values?.employeeId, image: fileUrl });
+
         Swal.fire({
             position: "center",
             icon: "success",
@@ -34,9 +35,9 @@ const VerifiedAccess = () => {
             text: "Your verification as a Pilot is under review. Please wait while our team approves your account to unlock exclusive discounts and accommodations.",
             showConfirmButton: false,
             timer: 1500
-        }) 
+        })
 
-        router.push("/subscription-plan")
+        router.push("/subscription-plan") 
     }
 
     return (
@@ -46,22 +47,36 @@ const VerifiedAccess = () => {
             <Form className="w-full  " layout="vertical" onFinish={onFinish}>
                 <TextInput name={"employeeId"} label={"Employee ID or License No."} />
                 <Form.Item
-                    name="airlineId"
-                    label={<p className="text-[#4E4E4E] text-[16px]">Upload Employee Card</p>}
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please upload your Employee Card!",
-                        },
-                    ]}
+                    label={
+                        <p className="text-[#4E4E4E] text-[16px]">Upload Employee Card</p>
+                    }
+                    required
                 >
-                    <Dragger {...props} style={{ width: '100%', borderRadius: '10px', borderColor: '#E0E0E0', backgroundColor: '#FEFEFE' }}>
-                        <p className="ant-upload-drag-icon  flex items-center justify-center ">
-                            <CiInboxIn size={40} color="#767676" />
-                        </p>
-                        <p className="ant-upload-text text-[#767676]">Drag file to upload</p>
-
-                    </Dragger>
+                    <div
+                        className="w-full border border-dashed border-[#E0E0E0] bg-[#FEFEFE] rounded-[10px] flex flex-col items-center justify-center py-8 cursor-pointer"
+                        onClick={() => document.getElementById("airlineIdInput")?.click()}
+                    >
+                        {fileUrl ? (
+                            <img
+                                src={fileUrl}
+                                alt="Preview"
+                                className="w-28 h-28 object-cover rounded-md mb-3 shadow"
+                            />
+                        ) : (
+                            <>
+                                <CiInboxIn size={40} color="#767676" />
+                                <p className="text-[#767676]">Drag file to upload</p>
+                            </>
+                        )}
+                    </div>
+                    <input
+                        id="airlineIdInput"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        style={{ display: "none" }}
+                        onChange={handleFileChange}
+                    />
                 </Form.Item>
 
                 <Form.Item>
