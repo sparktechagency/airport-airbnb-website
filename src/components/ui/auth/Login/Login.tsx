@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const router = useRouter()
@@ -19,17 +20,22 @@ const Login = () => {
         body: values,
       });
       if (res?.success) {
-        toast.success(res?.message || "Login successfully", { id: "login" }); 
+        toast.success(res?.message || "Login successfully", { id: "login" });
+        Cookies.set("accessToken", res?.data?.token);
         router.push("/home")
       } else {
-        toast.error(res?.message || "Something went wrong!", {
-          id: "login",
-        });
+        if (res?.error && Array.isArray(res.error)) {
+          res.error.forEach((err: { message: string }) => {
+            toast.error(err.message, { id: "login" });
+          });
+        } else {
+          toast.error(res?.message || "Something went wrong!", { id: "login" });
+        }
       }
     } catch (error) {
       console.error(error);
     }
-   
+
   };
 
   return (
@@ -94,6 +100,11 @@ const Login = () => {
       <div className=" flex items-center justify-center gap-1 py-4">
         <p className="text-[#636363]">Don’t have any account?</p>
         <Link href="/register" className="text-[#1854F9] font-semibold" > Sign Up</Link>
+      </div> 
+
+      <div className=" flex items-center justify-center gap-1 py-4">
+        <p className="text-[#636363]">Want to see all subscription plans?</p>
+        <Link href="/subscription-plan" className="text-gray-500 underline font-semibold" > Click here </Link>
       </div>
 
     </div>

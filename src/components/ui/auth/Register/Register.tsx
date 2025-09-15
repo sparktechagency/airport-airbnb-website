@@ -52,17 +52,22 @@ const Register: React.FC = () => {
       const res = await myFetch("/user", {
         method: "POST",
         body: formData,
-      }); 
+      });
+      console.log(res);
 
       if (res?.success) {
         toast.success("Account created successfully!", { id: "sign-up" });
-        localStorage.setItem("userType", "register"); 
-         updateAppData({ email: res?.data?.email });
+        localStorage.setItem("userType", "register");
+        updateAppData({ email: res?.data?.email });
         router.push(`/verify-otp?email=${values.email}`);
       } else {
-        toast.error(res?.message || "Something went wrong!", {
-          id: "sign-up",
-        });
+        if (res?.error && Array.isArray(res.error)) {
+          res.error.forEach((err: { message: string }) => {
+            toast.error(err.message, { id: "sign-up" });
+          });
+        } else {
+          toast.error(res?.message || "Something went wrong!", { id: "sign-up" });
+        }
       }
     } catch (error) {
       console.error(error);
@@ -147,10 +152,10 @@ const Register: React.FC = () => {
             />
           </Form.Item>
 
-          <div > 
-            <p className="text-[#4E4E4E] text-[16px] mb-2">Government-Issued Identification</p> 
+          <div >
+            <p className="text-[#4E4E4E] text-[16px] mb-2">Government-Issued Identification</p>
 
-            <Dragger  {...uploadProps()} style={{ width: '100%', borderRadius: '10px', borderColor: '#E0E0E0', backgroundColor: '#FEFEFE' , marginBottom:"30px" }}>
+            <Dragger  {...uploadProps()} style={{ width: '100%', borderRadius: '10px', borderColor: '#E0E0E0', backgroundColor: '#FEFEFE', marginBottom: "30px" }}>
               <p className="ant-upload-drag-icon  flex items-center justify-center ">
                 <CiInboxIn size={40} color="#767676" />
               </p>

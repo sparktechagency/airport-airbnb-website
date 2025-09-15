@@ -1,17 +1,37 @@
 "use client"
 import TextInput from "@/components/shared/TextInput";
+import { myFetch } from "@/helpers/myFetch";
 import { Form } from "antd";
 import { useRouter } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 const ForgetPassword = () => {
   const router = useRouter()
 
   const onFinish = async (values: { email: string }) => {
-    localStorage.setItem("userType", "forget")
 
-    router.push(`/verify-otp?email=${values?.email}`);
-
+    try {
+      const res = await myFetch("/auth/forget-password", {
+        method: "POST",
+        body: values,
+      });
+      if (res?.success) {
+        toast.success(res?.message || "OTP verified successfully", { id: "forget" });
+        localStorage.setItem("userType", "forget")
+        router.push(`/verify-otp?email=${values?.email}`);
+      } else {
+        if (res?.error && Array.isArray(res.error)) {
+          res.error.forEach((err: { message: string }) => {
+            toast.error(err.message, { id: "forget" });
+          });
+        } else {
+          toast.error(res?.message || "Something went wrong!", { id: "forget" });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

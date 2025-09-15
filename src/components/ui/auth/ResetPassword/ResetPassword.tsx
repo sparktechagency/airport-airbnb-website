@@ -1,14 +1,45 @@
 "use client"
+import { myFetch } from "@/helpers/myFetch";
 import { Button, Form, Input } from "antd";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 const ResetPassword = () => {
   const router = useRouter()
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+
+  console.log("token", token);
 
   const onFinish = async (values: { newPassword: string, confirmPassword: string }) => {
-    console.log(values);
-    router.push(`/login`);
+    const data = {
+      token: token,
+      ...values
+    }
+
+    try {
+      const res = await myFetch("/auth/reset-password", {
+        method: "POST",
+        body: data,
+      }); 
+      console.log(res);
+      if (res?.success) {
+        toast.success(res?.message || "Password reset successfully", { id: "reset" });
+        router.push(`/login`);
+      } else {
+        if (res?.error && Array.isArray(res.error)) {
+          res.error.forEach((err: { message: string }) => {
+            toast.error(err.message, { id: "reset" });
+          });
+        } else {
+          toast.error(res?.message || "Something went wrong!", { id: "reset" });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 
   return (

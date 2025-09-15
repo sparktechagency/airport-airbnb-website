@@ -1,51 +1,74 @@
 "use client"
-import { SubscriptionPlans } from '@/constants/Subscription/Subscription';
+import { myFetch } from '@/helpers/myFetch';
+import { getAppData } from '@/helpers/storageHelper';
+import { PlansResponse } from '@/types/webPagesType';
 import { CheckCircleIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-const SubscriptionsPlans = () => {
-  const [selected, setSelected] = useState(1)
-  const router = useRouter()
-  const handleSubmit = async () => {
-    const base64String = localStorage.getItem("uploadedFile");
-    if (!base64String) {
+const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansResponse }) => {
+  const [selected, setSelected] = useState(1);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const appData = getAppData();
+    if (appData?.image) {
+      setImageUrl(appData.image);
+    }
+  }, []);
+
+  const handleSubmit = async (id: string) => {
+    if (!imageUrl) {
       console.error("No file to submit");
       return;
     }
+    // Convert Base64 → File
+    const byteString = atob(imageUrl.split(",")[1]);
+    const mimeString = imageUrl.split(",")[0].match(/:(.*?);/)?.[1] || "image/jpeg";
 
-    // Convert the Base64 string back to a Blob
-    const byteCharacters = atob(base64String.split(",")[1]);
-    const byteArrays = [];
-    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-      const slice = byteCharacters.slice(offset, offset + 512);
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-      byteArrays.push(new Uint8Array(byteNumbers));
+    const byteNumbers = new Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++) {
+      byteNumbers[i] = byteString.charCodeAt(i);
     }
-    const fileBlob = new Blob(byteArrays, { type: "image/jpeg" });
+    const byteArray = new Uint8Array(byteNumbers);
+    const file = new File([byteArray], "employee-card.jpg", { type: mimeString });
 
-    // Create FormData and append the file
     const formData = new FormData();
-    formData.append("file", fileBlob, "uploadedFile.jpg");
+    formData.append("image", file);
+
+    const appData = getAppData();
+    Object.entries(appData).forEach(([key, value]) => {
+      if (key !== "image" && value !== null && value !== undefined) {
+        formData.append(key, String(value));
+      }
+    });
+
+    formData.append("plan", id);
 
     try {
-      const response = await fetch("/your-backend-endpoint", {
+      const res = await myFetch("/airline-verification", {
         method: "POST",
         body: formData,
       });
-      router.push("/")
-      if (response.ok) {
-        console.log("File uploaded successfully!");
+
+      if (res?.success) {
+        router.push(res?.data?.redirectPaymentUrl);
       } else {
-        console.error("Failed to upload file.");
+        if (res?.error && Array.isArray(res.error)) {
+          res.error.forEach((err: { message: string }) => {
+            toast.error(err.message, { id: "subscription" });
+          });
+        } else {
+          toast.error(res?.message || "Something went wrong!", { id: "subscription" });
+        }
       }
     } catch (error) {
-      console.error("Error during file upload:", error);
+      console.error(error);
     }
   };
+
   return (
     <div>
       <div className=" flex flex-col items-center justify-center px-4  pt-6 pb-6">
@@ -56,9 +79,10 @@ const SubscriptionsPlans = () => {
           </h2>
         </div>
 
+
         {/* Plans Grid */}
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 w-full">
-          {SubscriptionPlans.map((plan, index) => (
+          {subscriptionData?.result?.map((plan, index) => (
             <div
               key={index}
               className="flex-1"
@@ -71,11 +95,11 @@ const SubscriptionsPlans = () => {
             `}>
                 {/* Plan Header */}
                 <div className="text-center mb-5">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {plan.name}
+                  <h3 className="text-lg font-semibold text-primary mb-2">
+                    {plan?.title}
                   </h3>
 
-                  <div className="mb-0">
+                  <div className="mb-1">
                     <span className={`
                     text-[28px] font-semibold
                     ${selected === index ? 'text-primary' : 'text-[#2563EB]'}
@@ -85,14 +109,14 @@ const SubscriptionsPlans = () => {
                   </div>
 
                   <p className="text-sm text-gray-500">
-                    {plan.billingType}
+                    {plan?.billingCycle}
                   </p>
                 </div>
 
                 {/* Features List */}
                 <div className="flex-grow mb-8">
                   <ul className="space-y-4">
-                    {plan.features.map((feature, featureIndex) => (
+                    {plan?.features?.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         <CheckCircleIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700 text-sm leading-relaxed">
@@ -110,8 +134,8 @@ const SubscriptionsPlans = () => {
                     ? 'bg-primary  text-white '
                     : 'hover:text-white border border-primary text-primary hover:bg-primary '
                   }
-              `} onClick={handleSubmit}>
-                  {plan.buttonText}
+              `} onClick={() => handleSubmit(plan?._id)}>
+                  Get Started
                 </button>
               </div>
             </div>
