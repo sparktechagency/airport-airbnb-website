@@ -62,16 +62,12 @@ const FilterOptions = () => {
                             className="w-full h-[40px]"
                         />
                     </Form.Item>
-
-                    <Form.Item className="lg:col-span-1 col-span-2 mb-0">
-                        <div className="lg:h-[22px] h-0"></div>
-                        <button 
-                            type="submit" 
-                            className="w-full bg-primary text-white rounded h-[40px] "
-                        >
-                            Search
-                        </button>
-                    </Form.Item>
+                   
+                        <Form.Item label={<p className="text-xm lg:block hidden"></p>} className="col-span-2 lg:col-span-1 filter">
+                            <button type="submit" className="w-full bg-primary text-white p-2 rounded  h-[40px] ">
+                                search
+                            </button>
+                        </Form.Item>
                 </div>
             </Form>
         </div>

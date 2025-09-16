@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import GridView from './GridView';
 import MapView from './MapView';
 import { IoGridOutline, IoMapOutline } from 'react-icons/io5';
+import { allRoomsType } from '@/types/webPagesType';
 
-const MainAvailableRooms = () => {
+const MainAvailableRooms = ({ allRooms }: allRoomsType) => {
     const [activeTab, setActiveTab] = useState('grid');
 
     const tabOptions = [
@@ -38,7 +39,7 @@ const MainAvailableRooms = () => {
 
                 {/* Tab Content */}
                 <div>
-                    {activeTab === 'grid' ? <GridView /> : <MapView />}
+                    {activeTab === 'grid' ? <GridView allRooms={allRooms} /> : <MapView allRooms={allRooms}/>}
                 </div>
             </div>
         </div>

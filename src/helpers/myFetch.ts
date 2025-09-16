@@ -89,7 +89,3 @@ export const myFetch = async (
     };
   }
 }; 
-
-export async function imgUrl() {
-  return 'http://10.10.7.72:5000/api/v1';
-}

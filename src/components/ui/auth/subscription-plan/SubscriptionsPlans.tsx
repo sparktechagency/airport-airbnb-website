@@ -1,6 +1,6 @@
 "use client"
 import { myFetch } from '@/helpers/myFetch';
-import { getAppData } from '@/helpers/storageHelper';
+import { AppDataGroups , getAppDataByGroup } from '@/helpers/storageHelper';
 import { PlansResponse } from '@/types/webPagesType';
 import { CheckCircleIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -13,7 +13,7 @@ const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansRespo
   const router = useRouter();
 
   useEffect(() => {
-    const appData = getAppData();
+    const appData = getAppDataByGroup(AppDataGroups.subscription);
     if (appData?.image) {
       setImageUrl(appData.image);
     }
@@ -38,7 +38,7 @@ const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansRespo
     const formData = new FormData();
     formData.append("image", file);
 
-    const appData = getAppData();
+    const appData = getAppDataByGroup(AppDataGroups.subscription);
     Object.entries(appData).forEach(([key, value]) => {
       if (key !== "image" && value !== null && value !== undefined) {
         formData.append(key, String(value));

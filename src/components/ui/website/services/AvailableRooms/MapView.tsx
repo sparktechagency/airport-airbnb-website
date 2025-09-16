@@ -1,13 +1,16 @@
-import { services } from "@/constants/Services/services";
+import { imgUrl } from "@/config/config";
+import { myFetch } from "@/helpers/myFetch";
+import { allRoomsType } from "@/types/webPagesType";
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AiFillStar } from "react-icons/ai";
 import { TfiLocationPin } from "react-icons/tfi";
 
-const MapView = () => {
-    const [activeMarker, setActiveMarker] = useState<number | null>(null);
+const MapView = ({ allRooms }: allRoomsType) => {
+    const [activeMarker, setActiveMarker] = useState<string | null>(null);
     const [viewport, setViewport] = useState({
         latitude: 40.712776,
         longitude: -74.005974,
@@ -15,8 +18,31 @@ const MapView = () => {
     });
     const [isInWishlist, setIsInWishlist] = useState(false);
 
-    const handleWishList = () => {
-        setIsInWishlist(!isInWishlist);
+    const handleWishList = async ({ e, id }: { e: React.MouseEvent<SVGSVGElement, MouseEvent>, id: string }) => {
+        e.preventDefault()
+        const value = {
+            hotel: id
+        }
+        try {
+            const res = await myFetch("/favourite", {
+                method: "POST",
+                body: value,
+            });
+            if (res?.success) {
+                toast.success(res?.message || "Mark as a favorite", { id: "favorite" });
+                setIsInWishlist(!isInWishlist);
+            } else {
+                if (res?.error && Array.isArray(res.error)) {
+                    res.error.forEach((err: { message: string }) => {
+                        toast.error(err.message, { id: "favorite" });
+                    });
+                } else {
+                    toast.error(res?.message || "Something went wrong!", { id: "favorite" });
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const { isLoaded } = useJsApiLoader({
@@ -39,7 +65,7 @@ const MapView = () => {
         );
     }, []);
 
-    const handleMarkerClick = (key: number) => {
+    const handleMarkerClick = (key: string) => {
         setActiveMarker(activeMarker === key ? null : key);
     };
 
@@ -56,25 +82,31 @@ const MapView = () => {
                     borderRadius: "20px",
                 }}
             >
-                {services.map((item) => (
+                {allRooms?.result.map((item) => (
                     <Marker
-                        key={item.key}
-                        position={{ lat: item.lat, lng: item.lng }}
+                        key={item._id}
+                        position={{
+                            lat: Number(item.location?.coordinates?.[1]) || 0,
+                            lng: Number(item.location?.coordinates?.[0]) || 0,
+                        }}
                         icon={{
                             url: "/marker.png",
-                            scaledSize: new google.maps.Size(25, 30),
+                            scaledSize: new google.maps.Size(35, 40),
                         }}
-                        onClick={() => handleMarkerClick(item.key)}
+                        onClick={() => handleMarkerClick(item._id)}
                     >
-                        {activeMarker === item.key && (
+                        {activeMarker === item._id && (
                             <InfoWindow
-                                position={{ lat: item.lat, lng: item.lng }}
+                                position={{
+                                    lat: Number(item.location?.coordinates?.[1]) || 0,
+                                    lng: Number(item.location?.coordinates?.[0]) || 0,
+                                }}
                                 onCloseClick={() => setActiveMarker(null)}
                             >
                                 <div className="grid grid-cols-12 gap-3 " style={{ width: 450, borderRadius: "10px" }}>
                                     <div className="col-span-4">
                                         <Image
-                                            src={item.image}
+                                            src={`${imgUrl}${item?.image?.[0]}`}
                                             alt={item.name}
                                             width={150}
                                             height={150}
@@ -87,23 +119,23 @@ const MapView = () => {
                                             <div className=" cursor-pointer ">
                                                 <Heart
                                                     className=""
-                                                    onClick={handleWishList}
+                                                    onClick={(e) => handleWishList({ e, id: item?._id })}
                                                     size={18}
-                                                    color={isInWishlist ? "#083a65" : "#083a65"}
-                                                    fill={isInWishlist ? "#083a65" : "transparent"}
+                                                    color={isInWishlist || item?.isFavorite ? "#083a65" : "#083a65"}
+                                                    fill={isInWishlist || item?.isFavorite ? "#083a65" : "transparent"}
                                                 />
-                                            </div> 
+                                            </div>
                                         </div>
                                         <div className="flex items-center gap-2 text-[#FFD139] mt-1">
                                             <AiFillStar size={16} />
-                                            <span className="text-[#767676] text-sm font-normal">{item?.rating} ({item?.reviews})</span>
+                                            <span className="text-[#767676] text-sm font-normal">{item?.avgRating} ({item?.totalReviews})</span>
                                         </div>
                                         <div className="flex items-center justify-between mt-1">
                                             <div className="flex items-center gap-2 mt-1 text-[#767676] text-sm font-normal">
                                                 <TfiLocationPin size={16} color="#767676" />
-                                                <span>{item?.distance}</span>
+                                                <span>{item?.address}</span>
                                             </div>
-                                            <div className="mt-1 text-primary font-medium text-[16px]">{item?.price} <span className="text-[#767676]  font-normal text-sm">/night</span></div>
+                                            <div className="mt-1 text-primary font-medium text-[16px]">{item?.roomPrice} <span className="text-[#767676]  font-normal text-sm">/{item?.roomType}</span></div>
                                         </div>
                                     </div>
                                 </div>

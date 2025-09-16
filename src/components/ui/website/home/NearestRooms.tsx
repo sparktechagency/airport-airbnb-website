@@ -1,9 +1,13 @@
 import SingleServiceCard from '@/components/shared/SingleServiceCard';
-import { services } from '@/constants/Services/services';
+import { HotelRoom } from '@/types/webPagesType';
 import Link from 'next/link';
-import React from 'react';
+import React from 'react'; 
 
-const NearestRooms = () => {
+interface NearestRoomsProps {
+  rooms: HotelRoom[]; 
+}
+ 
+const NearestRooms = ({rooms}:NearestRoomsProps) => {
     return (
         <div className=' container lg:py-20 py-14 mt-10 '>
             <div className='flex justify-between items-center mb-6'> 
@@ -13,7 +17,7 @@ const NearestRooms = () => {
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center'>
                 {
-                    services.map((property, index) => (
+                    rooms.map((property, index) => (
                         <SingleServiceCard key={index} property={property} />
                     ))
                 }
