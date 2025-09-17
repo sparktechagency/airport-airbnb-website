@@ -5,7 +5,7 @@ import MapView from './MapView';
 import { IoGridOutline, IoMapOutline } from 'react-icons/io5';
 import { allRoomsType } from '@/types/webPagesType';
 
-const MainAvailableRooms = ({ allRooms }: allRoomsType) => {
+const MainAvailableRooms = ({ allRooms }: allRoomsType ) => {
     const [activeTab, setActiveTab] = useState('grid');
 
     const tabOptions = [

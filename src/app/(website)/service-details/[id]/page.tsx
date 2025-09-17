@@ -1,10 +1,18 @@
 import ServiceDetailsMain from '@/components/ui/website/service-details/ServiceDetailsMain';
 import React from 'react';
 
-const productDetailsPage = () => {
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+
+const productDetailsPage = ({ params }: PageProps) => {
+    const { id } = params;
+ 
     return (
         <div>
-            <ServiceDetailsMain />
+            <ServiceDetailsMain id={id} />
         </div>
     );
 };

@@ -1,5 +1,5 @@
 "use client"
-import { updateAppData } from "@/helpers/storageHelper";
+import { updateFilters } from "@/helpers/storageHelper";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -26,7 +26,7 @@ const VerifiedAirline = () => {
     const router = useRouter();
 
     const handleVerifiedAccess = () => {
-        updateAppData({ designation: designation });
+        updateFilters("subscription-plan",{ designation: designation });
         router.push("/verified-access")
     }
 

@@ -45,6 +45,6 @@ export interface HotelsResponse {
 } 
 
 export interface allRoomsType {
-    allRooms: HotelsResponse
+    allRooms ?: HotelsResponse
 }
 

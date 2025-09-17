@@ -6,22 +6,23 @@ import Image from 'next/image';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { imgUrl } from '@/config/config';
 
 
-const Sliders = ({ images }:{images: string[]}) => {
- const [selectedImage, setSelectedImage] = useState<string | null>(null); 
+const Sliders = ({ images }: { images: string[] }) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   React.useEffect(() => {
     const defaultImage = images && images.length > 0
       ? images?.[0]
       : null;
     setSelectedImage(defaultImage);
-  }, [images]);  
+  }, [images]);
 
 
-    if (!images || images.length === 0) {
-        return <div>No images available</div>;
-    } 
+  if (!images || images.length === 0) {
+    return <div>No images available</div>;
+  }
 
   return (
     <div className="w-full">
@@ -29,7 +30,7 @@ const Sliders = ({ images }:{images: string[]}) => {
       <div className="lg:h-[506px] h-[306px] w-full relative mb-3">
         {selectedImage && (
           <Image
-            src={selectedImage}
+            src={selectedImage?.startsWith("https") ? selectedImage : `${imgUrl}${selectedImage}`}
             alt="Selected property"
             fill
             className="rounded-lg object-cover"
@@ -72,7 +73,7 @@ const Sliders = ({ images }:{images: string[]}) => {
                 onClick={() => setSelectedImage(item)}
               >
                 <Image
-                  src={item}
+                  src={item.startsWith("https") ? item : `${imgUrl}${item}`}
                   alt={`Thumbnail ${index + 1}`}
                   fill
                   className="object-cover rounded-lg border border-gray-300 hover:border-gray-500"

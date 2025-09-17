@@ -1,6 +1,6 @@
 "use client"
 import { myFetch } from '@/helpers/myFetch';
-import { AppDataGroups , getAppDataByGroup } from '@/helpers/storageHelper';
+import { clearFilters, getFilters  } from '@/helpers/storageHelper';
 import { PlansResponse } from '@/types/webPagesType';
 import { CheckCircleIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -13,7 +13,7 @@ const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansRespo
   const router = useRouter();
 
   useEffect(() => {
-    const appData = getAppDataByGroup(AppDataGroups.subscription);
+    const appData = getFilters("subscription-plan");
     if (appData?.image) {
       setImageUrl(appData.image);
     }
@@ -38,7 +38,7 @@ const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansRespo
     const formData = new FormData();
     formData.append("image", file);
 
-    const appData = getAppDataByGroup(AppDataGroups.subscription);
+    const appData = getFilters("subscription-plan");
     Object.entries(appData).forEach(([key, value]) => {
       if (key !== "image" && value !== null && value !== undefined) {
         formData.append(key, String(value));
@@ -53,8 +53,10 @@ const SubscriptionsPlans = ({ subscriptionData }: { subscriptionData: PlansRespo
         body: formData,
       });
 
-      if (res?.success) {
-        router.push(res?.data?.redirectPaymentUrl);
+      if (res?.success) { 
+         clearFilters("subscription-plan"); 
+        router.push(res?.data?.redirectPaymentUrl); 
+
       } else {
         if (res?.error && Array.isArray(res.error)) {
           res.error.forEach((err: { message: string }) => {

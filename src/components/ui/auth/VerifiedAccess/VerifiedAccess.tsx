@@ -6,7 +6,7 @@ import TextInput from "@/components/shared/TextInput";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { updateAppData } from "@/helpers/storageHelper";
+import { updateFilters } from "@/helpers/storageHelper";
 
 const VerifiedAccess = () => {
     const router = useRouter()
@@ -26,7 +26,7 @@ const VerifiedAccess = () => {
     };
 
     const onFinish = (values: { employeeId: string }) => {
-        updateAppData({ employeeId: values?.employeeId, image: fileUrl });
+        updateFilters("subscription-plan" ,{ employeeId: values?.employeeId, image: fileUrl });
 
         Swal.fire({
             position: "center",

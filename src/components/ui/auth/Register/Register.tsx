@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { CiInboxIn } from "react-icons/ci";
 import toast from "react-hot-toast";
-import { updateAppData } from "@/helpers/storageHelper";
+import { updateFilters } from "@/helpers/storageHelper";
 
 interface ValuesType {
   name: string;
@@ -58,7 +58,7 @@ const Register: React.FC = () => {
       if (res?.success) {
         toast.success("Account created successfully!", { id: "sign-up" });
         localStorage.setItem("userType", "register");
-        updateAppData({ email: res?.data?.email });
+        updateFilters("subscription-plan",{ email: res?.data?.email });
         router.push(`/verify-otp?email=${values.email}`);
       } else {
         if (res?.error && Array.isArray(res.error)) {

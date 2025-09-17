@@ -1,52 +1,49 @@
 const STORAGE_KEY = "myAppData";
 
-export interface AppData {
+export interface FilterData {
   email?: string;
   plan?: string;
   designation?: string;
   employeeId?: string;
   image?: string | null; 
-  name?: string | null;
+  name?: string | null; 
+  location?: string | null; 
+  checkInDate?: string | null;
+  price ?: number|null  
+  roomType ?: string |null
+  lng ?: number |null
+  lat ?: number |null 
 }
 
+type FiltersByPage = Record<string, FilterData>; // e.g. { home: {...}, rooms: {...} }
 
-export const AppDataGroups = {
-  subscription: ["email", "plan", "designation", "employeeId", "image"] as (keyof AppData)[],
-  profile: ["email", "designation", "employeeId"] as (keyof AppData)[],
-  booking: ["employeeId", "name"] as (keyof AppData)[],
-};
-
-
-export const getAppData = (): AppData => {
+const getAllFilters = (): FiltersByPage => {
   if (typeof window === "undefined") return {};
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : {};
 };
 
-
-export const getAppDataByGroup = (group: (keyof AppData)[]): Partial<AppData> => {
-  const appData = getAppData();
-  const filtered: Partial<AppData> = {};
-  group.forEach((key) => {
-    if (appData[key] !== undefined && appData[key] !== null) {
-      filtered[key] = appData[key];
-    }
-  });
-  return filtered;
+export const getFilters = (page: string): FilterData => {
+  const allFilters = getAllFilters();
+  return allFilters[page] || {};
 };
 
-
-export const updateAppData = (newData: Partial<AppData>): void => {
+export const updateFilters = (page: string, newFilters: Partial<FilterData>) => {
   if (typeof window === "undefined") return;
-  const existing = getAppData();
-  const updated = { ...existing, ...newData };
-  if (JSON.stringify(existing) !== JSON.stringify(updated)) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  const allFilters = getAllFilters();
+  const existing = allFilters[page] || {};
+  const updated = { ...existing, ...newFilters };
+  allFilters[page] = updated;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(allFilters));
+};
+
+export const clearFilters = (page?: string) => {
+  if (typeof window === "undefined") return;
+  if (page) {
+    const allFilters = getAllFilters();
+    delete allFilters[page];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allFilters));
+  } else {
+    localStorage.removeItem(STORAGE_KEY);
   }
-};
-
-
-export const clearAppData = (): void => {
-  if (typeof window === "undefined") return;
-  localStorage.removeItem(STORAGE_KEY);
 };

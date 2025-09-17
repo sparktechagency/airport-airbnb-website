@@ -10,8 +10,9 @@ const MainHomePage = async () => {
     const profile = await getProfile()
 
     const params = new URLSearchParams({
-        fields: "name,image,address,roomType,totalReviews,avgRating,roomPrice,location,isFavorite",
-        userId: profile?._id
+        fields: "name,image,address,roomType,totalReviews,avgRating,roomPrice,location,isFavorite", 
+        ...(profile?._id ? {userId: profile?._id} : {} )
+       
     }); 
 
     const res = await myFetch(`/hotel?${params.toString()}`, { 
@@ -19,7 +20,7 @@ const MainHomePage = async () => {
         method: "GET",
     }); 
 
- 
+     console.log("rooms" , res);
     return (
         <div>
             <Banner />

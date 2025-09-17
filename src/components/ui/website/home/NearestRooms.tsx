@@ -7,7 +7,8 @@ interface NearestRoomsProps {
   rooms: HotelRoom[]; 
 }
  
-const NearestRooms = ({rooms}:NearestRoomsProps) => {
+const NearestRooms = ({rooms}:NearestRoomsProps) => { 
+
     return (
         <div className=' container lg:py-20 py-14 mt-10 '>
             <div className='flex justify-between items-center mb-6'> 
@@ -17,7 +18,7 @@ const NearestRooms = ({rooms}:NearestRoomsProps) => {
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center'>
                 {
-                    rooms.map((property, index) => (
+                    rooms?.map((property, index) => (
                         <SingleServiceCard key={index} property={property} />
                     ))
                 }
