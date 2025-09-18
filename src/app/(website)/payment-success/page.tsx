@@ -1,8 +1,12 @@
 
+import getProfile from "@/helpers/getProfile";
 import Link from "next/link";
 import { BsCheck2Square } from "react-icons/bs";
 
-const PaymentSuccess = () => {
+const PaymentSuccess = async () => {
+  const profile = await getProfile()
+  const userId = profile ? profile?._id : ""
+
   return (
     <div className="flex h-screen items-center justify-center   font-sans bg-green-50/40">
       <div className="relative w-full max-w-lg flex flex-col items-center justify-center ">
@@ -19,12 +23,22 @@ const PaymentSuccess = () => {
           Thank you for your purchase. We’ve received your order and will send you a confirmation email shortly.
         </p>
 
-        <Link
-          href="/login"
-          className="inline-block rounded-lg  bg-primary px-8 py-3 text-white font-semibold shadow-lg transition-transform duration-300 hover:scale-105 hover:from-blue-800 hover:to-indigo-800"
-        >
-          Go to Login Page
-        </Link>
+        {
+          userId ?
+            <Link
+              href="/"
+              className="inline-block rounded-lg  bg-primary px-8 py-3 text-white font-semibold shadow-lg transition-transform duration-300 hover:scale-105 hover:from-blue-800 hover:to-indigo-800"
+            >
+              Go to Home Page
+            </Link>
+            :
+            <Link
+              href="/login"
+              className="inline-block rounded-lg  bg-primary px-8 py-3 text-white font-semibold shadow-lg transition-transform duration-300 hover:scale-105 hover:from-blue-800 hover:to-indigo-800"
+            >
+              Go to Login Page
+            </Link>
+        }
 
       </div>
     </div>

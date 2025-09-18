@@ -5,17 +5,22 @@ import { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { TiLocationOutline } from "react-icons/ti";
 import dayjs, { Dayjs } from "dayjs";
+import { myFetch } from "@/helpers/myFetch";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface locationType {
     type: string,
     coordinates: number[]
 }
-const BookNow = ({ roomPrice, location, hostId }: { roomPrice: string, location: locationType, hostId: string }) => {
+const BookNow = ({ roomPrice, location, id }: { roomPrice: string, location: locationType, id: string }) => {
     const [viewport, setViewport] = useState({
         latitude: 40.712776,
         longitude: -74.005974,
         zoom: 10,
     });
+
+    const router = useRouter()
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
@@ -46,18 +51,38 @@ const BookNow = ({ roomPrice, location, hostId }: { roomPrice: string, location:
 
     if (!isLoaded) return <div>Loading map...</div>;
 
-    const handleFinish = (values: { checkInDate: Dayjs, checkoutDate: Dayjs }) => {
+    const handleFinish = async (values: { checkInDate: Dayjs, checkoutDate: Dayjs }) => {
         const payload = {
-            hotelId: hostId,
+            hotelId: id,
             checkInDate: values.checkInDate
                 ? dayjs(values.checkInDate).toISOString()
                 : null,
             checkOutDate: values.checkoutDate
                 ? dayjs(values.checkoutDate).toISOString()
                 : null,
-        };
+        }; 
+        console.log(payload);
 
-        console.log("Booking Data 👉", payload);
+        try {
+            const res = await myFetch("/booking", {
+                method: "POST",
+                body: payload,
+            });
+            console.log(res);
+            if (res?.success) {
+                router.push(res?.data?.redirectPaymentUrl);
+            } else {
+                if (res?.error && Array.isArray(res.error)) {
+                    res.error.forEach((err: { message: string }) => {
+                        toast.error(err.message, { id: "book-now" });
+                    });
+                } else {
+                    toast.error(res?.message || "Something went wrong!", { id: "book-now" });
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
 
     };
 

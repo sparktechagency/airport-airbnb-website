@@ -32,7 +32,7 @@ const Services = () => {
 
             try {
                 const res = await myFetch(`/hotel?${params.toString()}`, {
-                    tags: ["hotels"],
+                    tags: ["hotels"], 
                     method: "GET",
                     cache: "no-store"
                 });
