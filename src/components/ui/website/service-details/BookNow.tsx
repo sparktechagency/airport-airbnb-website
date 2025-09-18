@@ -4,8 +4,13 @@ import { ConfigProvider, DatePicker, Form } from "antd";
 import { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { TiLocationOutline } from "react-icons/ti";
+import dayjs, { Dayjs } from "dayjs";
 
-const BookNow = () => {
+interface locationType {
+    type: string,
+    coordinates: number[]
+}
+const BookNow = ({ roomPrice, location, hostId }: { roomPrice: string, location: locationType, hostId: string }) => {
     const [viewport, setViewport] = useState({
         latitude: 40.712776,
         longitude: -74.005974,
@@ -19,8 +24,8 @@ const BookNow = () => {
 
     const item = {
         key: 1,
-        lat: 40.712776,
-        lng: -74.005974,
+        lat: location?.coordinates?.[1],
+        lng: location?.coordinates?.[0],
     }
 
     useEffect(() => {
@@ -41,11 +46,26 @@ const BookNow = () => {
 
     if (!isLoaded) return <div>Loading map...</div>;
 
+    const handleFinish = (values: { checkInDate: Dayjs, checkoutDate: Dayjs }) => {
+        const payload = {
+            hotelId: hostId,
+            checkInDate: values.checkInDate
+                ? dayjs(values.checkInDate).toISOString()
+                : null,
+            checkOutDate: values.checkoutDate
+                ? dayjs(values.checkoutDate).toISOString()
+                : null,
+        };
+
+        console.log("Booking Data 👉", payload);
+
+    };
+
     return (
         <div>
             <div className="w-full flex items-center justify-between  mb-6">
                 <h1 className="text-primary font-semibold text-[24px] ">
-                    $ 100
+                    $ {roomPrice}
                     <sub className="font-normal text-[#767676] text-sm">/night</sub>
                 </h1>
 
@@ -55,16 +75,18 @@ const BookNow = () => {
                 </p>
             </div>
 
-            <Form>
-                <Form.Item name="checkingDate">
-                    <ConfigProvider
-                        theme={{
-                            token: {
-                                colorPrimary: "#00809E",
-                                colorTextPlaceholder: "#838383",
-                            },
-                        }}
-                    >
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#00809E",
+                        colorTextPlaceholder: "#838383",
+                    },
+                }}
+            >
+
+                <Form onFinish={handleFinish}>
+                    <Form.Item name="checkInDate" rules={[{ required: true, message: "Please select check-in date" }]}>
+
                         <DatePicker
                             size={"large"}
                             //   onChange={onchangeData}
@@ -77,18 +99,11 @@ const BookNow = () => {
                                 border: "1px solid #d9d9d9d9",
                             }}
                         />
-                    </ConfigProvider>
-                </Form.Item>
 
-                <Form.Item name="checkoutDate">
-                    <ConfigProvider
-                        theme={{
-                            token: {
-                                colorPrimary: "#00809E",
-                                colorTextPlaceholder: "#838383",
-                            },
-                        }}
-                    >
+                    </Form.Item>
+
+                    <Form.Item name="checkoutDate" rules={[{ required: true, message: "Please select checkout date" }]}>
+
                         <DatePicker
                             size={"large"}
                             placeholder="Please Select your checkout Date"
@@ -99,46 +114,49 @@ const BookNow = () => {
                                 border: "1px solid #d9d9d9d9",
                             }}
                         />
-                    </ConfigProvider>
-                </Form.Item>
 
-                {/* for map  */}
+                    </Form.Item>
 
-                <div className=" bg-[#F9FAFB] rounded-lg py-4 px-2 ">
-                    <p className="text-sm font-medium flex items-center gap-1 pb-2"> <span> <TiLocationOutline color="#083A65" size={16} /> </span> <span>55/A , B park road, Abcd area, City </span></p>
-                    <div className="h-[250px] w-full py-2">
-                        <GoogleMap
-                            center={{ lat: item.lat, lng: item.lng }}
-                            zoom={viewport.zoom}
-                            mapContainerStyle={{
-                                width: "100%",
-                                height: "100%",
-                           
-                            }}
+
+                    <Form.Item>
+                        <button
+                            className="w-full  h-[50px] text-center text-white bg-primary rounded-lg px-5 mb-2"
+                            type="submit"
+                        // disabled={checkDate === null || undefined}
                         >
-                            <Marker
-                                key={item.key}
-                                position={{ lat: item.lat, lng: item.lng }}
-                                icon={{
-                                    url: "/marker.png",
-                                    scaledSize: new google.maps.Size(25, 30),
-                                }}
-                            />
-                        </GoogleMap>
-                    </div>
+                            Book Now
+                        </button>
+                    </Form.Item>
+                </Form>
+            </ConfigProvider>
 
+
+            {/* for map  */}
+
+            <div className=" py-1 px-2 ">
+                <p className="text-sm font-medium flex items-center gap-1 pb-2"> <span> <TiLocationOutline color="#083A65" size={16} /> </span> <span>55/A , B park road, Abcd area, City </span></p>
+                <div className="h-[250px] w-full py-2">
+                    <GoogleMap
+                        center={{ lat: item.lat, lng: item.lng }}
+                        zoom={viewport.zoom}
+                        mapContainerStyle={{
+                            width: "100%",
+                            height: "100%",
+
+                        }}
+                    >
+                        <Marker
+                            key={item.key}
+                            position={{ lat: item.lat, lng: item.lng }}
+                            icon={{
+                                url: "/marker.png",
+                                scaledSize: new google.maps.Size(25, 30),
+                            }}
+                        />
+                    </GoogleMap>
                 </div>
 
-                <Form.Item>
-                    <button
-                        className="w-full mt-6 h-[50px] text-center text-white bg-primary rounded-lg px-5 mb-2"
-                        type="submit"
-                    // disabled={checkDate === null || undefined}
-                    >
-                        Book Now
-                    </button>
-                </Form.Item>
-            </Form>
+            </div>
         </div>
     );
 };

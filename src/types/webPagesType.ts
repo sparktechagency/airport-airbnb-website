@@ -46,5 +46,27 @@ export interface HotelsResponse {
 
 export interface allRoomsType {
     allRooms ?: HotelsResponse
+} 
+
+export interface ReviewUser {
+  _id: string;
+  name: string;
+  profilePic: string | null;
+}
+
+export interface Review {
+  _id: string;
+  hotel: string; 
+  content: string;
+  user: ReviewUser;
+  rating: number;
+  isVisible: boolean;
+  createdAt: string; 
+  updatedAt: string; 
+  __v: number;
+}
+
+export interface CustomerExperienceProps {
+  reviewsData: Review[];
 }
 

@@ -1,21 +1,30 @@
-import { houseRulesData } from '@/constants/ServiceDetails/others/Others';
 import { CheckCircle } from 'lucide-react';
 import React from 'react';
 
-const HouseRules = () => {
+interface hotelRuleType {
+  _id: string,
+  title: string,
+  description: string,
+}
+
+interface hotelRulesType {
+  hotelRules: hotelRuleType[]
+} 
+
+const HouseRules = ({hotelRules}:hotelRulesType) => {
     return (
        <div className="pt-[60px]">
                    <p className=" text-lg font-medium pb-4  ">House Rules</p>
                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6  mx-auto">
-                       {houseRulesData.map((policy) => (
+                       {hotelRules?.map((policy) => (
                            <div
-                               key={policy.id}
+                               key={policy?._id}
                                className="bg-[#F9FAFB]  rounded-md px-4 py-4 flex items-start gap-3 shadow"
                            >
                                <CheckCircle className="text-green-500 w-5 h-5 mt-1" />
                                <div>
-                                   <h3 className="text-sm font-medium text-[#333333]">{policy.title}</h3>
-                                   <p className="text-xs text-[#B0B0B0]">{policy.description}</p>
+                                   <h3 className="text-sm font-medium text-[#333333]">{policy?.title}</h3>
+                                   <p className="text-xs text-[#B0B0B0]">{policy?.description}</p>
                                </div>
                            </div>
                        ))}

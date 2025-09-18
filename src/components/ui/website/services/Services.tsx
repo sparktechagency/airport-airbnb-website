@@ -37,7 +37,6 @@ const Services = () => {
                     cache: "no-store"
                 });
                 setRooms(res?.data || []);
-                console.log(`/hotel?${params.toString()}`);
             } catch (err) {
                 console.error(err);
                 setRooms(undefined);

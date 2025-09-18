@@ -10,34 +10,40 @@ import Sliders from "./Sliders";
 
 
 const ServiceDetailsMain = async ({ id }: { id: string }) => {
-    console.log("Hotel ID 234:", id);
+
     const res = await myFetch(`/hotel/${id}`, {
-        method: "GET", 
-        cache:"no-cache"
+        method: "GET",
+        cache: "no-cache",
+        tags: ["hotel-details"]
     });
 
     const data = res?.data
-    console.log(data);
+    const images = data?.image
 
-    const images = data?.image 
+    // review  
+
+    const reviewRes = await myFetch(`/review/hotel/${id}`, {
+        method: "GET",
+    })
+    const reviewsData = reviewRes?.data?.data
 
     return (
         <div className="container pb-14 pt-3">
-            <DetailsTitle />
+            <DetailsTitle id={data?._id} isFavorite={data?.isFavorite} serviceName={data?.name} />
             <div className="grid grid-cols-12  gap-7">
                 <div className=" lg:col-span-8 col-span-12 ">
                     <Sliders images={images} />
                 </div>
 
                 <div className="lg:col-span-4 col-span-12">
-                    <BookNow />
+                    <BookNow roomPrice={data?.roomPrice} location={data?.location} hostId={data?.hostId} />
                 </div>
             </div>
-            <AboutSchedule />
-            <FacilityList />
-            <HouseRules />
+            <AboutSchedule description={data?.description} roomClosureDates={data?.roomClosureDates} />
+            <FacilityList facilities={data?.facilities} />
+            <HouseRules hotelRules={data?.hotelRules} />
             <CancellationPolicy />
-            <CustomerExperience />
+            <CustomerExperience reviewsData={reviewsData}/>
         </div>
     );
 };

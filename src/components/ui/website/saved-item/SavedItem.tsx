@@ -10,7 +10,7 @@ const SavedItem = () => {
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center'>
                 {
-                    services.map((property, index) => (
+                    services?.map((property, index) => (
                         <SingleServiceCard key={index} property={property} />
                     ))
                 }
