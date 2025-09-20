@@ -28,6 +28,9 @@ const UploadImage = ({ fileList, setFileList }: { fileList: UploadFile[], setFil
         </div>
     );
 
+    console.log(fileList);
+    
+
     return (
         <div>
       
@@ -38,6 +41,7 @@ const UploadImage = ({ fileList, setFileList }: { fileList: UploadFile[], setFil
                 <li>Max file size: 10MB per photo</li>
                 <li>Minimum: 5 photos recommended</li>
             </ul>
+
 
             <Upload
                 listType="picture-card"

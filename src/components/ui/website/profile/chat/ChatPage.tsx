@@ -12,9 +12,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import ChatBox from "./ChatBox";
+import { IConversation } from "@/types/hotel/chat";
 
 
-const ChatPage = () => {
+const ChatPage = ({ chatData }: { chatData: any }) => {
   const [image, setImage] = useState<File | null>(null);
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [person, setPerson] = useState<TMessageList | null>(null);
@@ -23,12 +24,35 @@ const ChatPage = () => {
   const [pdf, setPdf] = useState<File | null>(null);
   const [pdfURL, setPdfURL] = useState<string | null>(null);
   const router = useRouter();
-  const [messages, setMessages] = useState(staticChatList);
+  const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [messageList, setMessageList] = useState<any[]>([]);
   const { user } = { user: { _id: "user1", name: "Current User" } };
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [form] = Form.useForm();
+  const pagination = chatData?.pagination;
+  const chatLists:IConversation[] = chatData?.data || [];
+  const formattedChatLists = chatLists.map((chat) => {
+    const otherParticipant = chat.participant;
+    const lastMessage = chat.lastMessage ;
+    return {
+      chatId: chat._id,
+      profile: otherParticipant.profile,
+      name: otherParticipant.name,
+      type: lastMessage.type,
+      lastMessage: {
+        _id: lastMessage._id,
+        sender: lastMessage.sender,
+        text: lastMessage.text,
+        createdAt: lastMessage.createdAt,
+        image: lastMessage.image,
+        type: lastMessage.type,
+      },
+    };
+  })
+
+  console.log("🚀 ~ file: ChatPage.tsx:57 ~ ChatPage ~ formattedChatLists:", formattedChatLists);
+  
 
   // Filter messages based on keyword
   const filteredMessages = messages.filter((message) =>
@@ -52,6 +76,8 @@ const ChatPage = () => {
 
   // Handle sending a message
   const handleSubmit = async () => {
+    // console.log("Submitting message:", { messageInput, image, pdf, person });
+
     if (!person?.chatId || (!messageInput && !image && !pdf)) return;
 
     const newMessage = {
@@ -63,6 +89,10 @@ const ChatPage = () => {
       image: imageURL || "",
       createdAt: new Date().toISOString(),
     };
+    
+    console.log("New Message:", newMessage);
+    
+    
 
     // Determine message type
     if (image && messageInput) {
@@ -137,7 +167,7 @@ const ChatPage = () => {
 
           {/* Message List */}
           <div className="overflow-y-auto h-[75vh] px-2">
-            {filteredMessages.map((message: TMessageList) => (
+            {formattedChatLists?.map((message: TMessageList) => (
               <div
                 key={message.chatId}
                 onClick={() => handleMessage(message)}
@@ -147,20 +177,16 @@ const ChatPage = () => {
               >
                 <div className="flex items-center gap-1">
                   <img
-                    src={message.profile}
+                    src={message.profile ? imageURL + message.profile : "https://tse3.mm.bing.net/th/id/OIP.9PPdes_WSxaqUQJxWab16AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"}
                     alt=""
                     className="rounded-full object-contain bg-black w-[45px] h-[45px]"
                   />
                   <div>
                     <p className="text-[#12354E] font-medium text-[16px]">{message.name}</p>
                     <p className="text-[#6A6A6A] text-xs">
-                      {message.lastMessage.type === "text" ? (
-                        message.lastMessage.text
-                      ) : message.lastMessage.type === "image" ? (
-                        `${message.name} sent an image`
-                      ) : message.lastMessage.type === "doc" ? (
-                        `${message.name} sent a doc`
-                      ) : null}
+                      {
+                        message?.lastMessage?.text || ""
+                      }
                     </p>
                   </div>
                 </div>

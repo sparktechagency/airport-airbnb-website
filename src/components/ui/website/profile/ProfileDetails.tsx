@@ -1,7 +1,12 @@
 "use client"
+import { myFetch } from '@/helpers/myFetch';
+import { revalidateTags } from '@/helpers/revalidateTags';
+import { IUser } from '@/types/profile/userType';
 import { Form, Input, Select } from 'antd';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
-const ProfileDetails = () => {
+const ProfileDetails = ({user}:{user:IUser}) => {
     const [form] = Form.useForm();
 
     const genderOptions = [
@@ -9,9 +14,36 @@ const ProfileDetails = () => {
         { value: 'female', label: 'Female' },
     ]
 
-    const onFinish = (values: { name: string, email: string, contactNo: string, gender: string, address: string }) => {
-        console.log('Received values:', values);
-        // Add your form submission logic here
+    useEffect(() => {
+        form.setFieldsValue({
+            name: user?.name||"",
+            email: user?.email||"",
+            contact: user?.contact||"",
+            gender: "male",
+            address: user?.address||"",
+        });
+    }, [form, user]);
+
+    const onFinish = async(values: { name: string, email: string, contact: string, gender: string, address: string }) => {
+        const res = myFetch("/user",{
+            method:"PATCH",
+            body:values
+        })
+
+       toast.promise(res, {
+            loading: "Updating...",
+            success: (data)=>{
+                if(data.success){
+                    toast.success(data.message!);
+                    revalidateTags(["user-profile"])
+                    return ""
+                }else{
+                    toast.error(data.message!);
+                    return ""
+                }
+            },
+            error: "Something went wrong",
+        })
     };
     return (
         <div className='p-7'>
@@ -32,7 +64,7 @@ const ProfileDetails = () => {
 
                 <div className=' flex lg:flex-row flex-col lg:gap-4' >
                     <div style={{ flex: '1' }}>
-                        <Form.Item label={<p className="text-sm font-normal text-[#333333]">Contact No</p>} name="contactNo">
+                        <Form.Item label={<p className="text-sm font-normal text-[#333333]">Contact No</p>} name="contact">
                             <Input type="text" placeholder="Enter Contact No" className="w-full p-2 border border-[#EEEEEE] rounded" style={{ height: 45 }} />
                         </Form.Item>
                     </div>

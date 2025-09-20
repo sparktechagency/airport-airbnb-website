@@ -11,18 +11,19 @@ import { LuCalendarClock, LuList, LuUserRound } from "react-icons/lu";
 import { RiRotateLockLine } from "react-icons/ri";
 import { TiMessages } from "react-icons/ti";
 import ChatPage from "./chat/ChatPage";
+import { IUser } from "@/types/profile/userType";
+import { imgUrl } from "@/config/config";
+import { IHotel } from "@/types/hotel/hotel";
+import HostBookingHistory from "./HostBokkingHistory";
+import { IConversation } from "@/types/hotel/chat";
 
 
-const Profile = () => {
+const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
   const router = useRouter()
   const [activeTab, setActiveTab] = useState(tabParam || "1");
-  const profile = {
-    name: "mithila",
-    email: "mithilakhan082@gmail.com",
-    role: "host"
-  }
+  const profile =user
   const userRole = profile?.role;
 
   useEffect(() => {
@@ -37,13 +38,13 @@ const Profile = () => {
   };
 
   const tabs = [
-    { id: "1", label: "Profile Details", icon: <p> <LuUserRound size={22} /> </p>, component: <ProfileDetails /> },
+    { id: "1", label: "Profile Details", icon: <p> <LuUserRound size={22} /> </p>, component: <ProfileDetails user={user} /> },
     { id: "2", label: "Change Password", icon: <p> <RiRotateLockLine size={22} /> </p>, component: <ChangePassword /> },
-    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: <BookingHistory /> },
+    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: <HostBookingHistory/> },
     ...(userRole === "host"
       ? [{ id: "4", label: "Listing History", icon: <p> <LuList size={22} /> </p>, component: <ListingHistory /> }]
       : []),
-    { id: "7", label: "Chat", icon: <p> <TiMessages size={22} /> </p>, component: <ChatPage /> },
+    { id: "7", label: "Chat", icon: <p> <TiMessages size={22} /> </p>, component: <ChatPage chatData={chatLists} /> },
   ];
 
   return (
@@ -56,14 +57,14 @@ const Profile = () => {
           <div className=" flex flex-col gap-1 items-center py-5">
             <div className="w-[94px] h-[94px] relative">
               <Image
-                src="/user.png"
+                src={user?.profilePic ? `${imgUrl}${user?.profilePic}` : "https://tse3.mm.bing.net/th/id/OIP.9PPdes_WSxaqUQJxWab16AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"}
                 alt="user image"
                 fill
                 className="rounded-full "
               />
             </div>
-            <p className="text-2xl font-normal "> Jeson Willium </p>
-            <p className="text-sm font-normal text-[#767676] "> Jeson Willium </p>
+            <p className="text-2xl font-normal "> {user?.name} </p>
+            <p className="text-sm font-normal text-[#767676] "> {user?.email} </p>
           </div>
           <div className="flex flex-col gap-4">
             {tabs.map((tab) => (

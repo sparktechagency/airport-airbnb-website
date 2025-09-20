@@ -48,7 +48,7 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
                             <IoMdArrowRoundBack size={20} />
                         </button>
                         <img
-                            src={person.profile}
+                            src={person.profile ? imageURL + person.profile : "https://tse3.mm.bing.net/th/id/OIP.9PPdes_WSxaqUQJxWab16AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"}
                             alt=""
                             className="rounded-full"
                             style={{ width: "55px", height: "55px" }}

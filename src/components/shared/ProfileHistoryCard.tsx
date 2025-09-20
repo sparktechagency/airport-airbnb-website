@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import FeedbackModal from "../modals/FeedbackModal";
 import { useRouter, useSearchParams } from "next/navigation";
+import moment from "moment";
+import { imgUrl } from "@/config/config";
 
 type propertyType = {
     name: string;
@@ -11,7 +13,7 @@ type propertyType = {
     checkOut: string;
     price: string;
     image: string;
-    key: number;
+    key: string
 }
 
 interface propertyCardType {
@@ -29,7 +31,7 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
         <div className="w-full  bg-[#fafbfc] rounded-md shadow-md overflow-hidden flex lg:flex-row flex-col justify-items-center p-1 ">
             <div className="lg:w-[250px] w-full h-full relative lg:pe-3">
                 <Image
-                    src={property.image}
+                    src={imgUrl + property.image}
                     alt={property.name}
                     width={450}
                     height={250}
@@ -52,10 +54,10 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
                     <div className=" flex items-center justify-between">
                         <div>
                             <p className="text-[12px] text-primary mt-5">
-                                Check in: {property.checkIn}
+                                Check in: {moment(property.checkIn).format("DD-MM-YYYY")}
                             </p>
                             <p className="text-[12px] text-primary mt-1">
-                                Check out: {property.checkOut}
+                                Check out: {moment(property.checkOut).format("DD-MM-YYYY")}
                             </p>
                         </div>
 
@@ -68,7 +70,7 @@ const ProfileHistoryCard = ({ property }: propertyCardType) => {
                                         Feedback
                                     </button>
                                     :
-                                    <button className='bg-primary text-white px-3 py-2 text-xs rounded font-medium' onClick={() => router.push("/property-info")}>  Edit Property</button>
+                                    <button className='bg-primary text-white px-3 py-2 text-xs rounded font-medium' onClick={() => router.push(`/property-info?id=${property.key}`)}>  Edit Property</button>
                             }
 
                         </div>

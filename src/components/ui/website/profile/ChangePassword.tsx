@@ -1,8 +1,30 @@
+import { myFetch } from '@/helpers/myFetch';
 import { Form, Input } from 'antd';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const ChangePassword = () => {
     const [form] = Form.useForm()
+    const onFinish =async (values: any) => {
+        const res = myFetch("/auth/change-password",{
+            method:"POST",
+            body:values
+        })
+
+        toast.promise(res, {
+            loading: "Updating...",
+            success: (data)=>{
+                if(data.success){
+                    toast.success(data.message!);
+                    return ""
+                }else{
+                    toast.error(data.message!);
+                    return ""
+                }
+            },
+            error: "Something went wrong",
+        })
+    }
     return (
         <div className="p-7">
 
@@ -10,6 +32,7 @@ const ChangePassword = () => {
                 form={form}
                 layout="vertical"
                 initialValues={{ remember: true }}
+                onFinish={onFinish}
                 className="w-full lg:w-2/3"
             >
 
