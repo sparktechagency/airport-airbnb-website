@@ -36,7 +36,7 @@ const ServiceDetailsMain = async ({ id }: { id: string }) => {
                 </div>
 
                 <div className="lg:col-span-4 col-span-12">
-                    <BookNow roomPrice={data?.roomPrice} location={data?.location} hostId={data?.hostId} />
+                    <BookNow roomPrice={data?.roomPrice} location={data?.location} id={data?._id} />
                 </div>
             </div>
             <AboutSchedule description={data?.description} roomClosureDates={data?.roomClosureDates} />
