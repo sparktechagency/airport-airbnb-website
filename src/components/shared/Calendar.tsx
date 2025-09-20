@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/zh-cn";
-import { Calendar, DatePicker } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { DatePicker } from "antd";
 
 const Calender = ({
   unavailableDay,
@@ -14,7 +13,7 @@ const Calender = ({
   setDate: any;
   selectedDate?: string[];
 }) => {
-  const [value, setValue] = useState<Dayjs[]>([dayjs()]); // Controlled value
+  const [value, setValue] = useState<Dayjs[]>([dayjs()]); 
 
   const disabledDate = (date: Dayjs): boolean => {
     return unavailableDay?.some((d: string) =>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Button, Space } from "antd";
+import { Input, Button } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
 
 interface Item {

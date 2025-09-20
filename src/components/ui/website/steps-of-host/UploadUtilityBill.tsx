@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
-import { GoUpload } from 'react-icons/go';
+import React from "react";
+import { GoUpload } from "react-icons/go";
+import Dragger from "antd/es/upload/Dragger";
 
-const UploadUtilityBill = () => {
-    const [imgURL, setImgURL] = useState("");
-    const [imgFile, setImageFile] = useState<File | null>(null);
-    console.log(imgFile);
-    const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+interface UploadUtilityBillProps {
+  setDoc: React.Dispatch<React.SetStateAction<{ utilityBill?: File | null }>>;
+  doc: { utilityBill?: File | null };
+}
 
-        if (file) {
-            const imgUrl = URL.createObjectURL(file);
-            setImgURL(imgUrl);
-            setImageFile(file)
-        }
-    };
-    return (
-        <div className='lg:w-1/2 w-full'>
-            <div className="flex  py-3">
-                <input
-                    onChange={onChange}
-                    type="file"
-                    id="img"
-                    style={{ display: "none" }}
-                />
-                <label
-                    htmlFor="img"
-                    className="relative w-full h-[220px] cursor-pointer rounded border  bg-white bg-cover bg-center flex items-center justify-center"
-                    style={{ backgroundImage: `url(${imgURL})` }}
-                >
-                    <div
-                        className="  flex flex-col items-center justify-center"
-                    >
-                        <span> <GoUpload size={20} className="text-primary" /> </span>
-                        <span className=' text-[#767676] text-[16px] font-medium'> Drag file to upload </span>
-                    </div>
-                </label>
-            </div>
-        </div>
-    );
+const UploadUtilityBill = ({ setDoc }: UploadUtilityBillProps) => {
+
+  
+  const handleFileUpload = (file: File) => {
+    setDoc({ utilityBill: file }); 
+    return false; 
+  };
+
+  const uploadProps = {
+    name: "file",
+    multiple: false,
+    showUploadList: true,
+    beforeUpload: (file: File) => handleFileUpload(file),
+  };
+
+  return (
+    <div className="lg:w-1/2 w-full">
+      <Dragger
+        {...uploadProps}
+        accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx"
+        maxCount={1}
+      >
+        <p className="ant-upload-drag-icon flex items-center justify-center">
+          <GoUpload size={30} className="text-primary" />
+        </p>
+        <p className="ant-upload-text">Click or drag file to upload</p>
+        <p className="ant-upload-hint text-gray-500">
+          Supported formats: Images, PDF, Word, Excel
+        </p>
+      </Dragger>
+    </div>
+  );
 };
 
 export default UploadUtilityBill;
