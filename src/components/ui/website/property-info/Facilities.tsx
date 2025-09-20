@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { imgUrl } from "@/config/config";
-import { facilitiesData } from "@/constants/Profile/FacilitesData";
 import { myFetch } from "@/helpers/myFetch";
 import { IFacility } from "@/types/hotel/hotel";
 import Image from "next/image";
@@ -8,12 +7,15 @@ import { useEffect, useState } from "react";
 
 const Facilities = ({ selectedFacilities, setSelectedFacilities }: { selectedFacilities: string[], setSelectedFacilities: (selectedFacilities: any) => void }) => {
 
-  const [facilitys, setFacilitys] = useState<IFacility[]>([]);
+  const [facilitys, setFacilitys] = useState<IFacility[]>([]); 
+
   useEffect(() => {
     myFetch("/facilitiy").then((res) => {
       setFacilitys(res.data?.data);
     });
-  },[])
+  }, []) 
+
+  
   const toggleFacility = (label: string) => {
     setSelectedFacilities((prev: string[]) =>
       prev.includes(label)
@@ -21,7 +23,7 @@ const Facilities = ({ selectedFacilities, setSelectedFacilities }: { selectedFac
         : [...prev, label]
     );
   };
-  
+
   return (
     <div>
       <div className=" flex items-center flex-wrap gap-4 ">
