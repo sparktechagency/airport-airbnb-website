@@ -16,6 +16,14 @@ import { imgUrl } from "@/config/config";
 import { IHotel } from "@/types/hotel/hotel";
 import HostBookingHistory from "./HostBokkingHistory";
 import { IConversation } from "@/types/hotel/chat";
+import { CiBank } from "react-icons/ci";
+import VerifyBankAccount from "../steps-of-host/VerifyBankAccount";
+import { FaEdit } from "react-icons/fa";
+import { myFetch } from "@/helpers/myFetch";
+import { revalidateTag } from "next/cache";
+import { revalidateTags } from "@/helpers/revalidateTags";
+import { BsCash } from "react-icons/bs";
+import SubscriptionPage from "./SubscriptionPage";
 
 
 const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
@@ -26,11 +34,28 @@ const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
   const profile =user
   const userRole = profile?.role;
 
+  async function changeProfilePic(file: File) {
+    const formData = new FormData();
+    formData.append("profilePic", file);
+
+    const res = await myFetch("/user", {
+      method: "PATCH",
+      body: formData,
+    });
+    // console.log(res);
+    
+    if (res?.success) {
+      revalidateTags(["user-profile"]);
+    }
+  }
+
   useEffect(() => {
     if (tabParam) {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
+  // console.log(user);
+  
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
@@ -40,11 +65,15 @@ const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
   const tabs = [
     { id: "1", label: "Profile Details", icon: <p> <LuUserRound size={22} /> </p>, component: <ProfileDetails user={user} /> },
     { id: "2", label: "Change Password", icon: <p> <RiRotateLockLine size={22} /> </p>, component: <ChangePassword /> },
-    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: <HostBookingHistory/> },
+    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: user.role === "host" ? <HostBookingHistory /> : <BookingHistory /> },
+    { id: "5", label: "Subscription", icon: <p> <BsCash size={22} /> </p>, component:  <SubscriptionPage/> },
     ...(userRole === "host"
       ? [{ id: "4", label: "Listing History", icon: <p> <LuList size={22} /> </p>, component: <ListingHistory /> }]
       : []),
     { id: "7", label: "Chat", icon: <p> <TiMessages size={22} /> </p>, component: <ChatPage chatData={chatLists} /> },
+   ...(userRole === "host"
+      ? [{ id: "8", label: "Billing", icon: <p> <CiBank size={22} /> </p>, component: <div className="p-7 flex justify-center items-center  top-0 left-0 w-full h-full"> <VerifyBankAccount /> </div> }]
+      : [])
   ];
 
   return (
@@ -62,6 +91,16 @@ const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
                 fill
                 className="rounded-full "
               />
+              <div>
+                <div className="absolute w-full h-full bg-black/30 rounded-full">
+                <button className="w-full h-full rounded-full">
+                  <input type="file" name="file" hidden  id="image-file" onChange={(e) => changeProfilePic(e.target.files![0])} />
+                  <label htmlFor="image-file" className="w-full h-full flex items-center justify-center cursor-pointer">
+                    <FaEdit className="text-white m-auto block" size={20} />
+                  </label>
+                </button>
+                </div>
+              </div>
             </div>
             <p className="text-2xl font-normal "> {user?.name} </p>
             <p className="text-sm font-normal text-[#767676] "> {user?.email} </p>

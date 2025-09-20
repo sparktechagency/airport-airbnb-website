@@ -47,7 +47,7 @@ const router = useRouter()
             }))
             setPropertyList(propertyData as any)
         })
-    },[])
+    },[page])
 
     // console.log(propertyList);
     
@@ -69,7 +69,7 @@ const router = useRouter()
             </div> 
             <Pagination 
                 current={pagination.page}
-                total={pagination.totalPage}
+                total={pagination.total}
                 onChange={(page) => setPage(page)}
                 showSizeChanger={false}
                 style={{ textAlign: 'center', marginTop: '20px' }}

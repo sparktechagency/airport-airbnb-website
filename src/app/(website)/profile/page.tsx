@@ -4,8 +4,13 @@ import { myFetch } from '@/helpers/myFetch';
 import React, { Suspense } from 'react';
 
 const profilePage = async() => {
-    const user = await getProfile()
-    const chatLists = await myFetch("/conversation")
+    const user = await getProfile() as any;
+    const chatLists = await myFetch("/conversation",{
+        method:"GET",
+        tags: ["chatLists"],
+        cache:"no-store"
+    })
+    // console.log(chatLists);
     return (
         <div>
             <Suspense>

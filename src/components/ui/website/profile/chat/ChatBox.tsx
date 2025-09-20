@@ -8,9 +8,11 @@ import moment from "moment";
 import { Form, Input } from "antd";
 import { useRouter } from "next/navigation";
 import { chatMessageType, TChatbox } from "@/types/profile/chatType";
+import { imgUrl } from "@/config/config";
 
-const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageList, scrollRef, imageURL, setImage, setImageURL, pdf, pdfURL, setPdf, setPdfURL, handleSubmit, setIsChatVisible }: TChatbox) => {
+const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageList, scrollRef, imageURL, setImage, setImageURL, pdf, pdfURL, setPdf, setPdfURL, handleSubmit, setIsChatVisible,onScroll }: TChatbox) => {
 
+    
     const router = useRouter()
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +41,8 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
         setImageURL(null);
     };
 
+
+
     return (
         <div>
             <div>
@@ -48,7 +52,7 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
                             <IoMdArrowRoundBack size={20} />
                         </button>
                         <img
-                            src={person.profile ? imageURL + person.profile : "https://tse3.mm.bing.net/th/id/OIP.9PPdes_WSxaqUQJxWab16AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"}
+                            src={person.profile ? imgUrl + person.profile : "https://tse3.mm.bing.net/th/id/OIP.9PPdes_WSxaqUQJxWab16AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"}
                             alt=""
                             className="rounded-full"
                             style={{ width: "55px", height: "55px" }}
@@ -59,84 +63,33 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
                     </div>
                 </div>
 
+         
+
                 <div className="bg-[#F7F7F7] w-full h-[calc(77vh+54px)] rounded-lg relative border-x-2 border-gray-100">
                     {/* Chat Messages */}
-                    <div className="py-6 lg:px-8 px-3 overflow-y-auto h-[72vh]" ref={scrollRef}>
-                        {messageList.map((value: chatMessageType, index: number) => (
+                    <div className="py-6 lg:px-8 px-3 overflow-y-auto h-[72vh]" ref={scrollRef} onScroll={onScroll}>
+                        {messageList?.map((value: chatMessageType, index: number) => (
                             <div
                                 key={index}
                                 className={`flex mb-5 w-full ${user._id === value.sender._id ? "justify-end" : "justify-start"
                                     }`}
                             >
-                                {value.type === "image" && (
-                                    <div
+                                  <div
                                         className={`lg:w-3/5 w-2/3 lg:px-4 px-2 py-3 rounded-t-xl ${user._id === value.sender._id
                                             ? "rounded-bl-xl bg-[#E6F2F6]"
                                             : "rounded-br-xl bg-[#E5E5E5]"
                                             }`}
                                     >
-                                        <img
-                                            style={{ width: "100%", height: 140, borderRadius: 8 }}
-                                            src={value.image}
-                                            alt=""
-                                        />
+                                        
+                                        { value.image && (
+                                            <img src={imgUrl+value.image} alt="sent image" className="max-w-full h-auto rounded" />
+                                        )}
+                                    
+                                        {value.text  && <p className="text-[#333333] text-[14px] break-words whitespace-pre-line">{value.text}</p>}
                                         <p className="text-[#8B8B8B] text-[12px] text-right mt-2">
                                             {moment(value.createdAt).format("hh:mm A")}
                                         </p>
                                     </div>
-                                )}
-                                {value.type === "text" && (
-                                    <div
-                                        className={`lg:w-3/5 w-2/3 lg:px-4 px-2 py-3 ${user._id === value.sender._id
-                                            ? "bg-[#E6F2F6] rounded-t-xl rounded-bl-xl"
-                                            : "bg-[#E5E5E5] rounded-t-xl rounded-br-xl"
-                                            }`}
-                                    >
-                                        <p className="text-[#6A6A6A]">{value.text}</p>
-                                        <p className="text-[#918d8d] text-[12px] text-end">
-                                            {moment(value.createdAt).format("hh:mm A")}
-                                        </p>
-                                    </div>
-                                )}
-                                {value.type === "doc" && (
-                                    <div
-                                        className={`lg:w-3/5 w-2/3 lg:px-4 px-2 py-3 ${user._id === value.sender._id
-                                            ? "bg-[#e2f8c4] rounded-t-xl rounded-bl-xl"
-                                            : "bg-[#E5E5E5] rounded-t-xl rounded-br-xl"
-                                            }`}
-                                    >
-                                        <a
-                                            href={value.doc}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-600 font-medium bg-white px-4 py-1 rounded-lg flex items-center gap-2 w-1/3 cursor-pointer"
-                                        >
-                                            <HiMiniLink color="#607888" size={20} className="cursor-pointer" />
-                                            <span>View PDF</span>
-                                        </a>
-                                        <p className="text-[#918d8d] text-[12px] text-end">
-                                            {moment(value.createdAt).format("hh:mm A")}
-                                        </p>
-                                    </div>
-                                )}
-                                {value.type === "both" && (
-                                    <div
-                                        className={`lg:w-3/5 w-2/3 lg:px-4 px-2 py-3 ${user._id === value.sender._id
-                                            ? "bg-[#E6F2F6] rounded-t-xl rounded-bl-xl"
-                                            : "bg-[#E5E5E5] rounded-t-xl rounded-br-xl"
-                                            }`}
-                                    >
-                                        <img
-                                            style={{ width: 140, height: 140, borderRadius: 8 }}
-                                            src={value.image}
-                                            alt=""
-                                        />
-                                        <p className="text-[#6A6A6A] mt-2">{value.text}</p>
-                                        <p className="text-[#918d8d] text-[12px] text-end">
-                                            {moment(value.createdAt).format("hh:mm A")}
-                                        </p>
-                                    </div>
-                                )}
                             </div>
                         ))}
                     </div>
@@ -198,7 +151,7 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
                                     <CiImageOn color="#607888" size={24} className="cursor-pointer" />
                                 </label>
 
-                                <input
+                                {/* <input
                                     type="file"
                                     id="pdfFile"
                                     className="hidden"
@@ -208,7 +161,7 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
                                 />
                                 <label htmlFor="pdfFile">
                                     <HiMiniLink color="#607888" size={24} className="cursor-pointer" />
-                                </label>
+                                </label> */}
 
                                 <button
                                     type="submit"

@@ -50,6 +50,7 @@ export interface TChatbox {
     setPdfURL: (url: string | null) => void;
     handleSubmit: () => void;
     setIsChatVisible: (v: boolean) => void;
+    onScroll?: (e: React.UIEvent<HTMLDivElement, UIEvent>) => void;
 }
 
 export interface chatMessageType {

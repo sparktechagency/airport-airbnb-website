@@ -65,16 +65,23 @@ const ServiceBanner = () => {
   const onFinish = (values: { date?: Dayjs; price?: string; type?: string }) => {
     const formattedDate = values.date ? values.date.toISOString() : null;
 
-    updateFilters("roomFilter", {
+    const data = {
       checkInDate: formattedDate,
       price: values.price ? parseInt(values.price) : undefined,
       roomType: values.type,
       location,
       lat: coords?.lat,
       lng: coords?.lng,
-    });
+    }
+    for (const key in data) {
+      if (data[key as keyof typeof data] === undefined || data[key as keyof typeof data] === null || data[key as keyof typeof data] === "") {
+        delete data[key as keyof typeof data];
+      }
+    }
 
-    router.push("/services"); 
+    const searchParams = new URLSearchParams(data as any).toString();
+
+    router.push(`/services?${searchParams}`);
   };
 
   if (loadError) {

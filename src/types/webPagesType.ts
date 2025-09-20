@@ -45,7 +45,8 @@ export interface HotelsResponse {
 } 
 
 export interface allRoomsType {
-    allRooms ?: HotelsResponse
+    allRooms ?: HotelsResponse,
+    pagination ?: Pagination
 } 
 
 export interface ReviewUser {

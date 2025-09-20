@@ -4,9 +4,10 @@ import { IUser } from "@/types/profile/userType";
 import { cookies } from "next/headers";
 
 const getProfile = async () => {
-    const token = (await cookies()).get("accessToken")?.value;
+try {
+    const token = (await cookies())?.get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.BASE_URL}/user/me`, {
+    const res = await fetch(`${process.env?.BASE_URL}/user/me`, {
         next: {
             tags: ["user-profile"],
         },
@@ -19,6 +20,10 @@ const getProfile = async () => {
     const {data} = await res?.json() 
     return data;
 
+} catch (error) {
+    console.error("Error fetching user profile:", error);
+    return null;
+}
 }
 
 export default getProfile;

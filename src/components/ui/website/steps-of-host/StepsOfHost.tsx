@@ -39,7 +39,7 @@ const StepsOfHost = () => {
     // { title: "Add Room Photos", content: <UploadImage fileList={fileList} setFileList={setFileList} />, skippable: false }, 
     { title: "Describe Your Room", content: <RoomDetails content={content} setContent={setContent} />, skippable: false },
     { title: "Show guests what makes your place special", content: <Facilities selectedFacilities={selectedFacilities} setSelectedFacilities={setSelectedFacilities} />, skippable: false },
-    { title: "Set Room Closure Date (optional)", content: <Calender unavailableDay={[]} />, skippable: false },
+    { title: "Set Room Closure Date (optional)", content: <Calender setDate={() => {}} selectedDate={[]} unavailableDay={[]} />, skippable: false },
     { title: "House Rules", content: <HouseRulesInput />, skippable: false },
     { title: "Upload Utility Bill", content: <UploadUtilityBill />, skippable: false },
     { title: "Verify Your Bank Account", content: <VerifyBankAccount />, skippable: false },

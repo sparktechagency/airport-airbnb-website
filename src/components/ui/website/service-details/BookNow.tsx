@@ -13,7 +13,7 @@ interface locationType {
     type: string,
     coordinates: number[]
 }
-const BookNow = ({ roomPrice, location, id }: { roomPrice: string, location: locationType, id: string }) => {
+const BookNow = ({ roomPrice, location, id,hostId }: { roomPrice: string, location: locationType, id: string, hostId: string }) => {
     const [viewport, setViewport] = useState({
         latitude: 40.712776,
         longitude: -74.005974,
@@ -31,6 +31,19 @@ const BookNow = ({ roomPrice, location, id }: { roomPrice: string, location: loc
         key: 1,
         lat: location?.coordinates?.[1],
         lng: location?.coordinates?.[0],
+    }
+
+    const sendMessageToOwner = async() =>{
+        const createChatRes = await myFetch("/conversation",{
+            method:"POST",
+            body:{
+                participant:hostId,
+                text:"Hi, I am interested in your property. Can you please provide more details?",
+            }
+        })
+        if(createChatRes?.success){
+            router.push(`/profile?tab=7`)
+        }
     }
 
     useEffect(() => {
@@ -94,7 +107,7 @@ const BookNow = ({ roomPrice, location, id }: { roomPrice: string, location: loc
                     <sub className="font-normal text-[#767676] text-sm">/night</sub>
                 </h1>
 
-                <p className="text-xs  flex items-center gap-1 bg-primary py-2 px-2 rounded-lg">
+                <p className="text-xs  flex items-center gap-1 bg-primary py-2 px-2 rounded-lg cursor-pointer" onClick={sendMessageToOwner}>
                     <span>  <TbMessageDots size={14} color="white" /> </span> <span className=" text-white ">Message </span>
 
                 </p>

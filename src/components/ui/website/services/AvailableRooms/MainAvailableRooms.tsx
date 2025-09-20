@@ -5,7 +5,7 @@ import MapView from './MapView';
 import { IoGridOutline, IoMapOutline } from 'react-icons/io5';
 import { allRoomsType } from '@/types/webPagesType';
 
-const MainAvailableRooms = ({ allRooms }: allRoomsType ) => {
+const MainAvailableRooms = ({ allRooms,pagination }: allRoomsType ) => {
     const [activeTab, setActiveTab] = useState('grid');
 
     const tabOptions = [
@@ -39,7 +39,7 @@ const MainAvailableRooms = ({ allRooms }: allRoomsType ) => {
 
                 {/* Tab Content */}
                 <div>
-                    {activeTab === 'grid' ? <GridView allRooms={allRooms} /> : <MapView allRooms={allRooms}/>}
+                    {activeTab === 'grid' ? <GridView allRooms={allRooms} pagination={pagination} /> : <MapView allRooms={allRooms}/>}
                 </div>
             </div>
         </div>

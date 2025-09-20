@@ -1,10 +1,12 @@
 import Services from '@/components/ui/website/services/Services';
 import React from 'react';
 
-const servicesPage = () => {
+const servicesPage = ({searchParams}:{searchParams:any}) => {
+ 
+    
     return (
         <div>
-            <Services />
+            <Services searchParams={searchParams} />
         </div>
     );
 };
