@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 import { Form, Progress } from "antd";
@@ -9,7 +10,6 @@ import SelectLocation from "./SelectLocation";
 import UploadImage from "../property-info/UploadImage";
 import RoomDetails from "../property-info/RoomDetails";
 import Facilities from "../property-info/Facilities";
-import Calender from "@/components/shared/Calendar";
 import UploadUtilityBill from "./UploadUtilityBill";
 // import VerifyBankAccount from "./VerifyBankAccount"; 
 import type { UploadFile } from "antd";
@@ -17,6 +17,7 @@ import HomeRuleForm from "../property-info/HomeRule";
 import { myFetch } from "@/helpers/myFetch";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import ClosureCalendar from "../property-info/ClosureCalendar";
 
 interface FormValues {
   hotelName: string;
@@ -54,7 +55,7 @@ const StepsOfHost = () => {
     { title: "Add Room Photos", content: <UploadImage fileList={fileList} setFileList={setFileList} /> },
     { title: "Describe Your Room", content: <RoomDetails content={content} setContent={setContent} /> },
     { title: "Show guests what makes your place special", content: <Facilities selectedFacilities={selectedFacilities} setSelectedFacilities={setSelectedFacilities} /> },
-    { title: "Set Room Closure Date (optional)", content: <Calender setDate={setRoomClosureDates} unavailableDay={[]} selectedDate={roomClosureDates} /> },
+    { title: "Set Room Closure Date (optional)", content: <ClosureCalendar setDate={setRoomClosureDates} unavailableDay={[]} selectedDate={roomClosureDates} /> },
     { title: "House Rules", content: <HomeRuleForm setHomeRules={setHomeRules} homeRules={homeRules} /> },
     { title: "Upload Utility Bill", content: <UploadUtilityBill setDoc={setDoc} doc={doc} /> },
     // { title: "Verify Your Bank Account", content: <VerifyBankAccount /> }, 
@@ -83,7 +84,7 @@ const StepsOfHost = () => {
 
 
     if (selectedFacilities) {
-      selectedFacilities.forEach((facility) => formData.append("facilities", facility)); 
+      selectedFacilities.forEach((facility) => formData.append("facilities", facility));
     }
 
     if (roomClosureDates) {
@@ -116,7 +117,7 @@ const StepsOfHost = () => {
 
       if (res?.success) {
         toast.success(res?.message || "", { id: "step-host" });
-
+        localStorage.setItem("userType", "host")  //guest 
         router.push(`/profile?tab=8`);
       } else {
         if (res?.error && Array.isArray(res.error)) {

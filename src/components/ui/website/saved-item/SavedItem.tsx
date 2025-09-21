@@ -12,8 +12,8 @@ const SavedItem = async () => {
         cache: "no-store"
     });
 
-const favoriteItemsData = res?.data?.result
-    console.log(favoriteItemsData);
+    const favoriteItemsData = res?.data?.result 
+
     return (
         <div className=' container pb-14 pt-7 min-h-screen  '>
             <div className='flex justify-between items-center mb-6'>
@@ -22,7 +22,7 @@ const favoriteItemsData = res?.data?.result
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center'>
                 {
-                    favoriteItemsData?.map((property:HotelRoom, index:number) => (
+                    favoriteItemsData?.map((property: HotelRoom, index: number) => (
                         <SingleServiceCard key={index} property={property} />
                     ))
                 }

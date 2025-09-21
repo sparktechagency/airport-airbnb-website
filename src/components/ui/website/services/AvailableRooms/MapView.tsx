@@ -4,6 +4,7 @@ import { allRoomsType } from "@/types/webPagesType";
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { Heart } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiFillStar } from "react-icons/ai";
@@ -34,7 +35,11 @@ const MapView = ({ allRooms }: allRoomsType) => {
             } else {
                 if (res?.error && Array.isArray(res.error)) {
                     res.error.forEach((err: { message: string }) => {
-                        toast.error(err.message, { id: "favorite" });
+                        if (err.message === "You are not authorized") {
+                             redirect("/register");
+                        } else {
+                            toast.error(err.message, { id: "favorite" });
+                        }
                     });
                 } else {
                     toast.error(res?.message || "Something went wrong!", { id: "favorite" });
@@ -47,6 +52,7 @@ const MapView = ({ allRooms }: allRoomsType) => {
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+        libraries: ["places"],
     });
 
     useEffect(() => {

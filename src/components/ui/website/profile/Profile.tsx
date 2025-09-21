@@ -13,26 +13,23 @@ import { TiMessages } from "react-icons/ti";
 import ChatPage from "./chat/ChatPage";
 import { IUser } from "@/types/profile/userType";
 import { imgUrl } from "@/config/config";
-import { IHotel } from "@/types/hotel/hotel";
 import HostBookingHistory from "./HostBokkingHistory";
-import { IConversation } from "@/types/hotel/chat";
 import { CiBank } from "react-icons/ci";
 import VerifyBankAccount from "../steps-of-host/VerifyBankAccount";
 import { FaEdit } from "react-icons/fa";
 import { myFetch } from "@/helpers/myFetch";
-import { revalidateTag } from "next/cache";
 import { revalidateTags } from "@/helpers/revalidateTags";
 import { BsCash } from "react-icons/bs";
 import SubscriptionPage from "./SubscriptionPage";
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
   const router = useRouter()
   const [activeTab, setActiveTab] = useState(tabParam || "1");
-  const profile =user
-  const userRole = profile?.role;
+  const userRole = localStorage.getItem("userType")
 
   async function changeProfilePic(file: File) {
     const formData = new FormData();

@@ -102,10 +102,10 @@ const Login = () => {
         <Link href="/register" className="text-[#1854F9] font-semibold" > Sign Up</Link>
       </div> 
 
-      <div className=" flex items-center justify-center gap-1 py-4">
+      {/* <div className=" flex items-center justify-center gap-1 py-4">
         <p className="text-[#636363]">Want to see all subscription plans?</p>
         <Link href="/subscription-plan" className="text-gray-500 underline font-semibold" > Click here </Link>
-      </div>
+      </div> */}
 
     </div>
   );

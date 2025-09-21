@@ -5,10 +5,10 @@ import { TbCurrencyDollar } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import dayjs, { Dayjs } from "dayjs";
-import { updateFilters, getFilters } from "@/helpers/storageHelper";
+import {  getFilters } from "@/helpers/storageHelper";
 import { useRouter } from "next/navigation";
 
-const GOOGLE_MAP_LIBRARIES: ("places")[] = ["places"];
+const GOOGLE_MAP_LIBRARIES: ("places")[] = ["places"]; 
 
 const ServiceBanner = () => {
   const typeOptions = [
@@ -32,7 +32,7 @@ const ServiceBanner = () => {
   // Pre-fill data from local storage
   useEffect(() => {
     const savedFilters = getFilters("roomFilter"); 
-    console.log(savedFilters);
+    
     if (savedFilters) {
       form.setFieldsValue({
         price: savedFilters.price,
@@ -79,8 +79,8 @@ const ServiceBanner = () => {
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const searchParams = new URLSearchParams(data as any).toString();
-
     router.push(`/services?${searchParams}`);
   };
 

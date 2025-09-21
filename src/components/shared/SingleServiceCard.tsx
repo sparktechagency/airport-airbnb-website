@@ -9,13 +9,14 @@ import { imgUrl } from "@/config/config";
 import toast from "react-hot-toast";
 import { myFetch } from "@/helpers/myFetch";
 import { revalidateTags } from "@/helpers/revalidateTags";
+import { useRouter } from "next/navigation";
 
 interface propertyType {
     property: HotelRoom
 }
 
 const SingleServiceCard = ({ property }: propertyType) => {
-
+    const router = useRouter()
 
     const handleWishList = async ({ e, id }: { e: React.MouseEvent<SVGSVGElement, MouseEvent>, id: string }) => {
         e.preventDefault()
@@ -35,7 +36,11 @@ const SingleServiceCard = ({ property }: propertyType) => {
             } else {
                 if (res?.error && Array.isArray(res.error)) {
                     res.error.forEach((err: { message: string }) => {
-                        toast.error(err.message, { id: "favorite" });
+                        if (err.message === "You are not authorized") {
+                            router.push("/register")
+                        } else {
+                            toast.error(err.message, { id: "favorite" });
+                        }
                     });
                 } else {
                     toast.error(res?.message || "Something went wrong!", { id: "favorite" });
@@ -68,8 +73,8 @@ const SingleServiceCard = ({ property }: propertyType) => {
                             className=""
                             onClick={(e) => handleWishList({ e, id: property?._id })}
                             size={18}
-                            color={ property?.isFavorite ? "#083a65" : "#083a65"}
-                            fill={ property?.isFavorite ? "#083a65" : "transparent"}
+                            color={property?.isFavorite ? "#083a65" : "#083a65"}
+                            fill={property?.isFavorite ? "#083a65" : "transparent"}
                         />
                     </div>
 

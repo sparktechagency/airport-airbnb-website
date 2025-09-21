@@ -3,12 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { LuHeart } from "react-icons/lu";
-import { LiaUserCircleSolid } from "react-icons/lia";
+// import { LiaUserCircleSolid } from "react-icons/lia";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "antd";
 import NavbarMobile from "./NavbarMobile";
+import getProfile from "@/helpers/getProfile";
+import { imgUrl } from "@/config/config";
+import { FavoriteItemLength } from "../ui/website/home/FavoriteItemLength";
 
 // Define types for nav options and user
 interface NavOption {
@@ -16,9 +19,10 @@ interface NavOption {
   path: string;
 }
 
-interface User {
+interface UserProfileType {
+  _id: string;
   name: string;
-  image: string;
+  profilePic: string;
 }
 
 const Navbar = () => {
@@ -27,19 +31,40 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
+  const [user, setUser] = useState<UserProfileType | null>(null);
+  const userType = localStorage.getItem("userType")
+  const [count, setCount] = useState(0);
+console.log(count);
+  useEffect(() => {
+    const fetchCount = async () => {
+      const len = await FavoriteItemLength();
+      setCount(len);
+    };
+    fetchCount();
+  }, []);
 
-  const user: User | null = {
-    name: "John Doe",
-    image: "/user.png",
-  };
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profileData = await getProfile();
+        setUser(profileData);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
 
   const navOptions: NavOption[] = [
     { label: "Home", path: "/" },
     { label: "Services", path: "/services" },
     { label: "About", path: "/about" },
-    { label: "Support", path: "/support" }, 
-    { label: "Airport Info", path: "/airport-info" }, 
-    { label: "Track My Flight", path: "https://www.flightaware.com/" }, 
+    { label: "Support", path: "/support" },
+    { label: "Airport Info", path: "/airport-info" },
+    { label: "Track My Flight", path: "https://www.flightaware.com/" },
 
   ];
 
@@ -96,7 +121,7 @@ const Navbar = () => {
 
         {/* Mobile menu toggle */}
         <div className="lg:hidden flex items-center gap-8">
-          <Badge count={2} color="#083a65">
+          <Badge count={count} color="#083a65">
             <LuHeart size={26} color="#767676" />
           </Badge>
           <button
@@ -110,21 +135,21 @@ const Navbar = () => {
 
         {/* Right Icons */}
         <div className="nav-icons hidden lg:flex items-center gap-x-4">
-          {user ? (
+          {user?._id ? (
             <div className="flex flex-row items-center gap-4">
 
-              <Link href="/saved-item"  className="cursor-pointer">
-                <Badge count={2} color="#083a65"  >
+              <Link href="/saved-item" className="cursor-pointer">
+                <Badge count={count} color="#083a65"  >
                   <LuHeart size={26} color="#767676" />
                 </Badge>
-              </Link> 
+              </Link>
 
               <Link
                 href="/profile"
                 className="flex items-center gap-2 h-[55px] px-2 rounded-md cursor-pointer transition"
               >
                 <Image
-                  src={user.image}
+                  src={user?.profilePic?.startsWith("https") ? user?.profilePic : `${imgUrl}${user?.profilePic}`}
                   alt="User Profile"
                   width={44}
                   height={44}
@@ -134,18 +159,41 @@ const Navbar = () => {
             </div>
           ) : (
             <button
-              onClick={() => router.push("/login")}
+
               aria-label="Login"
+              className=" flex items-center gap-2 text-primary font-medium text-sm"
             >
-              <LiaUserCircleSolid size={28} color="#767676" />
+              {/* <LiaUserCircleSolid size={28} color="#767676" /> */}
+              <span onClick={() => router.push("/login")} className=" pe-2 border-e-2 border-gray-300 cursor-pointer"> Sign In </span> <span onClick={() => router.push("/register")} className=" cursor-pointer">Sign Up</span>
             </button>
           )}
-          <button
-            className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
-            onClick={() => router.push("/be-a-host")}
-          >
-            Be a Host
-          </button>
+
+          {
+            userType ?
+
+              userType === "host" ?
+                <button
+                  className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
+                  onClick={() => localStorage.setItem("userType", "guest")}
+                >
+                  Switch to guest
+                </button>
+                :
+                <button
+                  className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
+                  onClick={() => router.push("/be-a-host")}
+                >
+                  Be a Host
+                </button>
+              :
+              <button
+                className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
+                onClick={() => router.push("/be-a-host")}
+              >
+                Be a Host
+              </button>
+          }
+
         </div>
       </div>
 
@@ -154,7 +202,7 @@ const Navbar = () => {
         drawerVisible={drawerVisible}
         navOptions={navOptions}
         setDrawerVisible={setDrawerVisible}
-        pathname={pathname} 
+        pathname={pathname}
         router={router}
       />
     </div>

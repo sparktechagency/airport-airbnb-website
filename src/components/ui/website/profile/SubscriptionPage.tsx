@@ -1,24 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import getProfile from '@/helpers/getProfile';
 import { myFetch } from '@/helpers/myFetch';
 import { CheckCircleIcon } from 'lucide-react';
 import React from 'react'
 
 export default function SubscriptionPage() {
-    const [subscriptionData, setSubscriptionData] = React.useState<any>();
-    const [selected, setSelected] = React.useState<number | null>(null);
-    React.useEffect(() => {
-        myFetch(`/verification-plan`, {
-            method: "GET",
-        }).then((res) => {
-            setSubscriptionData(res?.data);
-        });
-    }, []);
+  const [subscriptionData, setSubscriptionData] = React.useState<any>();
+  const [selected, setSelected] = React.useState<number | null>(null);
+  const [profile, setProfile] = React.useState<any>(null); 
+  const  selectedSubscription = profile?.airlineVerification?.plan?._id
+  
+  React.useEffect(() => {
+
+    getProfile().then((res) => {
+      setProfile(res); 
+      setSelected(selectedSubscription)
+    });
+
+
+    myFetch(`/verification-plan`, { method: "GET" })
+      .then((res) => setSubscriptionData(res?.data));
+
+  }, [selectedSubscription]);
+
+
   return (
     <div className='p-5'>
       <h1 className='text-2xl font-bold'>Your Subscription</h1>
       <p className='mt-4'>Manage your subscription details here.</p>
       <div className='mt-8'>
-         <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 w-full">
-          {subscriptionData?.result?.map((plan:any, index:number) => (
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 w-full">
+          {subscriptionData?.result?.map((plan: any, index: number) => (
             <div
               key={index}
               className="flex-1"
@@ -26,7 +38,7 @@ export default function SubscriptionPage() {
             >
               <div className={`
               relative bg-white rounded-xl shadow-xl h-full flex flex-col p-5
-              ${selected === index ? 'border border-primary' : ''}
+              ${selected === plan?._id ? 'border border-primary' : ''}
              
             `}>
                 {/* Plan Header */}
@@ -52,7 +64,7 @@ export default function SubscriptionPage() {
                 {/* Features List */}
                 <div className="flex-grow mb-8">
                   <ul className="space-y-4">
-                    {plan?.features?.map((feature:any, featureIndex:number) => (
+                    {plan?.features?.map((feature: any, featureIndex: number) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         <CheckCircleIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700 text-sm leading-relaxed">

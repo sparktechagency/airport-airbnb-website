@@ -2,11 +2,12 @@
 import { myFetch } from "@/helpers/myFetch";
 import { revalidateTags } from "@/helpers/revalidateTags";
 import { Heart } from "lucide-react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { GoShareAndroid } from "react-icons/go";
 
-const DetailsTitle = ({ id , isFavorite , serviceName}: { id: string , isFavorite:boolean , serviceName:string }) => {
-
+const DetailsTitle = ({ id, isFavorite, serviceName }: { id: string, isFavorite: boolean, serviceName: string }) => {
+    const router = useRouter()
 
     const handleWishList = async () => {
         const value = {
@@ -24,7 +25,11 @@ const DetailsTitle = ({ id , isFavorite , serviceName}: { id: string , isFavorit
             } else {
                 if (res?.error && Array.isArray(res.error)) {
                     res.error.forEach((err: { message: string }) => {
-                        toast.error(err.message, { id: "favorite" });
+                        if (err.message === "You are not authorized") {
+                            router.push("/register")
+                        } else {
+                            toast.error(err.message, { id: "favorite" });
+                        }
                     });
                 } else {
                     toast.error(res?.message || "Something went wrong!", { id: "favorite" });
