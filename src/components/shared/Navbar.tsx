@@ -12,6 +12,9 @@ import NavbarMobile from "./NavbarMobile";
 import getProfile from "@/helpers/getProfile";
 import { imgUrl } from "@/config/config";
 import { FavoriteItemLength } from "../ui/website/home/FavoriteItemLength";
+import { getCookieValue, setCookie } from "@/helpers/cookieHelper";
+// import { getCookie } from "@/helpers/getCookie";
+import { myFetch } from "@/helpers/myFetch";
 
 // Define types for nav options and user
 interface NavOption {
@@ -32,9 +35,10 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [user, setUser] = useState<UserProfileType | null>(null);
-  const userType = localStorage.getItem("userType")
+  const userType = getCookieValue("userType");
+  console.log(userType);
   const [count, setCount] = useState(0);
-console.log(count);
+
   useEffect(() => {
     const fetchCount = async () => {
       const len = await FavoriteItemLength();
@@ -87,6 +91,31 @@ console.log(count);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  async function switchToHost(){
+    
+
+    if(userType === "host") {
+      setCookie("userType","guest")
+      localStorage.setItem("userType","guest")
+      window.location.reload()
+      return
+    }
+    const res = await myFetch("/hotel", {method:"GET",cache:"no-store"});
+
+    localStorage?.setItem("userType","host")
+    setCookie("userType","host")
+    console.log(res?.data);
+    
+    if(!res?.data?.result?.length) {
+
+      router.push("/be-a-host")
+      return
+      
+    }
+    window.location.reload()
+  }
+
 
   return (
     <div className="absolute top-0 left-0 w-full z-50 bg-white/90 border-b border-gray-200">
@@ -174,21 +203,21 @@ console.log(count);
               userType === "host" ?
                 <button
                   className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
-                  onClick={() => localStorage.setItem("userType", "guest")}
+                  onClick={() => switchToHost()}
                 >
                   Switch to guest
                 </button>
                 :
                 <button
                   className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
-                  onClick={() => router.push("/be-a-host")}
+                  onClick={() => switchToHost()}
                 >
                   Be a Host
                 </button>
               :
               <button
                 className="text-[14px] py-3 px-4 rounded-lg font-medium bg-primary text-white"
-                onClick={() => router.push("/be-a-host")}
+                onClick={() => switchToHost()}
               >
                 Be a Host
               </button>

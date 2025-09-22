@@ -1,6 +1,6 @@
 "use server";
 
-import { IUser } from "@/types/profile/userType";
+// import { IUser } from "@/types/profile/userType";
 import { cookies } from "next/headers";
 
 const getProfile = async () => {

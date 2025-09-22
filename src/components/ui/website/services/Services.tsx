@@ -3,7 +3,7 @@ import ServiceBanner from "./ServiceBanner";
 import MainAvailableRooms from "./AvailableRooms/MainAvailableRooms";
 import { myFetch } from "@/helpers/myFetch";
 import getProfile from "@/helpers/getProfile";
-import { getFilters } from "@/helpers/storageHelper";
+// import { getFilters } from "@/helpers/storageHelper";
 import { HotelsResponse } from "@/types/webPagesType";
 export interface IsearchParams {
   checkInDate: string; // ISO date string, e.g. "2025-09-03T18:00:00.000Z"

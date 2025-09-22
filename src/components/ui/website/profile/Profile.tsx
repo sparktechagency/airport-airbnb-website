@@ -21,6 +21,7 @@ import { myFetch } from "@/helpers/myFetch";
 import { revalidateTags } from "@/helpers/revalidateTags";
 import { BsCash } from "react-icons/bs";
 import SubscriptionPage from "./SubscriptionPage";
+import Cookies from "js-cookie";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,7 +63,7 @@ const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
   const tabs = [
     { id: "1", label: "Profile Details", icon: <p> <LuUserRound size={22} /> </p>, component: <ProfileDetails user={user} /> },
     { id: "2", label: "Change Password", icon: <p> <RiRotateLockLine size={22} /> </p>, component: <ChangePassword /> },
-    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: user.role === "host" ? <HostBookingHistory /> : <BookingHistory /> },
+    { id: "3", label: "Booking History", icon: <p> <LuCalendarClock size={22} /> </p>, component: userRole === "host" ? <HostBookingHistory /> : <BookingHistory /> },
     { id: "5", label: "Subscription", icon: <p> <BsCash size={22} /> </p>, component:  <SubscriptionPage/> },
     ...(userRole === "host"
       ? [{ id: "4", label: "Listing History", icon: <p> <LuList size={22} /> </p>, component: <ListingHistory /> }]
@@ -115,7 +116,12 @@ const Profile = ({user,chatLists}:{user:IUser,chatLists:any}) => {
                 <p> {tab.icon} </p> <p> {tab.label} </p>
               </div>
             ))}
-            <div className="text-[#6B6B6B] text-left px-4 py-2 font-medium flex items-center gap-1 cursor-pointer " onClick={() => router.push("/login")} > <p> <IoIosLogOut size={22} /> </p> <p>  Log Out </p>
+            <div className="text-[#6B6B6B] text-left px-4 py-2 font-medium flex items-center gap-1 cursor-pointer " onClick={() => {
+              localStorage.clear();
+              Cookies.remove("accessToken");
+              router.push("/");
+              window.location.reload();
+            }} > <p> <IoIosLogOut size={22} /> </p> <p>  Log Out </p>
             </div>
           </div>
         </div>

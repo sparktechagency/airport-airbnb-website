@@ -1,8 +1,6 @@
 import ProfileHistoryCard from '@/components/shared/ProfileHistoryCard';
-import { historyData } from '@/constants/Profile/HistoryData';
 import { myFetch } from '@/helpers/myFetch';
 import { IBooking } from '@/types/hotel/booking';
-import { PropertyDetails } from '@/types/StepsOfHost/stepOfHostType';
 import { Pagination } from 'antd';
 import React, { useEffect } from 'react';
 type propertyType = {
@@ -42,7 +40,7 @@ const BookingHistory = () => {
                 key: value?._id,
             }))
             setPagination(res?.data?.pagination)
-            setData(bookingData as any)
+            setData(bookingData as any as propertyType[])
         })
     }, [])
 

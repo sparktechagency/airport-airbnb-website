@@ -1,7 +1,7 @@
-import Services from '@/components/ui/website/services/Services';
+import Services, { IsearchParams } from '@/components/ui/website/services/Services';
 import React from 'react';
 
-const servicesPage = ({searchParams}:{searchParams:any}) => {
+const servicesPage = ({searchParams}:{searchParams:IsearchParams}) => {
  
     
     return (

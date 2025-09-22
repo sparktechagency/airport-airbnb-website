@@ -1,5 +1,5 @@
 "use client"
-import { HiMiniLink } from "react-icons/hi2";
+// import { HiMiniLink } from "react-icons/hi2";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoSendSharp } from "react-icons/io5";
 import { MdOutlineCancel } from "react-icons/md";
@@ -23,13 +23,13 @@ const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageLis
         }
     };
 
-    const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file && file.type === "application/pdf") {
-            setPdf(file);
-            setPdfURL(URL.createObjectURL(file));
-        }
-    };
+    // const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const file = e.target.files?.[0];
+    //     if (file && file.type === "application/pdf") {
+    //         setPdf(file);
+    //         setPdfURL(URL.createObjectURL(file));
+    //     }
+    // };
 
     const handleBackToList = () => {
         setIsChatVisible(false);

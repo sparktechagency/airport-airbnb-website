@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @next/next/no-img-element */
+
 //@ts-nocheck
 
 "use client";
-import {
-  staticChatList,
-  staticMessageList,
-} from "@/constants/Profile/ChatData";
+
 import { TMessageList } from "@/types/profile/chatType";
 import { Form, Input } from "antd";
 import moment from "moment";
@@ -22,8 +17,6 @@ import {
 } from "@/types/hotel/chat";
 import getProfile from "@/helpers/getProfile";
 import { myFetch } from "@/helpers/myFetch";
-import { text } from "stream/consumers";
-import { send } from "process";
 import { io, Socket } from "socket.io-client";
 import { imgUrl } from "@/config/config";
 import { revalidateTags } from "@/helpers/revalidateTags";
@@ -44,13 +37,12 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
   const [clicked, setClicked] = useState(false);
   // const [chatLists, setChatLists] = useState<TMessageList[]>(staticChatList);
   // const [messageList, setMessageList] = useState<chatMessageType[]>(staticMessageList[person?.chatId || ""] || []);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
+
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const socket = useMemo(() => io(imgUrl), []) as Socket;
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [form] = Form.useForm();
-  const pagination = chatData?.pagination;
   const chatLists: IConversation[] = chatData?.data || [];
   const formattedChatLists = chatLists.map((chat) => {
     const otherParticipant = chat.participant;
@@ -85,17 +77,17 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
 
 
 
-  const searchChatLists = (e:ChangeEvent<HTMLInputElement>) => {
-    const location = globalThis.window.location?.origin
-    const searchParams = new URLSearchParams();
-    searchParams.set("tab", "7")
-    searchParams.set("search", e.target.value);
-    const newUrl = `/profile?${searchParams.toString()}`;
-    router.push(newUrl)
-    const value = e.target.value;
+  // const searchChatLists = (e:ChangeEvent<HTMLInputElement>) => {
+  //   const location = globalThis.window.location?.origin
+  //   const searchParams = new URLSearchParams();
+  //   searchParams.set("tab", "7")
+  //   searchParams.set("search", e.target.value);
+  //   const newUrl = `/profile?${searchParams.toString()}`;
+  //   router.push(newUrl)
+  //   const value = e.target.value;
 
-    setKeyword(value);
-  }
+  //   setKeyword(value);
+  // }
 
   const loadMessagesFunc = async (e: any) => {
     // console.log("Scrolling", e);
@@ -117,7 +109,9 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
   };
 
   const loadMessages = async (pageNum: number, prepend: boolean = false) => {
-    console.log("Loading messages for page:", pageNum);
+    console.log("pageNum", pageNum);
+    
+    if(pageNum <2 && messageList.length) return
     
     const res = await myFetch(`/message/${person.chatId}?page=${pageNum}`, {
       method: "GET",
@@ -191,7 +185,7 @@ async function loadInitialMessages() {
     if (person?.chatId) {
      loadInitialMessages()
     }
-  }, [person?.chatId, clicked]);
+  }, [person?.chatId]);
 
   // Filter messages based on keyword
   const filteredMessages = messages.filter((message) =>
@@ -212,7 +206,7 @@ async function loadInitialMessages() {
       top: scrollRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [messageList, person?.chatId]);
+  }, [messageInput, image, pdf, person?.chatId]);
 
   // Handle sending a message
   const handleSubmit = async () => {
