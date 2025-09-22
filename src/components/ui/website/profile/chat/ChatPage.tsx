@@ -1,19 +1,20 @@
-
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 //@ts-nocheck
-
 "use client";
 
 import { TMessageList } from "@/types/profile/chatType";
 import { Form, Input } from "antd";
 import moment from "moment";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import ChatBox from "./ChatBox";
+import { useCallback } from "react";
 import {
   IConversation,
   IMessagePopulated,
-  IMessageWithSenderPopulated,
 } from "@/types/hotel/chat";
 import getProfile from "@/helpers/getProfile";
 import { myFetch } from "@/helpers/myFetch";
@@ -26,11 +27,11 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [person, setPerson] = useState<TMessageList | null>(null);
   const [isChatVisible, setIsChatVisible] = useState(false);
-  const [keyword, setKeyword] = useState("");
+  // const [keyword, setKeyword] = useState("");
   const [pdf, setPdf] = useState<File | null>(null);
   const [pdfURL, setPdfURL] = useState<string | null>(null);
   const router = useRouter();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [messageList, setMessageList] = useState<any[]>([]);
   const [user, setUser] = useState<any>(null);
@@ -66,7 +67,7 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
   });
 
   ;
-  
+
   // console.log("🚀 ~ file: ChatPage.tsx:57 ~ ChatPage ~ formattedChatLists:", formattedChatLists);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
 
   const loadMessagesFunc = async (e: any) => {
     // console.log("Scrolling", e);
-    
+
     const el = e.currentTarget;
     if (el.scrollTop === el.scrollHeight - el.clientHeight) return; // bottom
 
@@ -108,89 +109,96 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
     }
   };
 
-  const loadMessages = async (pageNum: number, prepend: boolean = false) => {
-    console.log("pageNum", pageNum);
-    
-    if(pageNum <2 && messageList.length) return
-    
-    const res = await myFetch(`/message/${person.chatId}?page=${pageNum}`, {
-      method: "GET",
-      cache: "no-store",
-    });
 
-    const data: IMessagePopulated = res?.data?.data?.length
-      ? res?.data?.data?.reverse() || []
-      : [];
 
-    const formattedMessages = data.map((msg) => ({
-      text: msg.text,
-      sender: { _id: msg.sender },
-      image: msg.image || "",
-      doc: msg.doc || "",
-      type: msg.type,
-      createdAt: msg.createdAt,
-      chatId: msg.conversation,
-    }));
+  const loadMessages = useCallback(
+    async (pageNum: number, prepend: boolean = false) => {
+      console.log("pageNum", pageNum);
 
-    setMessageList((prev) =>
-      prepend
-        ? [...formattedMessages, ...prev]
-        : [...prev, ...formattedMessages]
-    );
-    setHasMore(data.length > 0);
-  };
+      if (pageNum < 2 && messageList.length) return;
+
+      const res = await myFetch(`/message/${person?.chatId}?page=${pageNum}`, {
+        method: "GET",
+        cache: "no-store",
+      });
+
+      const data: IMessagePopulated = res?.data?.data?.length
+        ? res?.data?.data?.reverse() || []
+        : [];
+
+      const formattedMessages = data.map((msg) => ({
+        text: msg.text,
+        sender: { _id: msg.sender },
+        image: msg.image || "",
+        doc: msg.doc || "",
+        type: msg.type,
+        createdAt: msg.createdAt,
+        chatId: msg.conversation,
+      }));
+
+      setMessageList((prev) =>
+        prepend
+          ? [...formattedMessages, ...prev]
+          : [...prev, ...formattedMessages]
+      );
+      setHasMore(data.length > 0);
+    },
+    [messageList.length, person?.chatId]
+  );
 
   useEffect(() => {
     if (!socket) return;
     socket.on(
       `new_message::${person?.chatId || ""}`,
-     async (newMessage: IMessageWithSenderPopulated) => {
+      async () => {
         await loadInitialMessages();
         revalidateTags(["chatLists"]);
       }
     );
-    socket.on(`new_user::${user?._id || ""}`, (data: any) => {
+    socket.on(`new_user::${user?._id || ""}`, () => {
       revalidateTags(["chatLists"]);
     });
 
-  }, [socket, person?.chatId, user?._id]);
+  }, [socket, person?.chatId, user?._id, loadInitialMessages]);
 
- 
 
-async function loadInitialMessages() {
-   myFetch(`/message/${person.chatId}`, {
-        method: "GET",
-        cache: "no-store",
-      }).then((res) => {
-        // console.log("🚀 ~ file: ChatPage.tsx:78 ~ myFetch ~ res:", res);
 
-        const data: IMessagePopulated = res?.data?.data?.length
-          ? res?.data?.data?.reverse() || []
-          : [];
 
-        const formattedMessages = data.map((msg) => ({
-          text: msg.text,
-          sender: { _id: msg.sender },
-          image: msg.image || "",
-          doc: msg.doc || "",
-          type: msg.type,
-          createdAt: msg.createdAt,
-          chatId: msg.conversation,
-        }));
-        setMessageList(formattedMessages);
-      });
-}
+
+  const loadInitialMessages = useCallback(async () => {
+    myFetch(`/message/${person?.chatId}`, {
+      method: "GET",
+      cache: "no-store",
+    }).then((res) => {
+      // console.log("🚀 ~ file: ChatPage.tsx:78 ~ myFetch ~ res:", res);
+
+      const data: IMessagePopulated = res?.data?.data?.length
+        ? res?.data?.data?.reverse() || []
+        : [];
+
+      const formattedMessages = data.map((msg) => ({
+        text: msg.text,
+        sender: { _id: msg.sender },
+        image: msg.image || "",
+        doc: msg.doc || "",
+        type: msg.type,
+        createdAt: msg.createdAt,
+        chatId: msg.conversation,
+      }));
+      setMessageList(formattedMessages);
+    });
+  }, [person?.chatId]);
 
   useEffect(() => {
     if (person?.chatId) {
-     loadInitialMessages()
+      loadInitialMessages()
     }
-  }, [person?.chatId]);
+  }, [person?.chatId, loadInitialMessages]);
 
   // Filter messages based on keyword
-  const filteredMessages = messages.filter((message) =>
-    message.name.toLowerCase().includes(keyword.toLowerCase())
-  );
+  // const filteredMessages = messages.filter((message) =>
+  //   message.name.toLowerCase().includes(keyword.toLowerCase())
+  // );
 
   // Update message list when person changes
   useEffect(() => {
@@ -198,7 +206,7 @@ async function loadInitialMessages() {
       setPage(1);
       loadMessages(1);
     }
-  }, [person]);
+  }, [person, loadMessages]);
 
   // Scroll to bottom when messageList updates
   useEffect(() => {
@@ -232,7 +240,7 @@ async function loadInitialMessages() {
     formData.append("doc", pdfURL || "");
     formData.append("image", image ? image : "");
 
-    const res = await myFetch("/message", {
+    await myFetch("/message", {
       method: "POST",
       body: formData,
     });
@@ -276,7 +284,7 @@ async function loadInitialMessages() {
     setImageURL(null);
     setPdf(null);
     setPdfURL(null);
-    
+
     form.resetFields();
   };
 
@@ -292,9 +300,8 @@ async function loadInitialMessages() {
       <div className="grid grid-cols-12 h-full rounded-xl">
         {/* Message List */}
         <div
-          className={`lg:col-span-4 col-span-12 bg-[#fafbfc] ${
-            isChatVisible ? "hidden lg:block" : ""
-          }`}
+          className={`lg:col-span-4 col-span-12 bg-[#fafbfc] ${isChatVisible ? "hidden lg:block" : ""
+            }`}
         >
           <div className="h-[66px] bg-primary rounded-tl-2xl lg:rounded-tr-none rounded-tr-2xl flex items-center justify-center" />
 
@@ -309,7 +316,7 @@ async function loadInitialMessages() {
                 fontSize: "14px",
                 background: "#E9E9E9",
               }}
-              onChange={(e) => setKeyword(e.target.value)}
+            // onChange={(e) => setKeyword(e.target.value)} 
             />
           </div>
 
@@ -319,11 +326,10 @@ async function loadInitialMessages() {
               <div
                 key={message.chatId}
                 onClick={() => handleMessage(message)}
-                className={`flex justify-between  px-2 py-3 rounded-lg mb-3 cursor-pointer shadow overflow-hidden ${
-                  person?.chatId === message.chatId
-                    ? "bg-[#e0e3e4]"
-                    : "bg-gray-100"
-                }`}
+                className={`flex justify-between  px-2 py-3 rounded-lg mb-3 cursor-pointer shadow overflow-hidden ${person?.chatId === message.chatId
+                  ? "bg-[#e0e3e4]"
+                  : "bg-gray-100"
+                  }`}
               >
                 <div className="flex items-center gap-1 ">
                   <img
@@ -354,9 +360,8 @@ async function loadInitialMessages() {
 
         {/* Chat Section */}
         <div
-          className={`lg:col-span-8 col-span-12 bg-[#F7F7F7] ${
-            isChatVisible ? "block" : "hidden lg:block"
-          }`}
+          className={`lg:col-span-8 col-span-12 bg-[#F7F7F7] ${isChatVisible ? "block" : "hidden lg:block"
+            }`}
         >
           {person ? (
             <ChatBox

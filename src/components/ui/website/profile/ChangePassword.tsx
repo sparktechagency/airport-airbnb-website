@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const ChangePassword = () => {
     const [form] = Form.useForm()
-    const onFinish =async (values: any) => {
+    const onFinish =async (values: { currentPassword: string, newPassword: string, confirmPassword: string }) => {
         const res = myFetch("/auth/change-password",{
             method:"POST",
             body:values

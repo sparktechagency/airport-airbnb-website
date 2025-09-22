@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { chatMessageType, TChatbox } from "@/types/profile/chatType";
 import { imgUrl } from "@/config/config";
 
-const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageList, scrollRef, imageURL, setImage, setImageURL, pdf, pdfURL, setPdf, setPdfURL, handleSubmit, setIsChatVisible,onScroll }: TChatbox) => {
+const ChatBox = ({ form, person, user, messageInput, setMessageInput, messageList, scrollRef, imageURL, setImage, setImageURL, pdf, pdfURL, handleSubmit, setIsChatVisible,onScroll }: TChatbox) => {
 
     
     const router = useRouter()

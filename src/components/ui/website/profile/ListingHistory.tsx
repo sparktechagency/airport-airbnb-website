@@ -1,5 +1,4 @@
 import ProfileHistoryCard from '@/components/shared/ProfileHistoryCard';
-import { historyData } from '@/constants/Profile/HistoryData';
 import { myFetch } from '@/helpers/myFetch';
 import { IHotel } from '@/types/hotel/hotel';
 import { Pagination as IPagination } from '@/types/webPagesType';
@@ -45,7 +44,8 @@ const router = useRouter()
                 image: value?.image[0],
                 key: value?._id,
             }))
-            setPropertyList(propertyData as any)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setPropertyList(propertyData as any )
         })
     },[page])
 

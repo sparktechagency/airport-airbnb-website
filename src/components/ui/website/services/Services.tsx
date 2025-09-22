@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ServiceBanner from "./ServiceBanner";
 import MainAvailableRooms from "./AvailableRooms/MainAvailableRooms";
 import { myFetch } from "@/helpers/myFetch";
 import getProfile from "@/helpers/getProfile";
-// import { getFilters } from "@/helpers/storageHelper";
+
 import { HotelsResponse } from "@/types/webPagesType";
 export interface IsearchParams {
-  checkInDate: string; // ISO date string, e.g. "2025-09-03T18:00:00.000Z"
-  price: number;       // numeric price
-  roomType: "single" | "double" | "suite"; // restrict to known room types
-  location: string;    // human-readable location
-  lat: number;         // latitude
-  lng: number;         // longitude
+  checkInDate: string; 
+  price: number;     
+  roomType: "single" | "double" | "suite"; 
+  location: string;   
+  lat: number;     
+  lng: number;     
 }
 
 const Services = async ({searchParams}:{searchParams:IsearchParams}) => {
@@ -30,7 +30,6 @@ const Services = async ({searchParams}:{searchParams:IsearchParams}) => {
     ...(filters?.lng ? { lng: String(filters.lng) } : {}),
   });
 
-//   console.log("Fetching hotels with params:", params.toString());
   
   const res = await myFetch(`/hotel?${params.toString()}`, {
     tags: ["hotels"],

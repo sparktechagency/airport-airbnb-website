@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { Table, Tag, Select } from "antd";
 import { myFetch } from "@/helpers/myFetch";
@@ -13,49 +14,6 @@ interface BookingRecord {
   earning: string;
   status: "Closed" | "Pending" | "Completed";
 }
-
-const initialData: BookingRecord[] = [
-  {
-    key: "1",
-    name: "Audrey",
-    hotelName: "Hampton Inn",
-    checkIn: "5/19/12",
-    checkOut: "3/4/16",
-    payment: "Paid",
-    earning: "$6",
-    status: "Closed",
-  },
-  {
-    key: "2",
-    name: "Darlene",
-    hotelName: "Fox Ridge",
-    checkIn: "12/4/17",
-    checkOut: "1/15/12",
-    payment: "Refunded",
-    earning: "$6",
-    status: "Pending",
-  },
-  {
-    key: "3",
-    name: "Julie",
-    hotelName: "Holiday Inn",
-    checkIn: "5/19/12",
-    checkOut: "3/4/16",
-    payment: "Paid",
-    earning: "$6",
-    status: "Closed",
-  },
-  {
-    key: "4",
-    name: "Kathryn",
-    hotelName: "Comfort Inn",
-    checkIn: "4/4/18",
-    checkOut: "8/30/14",
-    payment: "Paid",
-    earning: "$3",
-    status: "Completed",
-  },
-];
 
 const HostBookingHistory: React.FC = () => {
   const [data, setData] = useState<BookingRecord[]>([]);
@@ -85,7 +43,7 @@ const HostBookingHistory: React.FC = () => {
         setData(bookingData as any)
         setPagination(res?.data?.pagination)
     });
-  },[])
+  },[page])
 
   const handleStatusChange = (key: string, newStatus: BookingRecord["status"]) => {
     myFetch(`/booking/${key}`, {
@@ -149,11 +107,6 @@ const HostBookingHistory: React.FC = () => {
       dataIndex: "status",
       key: "status",
       render: (_: any, record: BookingRecord) => {
-        let color = "";
-        if (record.status === "Completed") color = "green";
-        else if (record.status === "Pending") color = "orange";
-        else if (record.status === "Closed") color = "red";
-
         return (
           <Select
             value={record.status}
