@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @next/next/no-img-element */
-//@ts-nocheck
+
 "use client";
 
 import { TMessageList } from "@/types/profile/chatType";
@@ -53,14 +50,14 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
       profile: otherParticipant.profilePic,
       name: otherParticipant.name,
       personId: otherParticipant._id,
-      type: lastMessage.type,
+      type: (lastMessage as any).type,
       lastMessage: {
-        _id: lastMessage._id,
-        sender: lastMessage.sender,
+        _id: "",
+        sender:"",
         text: lastMessage.text,
-        createdAt: lastMessage.createdAt,
-        image: lastMessage.image,
-        type: lastMessage.type,
+        createdAt: new Date().toISOString(),
+        image: '',
+        type: '',
         personId: otherParticipant._id,
       },
     };
@@ -122,7 +119,7 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
         cache: "no-store",
       });
 
-      const data: IMessagePopulated = res?.data?.data?.length
+      const data: IMessagePopulated[] = res?.data?.data?.length
         ? res?.data?.data?.reverse() || []
         : [];
 
@@ -130,8 +127,8 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
         text: msg.text,
         sender: { _id: msg.sender },
         image: msg.image || "",
-        doc: msg.doc || "",
-        type: msg.type,
+        doc:  "",
+        type:"type",
         createdAt: msg.createdAt,
         chatId: msg.conversation,
       }));
@@ -159,7 +156,7 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
       revalidateTags(["chatLists"]);
     });
 
-  }, [socket, person?.chatId, user?._id, loadInitialMessages]);
+  }, [socket, person?.chatId, user?._id]);
 
 
 
@@ -172,7 +169,7 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
     }).then((res) => {
       // console.log("🚀 ~ file: ChatPage.tsx:78 ~ myFetch ~ res:", res);
 
-      const data: IMessagePopulated = res?.data?.data?.length
+      const data: IMessagePopulated[] = res?.data?.data?.length
         ? res?.data?.data?.reverse() || []
         : [];
 
@@ -180,8 +177,8 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
         text: msg.text,
         sender: { _id: msg.sender },
         image: msg.image || "",
-        doc: msg.doc || "",
-        type: msg.type,
+        doc: "",
+        type: "type",
         createdAt: msg.createdAt,
         chatId: msg.conversation,
       }));
@@ -322,7 +319,8 @@ const ChatPage = ({ chatData }: { chatData: any }) => {
 
           {/* Message List */}
           <div className="overflow-y-auto h-[75vh] px-2">
-            {formattedChatLists?.map((message: TMessageList) => (
+            
+            {formattedChatLists?.map((message: any) => (
               <div
                 key={message.chatId}
                 onClick={() => handleMessage(message)}

@@ -33,7 +33,8 @@ export interface IMessagePopulated {
   conversation: string;    // conversation ID
   text: string;
   createdAt: string;       // ISO date string
-  updatedAt: string;       // ISO date string
+  updatedAt: string; 
+  image: string;      // ISO date string
   __v: number;
 }
 
