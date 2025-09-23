@@ -1,1 +1,1 @@
-export const imgUrl = "http://10.10.7.72:5000/";
+export const imgUrl = "http://92.205.234.176:5007/";
